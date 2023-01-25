@@ -126,9 +126,13 @@ export default function Navbar() {
             ariaLabel="Кошничка"
             title="Кошничка"
             onClick={openShoppingCart}
+            className="relative"
           >
-            <ShoppingCartIcon className="relative h-6 w-6 text-inherit hover:text-inherit" />
+            <ShoppingCartIcon className="h-6 w-6 text-inherit hover:text-inherit" />
             <p className="hidden xl:block">Кошничка</p>
+            <p className="bg-primary absolute -top-3 left-3 flex h-5 w-5 items-center justify-center rounded-full bg-primary-1 p-1 text-xs text-white">
+              1
+            </p>
           </NavbarLinkButton>
 
           <NavbarLinkButton
