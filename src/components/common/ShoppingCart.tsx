@@ -35,29 +35,36 @@ const ShoppingCart = ({ isShoppingCartOpen, closeShoppingCart }: Props) => {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="relative w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+                <Dialog.Panel className="relative w-full max-w-3xl transform overflow-hidden rounded-2xl bg-gray-1 p-6 text-left align-middle shadow-xl transition-all xl:p-8">
                   <Dialog.Title
                     as="h3"
-                    className="flex items-center gap-1 font-bad-script text-lg text-black"
+                    className="flex items-center gap-1 font-bad-script text-lg text-black xl:text-xl"
                   >
                     <ShoppingCartIcon className="h-6 w-6 text-inherit hover:text-inherit" />
                     Кошничка
                   </Dialog.Title>
-                  <div className="mt-2">
-                    <p className="text-sm text-gray-500">
-                      Your payment has been successfully submitted. We’ve sent
-                      you an email with all of the details of your order.
-                    </p>
-                  </div>
 
-                  <div className="mt-4">
-                    <button
-                      type="button"
-                      className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                    >
-                      Got it, thanks!
-                    </button>
-                  </div>
+                  <table className="w-full table-auto border-collapse border-b border-gray-400">
+                    <thead>
+                      <tr className="border-b border-gray-400 text-primary-1">
+                        <th className="py-4">Производ</th>
+                        <th className="py-4">Количина</th>
+                        <th className="border-l border-r border-gray-400 px-4">
+                          Достава
+                        </th>
+                        <th className="py-4 px-4">Цена</th>
+                      </tr>
+                    </thead>
+
+                    <tbody>
+                      <tr className="[&>*:nth-child(3)]:border-l [&>*:nth-child(3)]:border-r [&>*:nth-child(3)]:border-gray-400">
+                        <td className="py-4">Производ 1</td>
+                        <td className="py-4">1</td>
+                        <td className="py-4 px-4">Достава 1</td>
+                        <td className="py-4 px-4">Цена 1</td>
+                      </tr>
+                    </tbody>
+                  </table>
 
                   <button
                     onClick={closeShoppingCart}

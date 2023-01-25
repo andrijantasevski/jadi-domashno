@@ -48,8 +48,8 @@ export default function Navbar() {
 
           <div className="hidden items-center gap-5 xl:flex">
             <NavbarLinkButton
-              intent={asPath === "/" ? "active" : "primary"}
-              href="/"
+              intent={asPath === "/about" ? "active" : "primary"}
+              href="/about"
             >
               <HowItFunctionsIcon className="h-6 w-6 text-inherit hover:text-inherit" />
               <p>Како функционира</p>
