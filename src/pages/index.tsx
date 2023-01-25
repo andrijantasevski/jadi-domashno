@@ -6,7 +6,9 @@ export default function Home() {
       <Head>
         <title>Јади домашно</title>
       </Head>
-      <main></main>
+      <main>
+        <p className="font-bad-script">Здраво!</p>
+      </main>
     </>
   );
 }

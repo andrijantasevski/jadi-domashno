@@ -5,6 +5,9 @@ import OfferIcon from "./OfferIcon";
 import ForumIcon from "./ForumIcon";
 import SearchIcon from "./SearchIcon";
 import ShoppingCartIcon from "./ShoppingCartIcon";
+import UserAccountIcon from "./UserAccountIcon";
+import Bars3Icon from "./Bars3Icon";
+import XMarkIcon from "./XMarkIcon";
 
 export interface IconProps {
   className?: string;
@@ -18,4 +21,7 @@ export {
   ForumIcon,
   SearchIcon,
   ShoppingCartIcon,
+  UserAccountIcon,
+  Bars3Icon,
+  XMarkIcon,
 };
