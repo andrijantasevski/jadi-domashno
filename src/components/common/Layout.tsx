@@ -1,6 +1,6 @@
 import dynamic from "next/dynamic";
 import { Roboto, Bad_Script } from "@next/font/google";
-const Navbar = dynamic(() => import("./Navbar"));
+const Navbar = dynamic(() => import("@components/common/Navbar/Navbar"));
 
 const badScript = Bad_Script({
   subsets: ["cyrillic"],
