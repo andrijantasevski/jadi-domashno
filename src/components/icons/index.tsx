@@ -10,6 +10,7 @@ import Bars3Icon from "./Bars3Icon";
 import XMarkIcon from "./XMarkIcon";
 import ShoppingBasketIcon from "./ShoppingBasketIcon";
 import CheckMarkIcon from "./CheckMarkIcon";
+import MegaphoneIcon from "./MegaphoneIcon";
 
 export interface IconProps {
   className?: string;
@@ -28,4 +29,5 @@ export {
   XMarkIcon,
   ShoppingBasketIcon,
   CheckMarkIcon,
+  MegaphoneIcon,
 };
