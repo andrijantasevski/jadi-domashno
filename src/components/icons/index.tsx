@@ -11,6 +11,8 @@ import XMarkIcon from "./XMarkIcon";
 import ShoppingBasketIcon from "./ShoppingBasketIcon";
 import CheckMarkIcon from "./CheckMarkIcon";
 import MegaphoneIcon from "./MegaphoneIcon";
+import QuestionMarkCircleIcon from "./QuestionMarkCircleIcon";
+import QuestionMarkIcon from "./QuestionMarkIcon";
 
 export interface IconProps {
   className?: string;
@@ -30,4 +32,6 @@ export {
   ShoppingBasketIcon,
   CheckMarkIcon,
   MegaphoneIcon,
+  QuestionMarkCircleIcon,
+  QuestionMarkIcon,
 };

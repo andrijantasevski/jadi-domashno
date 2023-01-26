@@ -46,7 +46,7 @@ export default function Navbar() {
   return (
     <header className="sticky top-0">
       <BannerTop />
-      <nav className="bg-gray-1 py-3 shadow-sm">
+      <nav className="bg-gray-50 py-3 shadow-md">
         <div className="mx-auto flex w-11/12 items-center justify-between">
           <div className="flex items-center gap-10">
             <Link href="/">
@@ -60,22 +60,23 @@ export default function Navbar() {
               />
 
               <Image
+                priority
                 className="xl:hidden"
-                src="/assets/logo-jadi-domashno-bez-tekst.png"
+                src="/assets/logo-jadi-domashno-vertikalno.svg"
                 alt="Јади домашно"
-                width="50"
-                height="50"
+                width="170"
+                height="70"
               />
             </Link>
 
             <div className="hidden items-center gap-5 xl:flex">
-              <NavbarLinkButton
+              {/* <NavbarLinkButton
                 intent={asPath === "/about" ? "active" : "primary"}
                 href="/about"
               >
                 <HowItFunctionsIcon className="h-6 w-6 text-inherit hover:text-inherit" />
                 <p>Како функционира</p>
-              </NavbarLinkButton>
+              </NavbarLinkButton> */}
 
               <NavbarLinkButton
                 intent={asPath === "/cooks" ? "active" : "primary"}
@@ -114,7 +115,7 @@ export default function Navbar() {
           <div className="flex items-center gap-5">
             <button
               onClick={openSearch}
-              className="hidden items-center gap-2 rounded-full border border-gray-400 bg-background-main py-2 px-3 xl:flex"
+              className="bg-background-main hidden items-center gap-2 rounded-full border border-gray-400 py-2 px-3 xl:flex"
             >
               <SearchIcon className="h-4 w-4" />
               <input
@@ -153,7 +154,7 @@ export default function Navbar() {
             >
               <ShoppingBasketIcon className="h-6 w-6 text-inherit hover:text-inherit" />
               <p className="hidden xl:block">Кошничка</p>
-              <p className="bg-primary absolute left-4 -top-3 flex h-5 w-5 items-center justify-center rounded-full bg-primary-1 p-1 text-xs text-white xl:left-10">
+              <p className="bg-primary bg-primary-1 absolute left-4 -top-3 flex h-5 w-5 items-center justify-center rounded-full p-1 text-xs text-white xl:left-10">
                 1
               </p>
             </NavbarLinkButton>
@@ -169,11 +170,6 @@ export default function Navbar() {
             </NavbarLinkButton>
           </div>
         </div>
-
-        {/* <ShoppingCart
-        isShoppingCartOpen={isShoppingCartOpen}
-        closeShoppingCart={closeShoppingCart}
-      /> */}
 
         <SearchModal isModalOpen={isSearchOpen} closeModal={closeSearch} />
 

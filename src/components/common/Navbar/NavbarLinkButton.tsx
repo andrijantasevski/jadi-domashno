@@ -6,8 +6,8 @@ const navbarLinkStyles = cva(
   {
     variants: {
       intent: {
-        primary: ["text-gray-700", "hover:text-primary-1"],
-        active: ["text-primary-2", "hover:text-primary-1"],
+        primary: ["text-gray-700", "hover:text-primary-600"],
+        active: ["text-primary-600", "hover:text-primary-600"],
       },
     },
     compoundVariants: [

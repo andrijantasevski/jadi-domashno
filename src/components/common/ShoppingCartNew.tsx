@@ -30,11 +30,11 @@ const ShoppingCartItem = () => {
             <p>Достава</p>
 
             {false ? (
-              <div className="flex h-7 w-7 items-center justify-center rounded-full bg-primary-1 p-2">
+              <div className="bg-primary-1 flex h-7 w-7 items-center justify-center rounded-full p-2">
                 <CheckMarkIcon className="h-4 w-4 text-white" />
               </div>
             ) : (
-              <div className="flex h-7 w-7 items-center justify-center rounded-full bg-primary-1 p-2">
+              <div className="bg-primary-1 flex h-7 w-7 items-center justify-center rounded-full p-2">
                 <XMarkIcon className="h-4 w-4 text-white" />
               </div>
             )}
@@ -46,7 +46,7 @@ const ShoppingCartItem = () => {
 };
 
 const ShoppingCartNew = ({ isShoppingCartOpen, closeShoppingCart }: Props) => {
-  const isCartFull = true;
+  const isCartFull = false;
 
   return (
     <Transition.Root appear show={isShoppingCartOpen} as={Fragment}>
@@ -76,7 +76,7 @@ const ShoppingCartNew = ({ isShoppingCartOpen, closeShoppingCart }: Props) => {
                 leaveTo="translate-x-full"
               >
                 <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
-                  <div className="relative flex h-full flex-col gap-4 overflow-y-scroll bg-white p-4 shadow-xl lg:p-6">
+                  <div className="relative flex h-full flex-col gap-4 overflow-y-scroll bg-gray-50 p-4 shadow-xl lg:p-6">
                     <div className="flex items-center justify-between">
                       <Dialog.Title as="h3" className="text-xl">
                         Моја кошничка
@@ -99,8 +99,8 @@ const ShoppingCartNew = ({ isShoppingCartOpen, closeShoppingCart }: Props) => {
                       </div>
                     ) : (
                       <div className="absolute top-1/2 left-1/2 flex w-full -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center gap-2 p-6">
-                        <div className="flex h-20 w-20 items-center justify-center rounded-full bg-primary-1 p-2">
-                          <ShoppingBasketIcon className="h-8 w-8 text-white" />
+                        <div className="flex h-20 w-20 items-center justify-center rounded-full bg-primary-600 p-2">
+                          <ShoppingBasketIcon className="h-8 w-8 text-primary-50" />
                         </div>
                         <p className="text-center text-xl font-semibold">
                           Вашата кошничка е празна
