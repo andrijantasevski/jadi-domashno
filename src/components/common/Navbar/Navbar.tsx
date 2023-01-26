@@ -48,6 +48,7 @@ export default function Navbar() {
         <div className="flex items-center gap-10">
           <Link href="/">
             <Image
+              priority
               className="hidden xl:block"
               src="/assets/logo-jadi-domashno.svg"
               alt="Јади домашно"
