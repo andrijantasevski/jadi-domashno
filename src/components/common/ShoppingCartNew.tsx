@@ -1,7 +1,7 @@
 import { Fragment } from "react";
 import Image from "next/image";
 import { Dialog, Transition } from "@headlessui/react";
-import { CheckMarkIcon, ShoppingBasketIcon, XMarkIcon } from "../icons";
+import { MinusIcon, ShoppingBasketIcon, XMarkIcon, PlusIcon } from "../icons";
 
 interface Props {
   isShoppingCartOpen: boolean;
@@ -10,35 +10,46 @@ interface Props {
 
 const ShoppingCartItem = () => {
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-3 bg-white py-4 px-6">
       <div className="flex gap-4">
         <Image
           src="/assets/example-image.png"
           alt="Product"
-          width="100"
-          height="100"
+          width="80"
+          height="80"
         />
 
         <div className="w-full">
           <div className="flex w-full items-center justify-between">
-            <p className="text-lg font-medium">Гравче тавче</p>
+            <p className="font-medium">Гравче тавче</p>
 
-            <p>150 ден.</p>
+            <button
+              type="button"
+              title="Избриши од кошничката"
+              aria-label="Избриши од кошничката"
+            >
+              <span className="sr-only">Избриши од кошничката</span>
+              <XMarkIcon className="h-3 w-3" />
+            </button>
           </div>
 
-          <div className="flex w-full items-center justify-between">
-            <p>Достава</p>
+          <p className="text-sm text-gray-700">Припремено од Александар</p>
+        </div>
+      </div>
 
-            {false ? (
-              <div className="bg-primary-1 flex h-7 w-7 items-center justify-center rounded-full p-2">
-                <CheckMarkIcon className="h-4 w-4 text-white" />
-              </div>
-            ) : (
-              <div className="bg-primary-1 flex h-7 w-7 items-center justify-center rounded-full p-2">
-                <XMarkIcon className="h-4 w-4 text-white" />
-              </div>
-            )}
-          </div>
+      <hr className="border border-gray-200" />
+
+      <div className="flex items-center justify-between">
+        <p className="font-medium">150 ден.</p>
+
+        <div className="flex items-center justify-center gap-1 rounded-full bg-gray-100">
+          <button className="rounded-full py-2.5 px-3.5 text-center text-xl text-gray-600 hover:text-gray-900">
+            <MinusIcon className="h-3 w-3" />
+          </button>
+          <p className="font-medium">1</p>
+          <button className="rounded-full py-2.5 px-3.5 text-center text-xl text-gray-600 transition-colors hover:text-gray-900">
+            <PlusIcon className="h-3 w-3" />
+          </button>
         </div>
       </div>
     </div>
@@ -46,7 +57,7 @@ const ShoppingCartItem = () => {
 };
 
 const ShoppingCartNew = ({ isShoppingCartOpen, closeShoppingCart }: Props) => {
-  const isCartFull = false;
+  const isCartFull = true;
 
   return (
     <Transition.Root appear show={isShoppingCartOpen} as={Fragment}>
@@ -76,8 +87,8 @@ const ShoppingCartNew = ({ isShoppingCartOpen, closeShoppingCart }: Props) => {
                 leaveTo="translate-x-full"
               >
                 <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
-                  <div className="relative flex h-full flex-col gap-4 overflow-y-scroll bg-gray-50 p-4 shadow-xl lg:p-6">
-                    <div className="flex items-center justify-between">
+                  <div className="relative flex h-full flex-col gap-4 overflow-y-scroll bg-gray-100 py-4 shadow-xl lg:py-6">
+                    <div className="flex items-center justify-between px-4 lg:px-6">
                       <Dialog.Title as="h3" className="text-xl">
                         Моја кошничка
                       </Dialog.Title>
@@ -94,7 +105,9 @@ const ShoppingCartNew = ({ isShoppingCartOpen, closeShoppingCart }: Props) => {
                     </div>
 
                     {isCartFull ? (
-                      <div>
+                      <div className="grid grid-cols-1 gap-4">
+                        <ShoppingCartItem />
+
                         <ShoppingCartItem />
                       </div>
                     ) : (

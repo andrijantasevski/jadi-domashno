@@ -13,6 +13,8 @@ import CheckMarkIcon from "./CheckMarkIcon";
 import MegaphoneIcon from "./MegaphoneIcon";
 import QuestionMarkCircleIcon from "./QuestionMarkCircleIcon";
 import QuestionMarkIcon from "./QuestionMarkIcon";
+import MinusIcon from "./MinusIcon";
+import PlusIcon from "./PlusIcon";
 
 export interface IconProps {
   className?: string;
@@ -34,4 +36,6 @@ export {
   MegaphoneIcon,
   QuestionMarkCircleIcon,
   QuestionMarkIcon,
+  MinusIcon,
+  PlusIcon,
 };

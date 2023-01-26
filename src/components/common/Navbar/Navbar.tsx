@@ -17,7 +17,6 @@ import {
   XMarkIcon,
 } from "@components/icons";
 import NavbarLinkButton from "@components/common/Navbar/NavbarLinkButton";
-import ShoppingCart from "@components/common/ShoppingCart";
 import BannerTop from "./BannerTop";
 const ShoppingCartNew = dynamic(() => import("../ShoppingCartNew"));
 const SlideInMenu = dynamic(() => import("@components/ui/SlideInMenu"));
