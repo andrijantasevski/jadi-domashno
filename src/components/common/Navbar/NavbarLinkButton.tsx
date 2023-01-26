@@ -2,11 +2,11 @@ import { cva, type VariantProps } from "class-variance-authority";
 import Link from "next/link";
 
 const navbarLinkStyles = cva(
-  ["flex", "flex-col", "items-center", "gap-1", "transform-colors"],
+  ["flex", "flex-col", "items-center", "gap-1", "transition-colors"],
   {
     variants: {
       intent: {
-        primary: ["text-gray-700", "hover:text-gray-900"],
+        primary: ["text-gray-700", "hover:text-primary-1"],
         active: ["text-primary-2", "hover:text-primary-1"],
       },
     },

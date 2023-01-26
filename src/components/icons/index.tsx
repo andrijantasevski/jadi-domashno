@@ -8,6 +8,8 @@ import ShoppingCartIcon from "./ShoppingCartIcon";
 import UserAccountIcon from "./UserAccountIcon";
 import Bars3Icon from "./Bars3Icon";
 import XMarkIcon from "./XMarkIcon";
+import ShoppingBasketIcon from "./ShoppingBasketIcon";
+import CheckMarkIcon from "./CheckMarkIcon";
 
 export interface IconProps {
   className?: string;
@@ -24,4 +26,6 @@ export {
   UserAccountIcon,
   Bars3Icon,
   XMarkIcon,
+  ShoppingBasketIcon,
+  CheckMarkIcon,
 };

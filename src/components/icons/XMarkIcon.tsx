@@ -10,7 +10,7 @@ const XMarkIcon = ({ className }: IconProps) => {
     >
       <g
         clipPath="url(#prefix__clip0_3238_23744)"
-        stroke="#000"
+        stroke="currentColor"
         strokeWidth={1.714}
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -19,7 +19,7 @@ const XMarkIcon = ({ className }: IconProps) => {
       </g>
       <defs>
         <clipPath id="prefix__clip0_3238_23744">
-          <path fill="#fff" d="M0 0h24v24H0z" />
+          <path fill="currentColor" d="M0 0h24v24H0z" />
         </clipPath>
       </defs>
     </svg>

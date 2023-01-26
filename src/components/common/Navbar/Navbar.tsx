@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 import {
   Bars3Icon,
@@ -12,9 +13,11 @@ import {
   SearchIcon,
   ShoppingCartIcon,
   UserAccountIcon,
+  ShoppingBasketIcon,
 } from "@components/icons";
 import NavbarLinkButton from "@components/common/Navbar/NavbarLinkButton";
 import ShoppingCart from "@components/common/ShoppingCart";
+const ShoppingCartNew = dynamic(() => import("../ShoppingCartNew"));
 
 export default function Navbar() {
   const { asPath } = useRouter();
@@ -128,9 +131,9 @@ export default function Navbar() {
             onClick={openShoppingCart}
             className="relative"
           >
-            <ShoppingCartIcon className="h-6 w-6 text-inherit hover:text-inherit" />
+            <ShoppingBasketIcon className="h-6 w-6 text-inherit hover:text-inherit" />
             <p className="hidden xl:block">Кошничка</p>
-            <p className="bg-primary absolute -top-3 left-3 flex h-5 w-5 items-center justify-center rounded-full bg-primary-1 p-1 text-xs text-white">
+            <p className="bg-primary absolute left-4 -top-3 flex h-5 w-5 items-center justify-center rounded-full bg-primary-1 p-1 text-xs text-white xl:left-10">
               1
             </p>
           </NavbarLinkButton>
@@ -145,7 +148,12 @@ export default function Navbar() {
         </div>
       </div>
 
-      <ShoppingCart
+      {/* <ShoppingCart
+        isShoppingCartOpen={isShoppingCartOpen}
+        closeShoppingCart={closeShoppingCart}
+      /> */}
+
+      <ShoppingCartNew
         isShoppingCartOpen={isShoppingCartOpen}
         closeShoppingCart={closeShoppingCart}
       />
