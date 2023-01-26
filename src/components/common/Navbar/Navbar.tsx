@@ -50,23 +50,18 @@ export default function Navbar() {
         <div className="mx-auto flex w-11/12 items-center justify-between">
           <div className="flex items-center gap-10">
             <Link href="/">
-              <Image
-                priority
-                className="hidden xl:block"
-                src="/assets/logo-jadi-domashno.svg"
-                alt="Јади домашно"
-                width="128"
-                height="70"
-              />
-
-              <Image
-                priority
-                className="xl:hidden"
-                src="/assets/logo-jadi-domashno-vertikalno.svg"
-                alt="Јади домашно"
-                width="170"
-                height="70"
-              />
+              <div className="flex items-center gap-2 xl:flex-col xl:gap-0">
+                <Image
+                  priority
+                  src="/assets/logo-jadi-domashno-bez-tekst.svg"
+                  alt="Јади домашно"
+                  width="40"
+                  height="40"
+                />
+                <p className="text-lg font-bold text-primary-600">
+                  Јади домашно
+                </p>
+              </div>
             </Link>
 
             <div className="hidden items-center gap-5 xl:flex">
