@@ -41,15 +41,6 @@ const ShoppingCartItem = () => {
           </div>
         </div>
       </div>
-      <div className="flex h-7 items-center gap-2">
-        <button className="h-full rounded-lg border border-gray-600 p-2">
-          <XMarkIcon className="h-3 w-3 text-gray-900" />
-        </button>
-
-        <div className="flex h-full w-full items-center rounded-lg border border-gray-600 px-2">
-          <p>1</p>
-        </div>
-      </div>
     </div>
   );
 };
