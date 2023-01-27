@@ -18,7 +18,7 @@ import {
 } from "@components/icons";
 import NavbarLinkButton from "@components/common/Navbar/NavbarLinkButton";
 import BannerTop from "./BannerTop";
-const ShoppingCartNew = dynamic(() => import("../ShoppingCartNew"));
+const ShoppingCart = dynamic(() => import("../ShoppingCart/ShoppingCart"));
 const SlideInMenu = dynamic(() => import("@components/ui/SlideInMenu"));
 const SearchModal = dynamic(
   () => import("@components/common/Navbar/SearchModal")
@@ -167,7 +167,7 @@ export default function Navbar() {
 
         <SearchModal isModalOpen={isSearchOpen} closeModal={closeSearch} />
 
-        <ShoppingCartNew
+        <ShoppingCart
           isShoppingCartOpen={isShoppingCartOpen}
           closeShoppingCart={closeShoppingCart}
         />

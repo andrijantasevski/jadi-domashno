@@ -1,62 +1,15 @@
 import { Fragment } from "react";
-import Image from "next/image";
 import { Dialog, Transition } from "@headlessui/react";
-import { MinusIcon, ShoppingBasketIcon, XMarkIcon, PlusIcon } from "../icons";
+import { ShoppingBasketIcon, XMarkIcon } from "../../icons";
+import ShoppingCartItem from "./ShoppingCartItem";
+import Button from "@/components/ui/Button";
 
 interface Props {
   isShoppingCartOpen: boolean;
   closeShoppingCart: () => void;
 }
 
-const ShoppingCartItem = () => {
-  return (
-    <div className="flex flex-col gap-3 bg-white py-4 px-6">
-      <div className="flex gap-4">
-        <Image
-          src="/assets/example-image.png"
-          alt="Product"
-          width="80"
-          height="80"
-        />
-
-        <div className="w-full">
-          <div className="flex w-full items-center justify-between">
-            <p className="font-medium">Гравче тавче</p>
-
-            <button
-              type="button"
-              title="Избриши од кошничката"
-              aria-label="Избриши од кошничката"
-            >
-              <span className="sr-only">Избриши од кошничката</span>
-              <XMarkIcon className="h-3 w-3" />
-            </button>
-          </div>
-
-          <p className="text-sm text-gray-700">Припремено од Александар</p>
-        </div>
-      </div>
-
-      <hr className="border border-gray-200" />
-
-      <div className="flex items-center justify-between">
-        <p className="font-medium">150 ден.</p>
-
-        <div className="flex items-center justify-center gap-1 rounded-full bg-gray-100">
-          <button className="rounded-full py-2.5 px-3.5 text-center text-xl text-gray-600 hover:text-gray-900">
-            <MinusIcon className="h-3 w-3" />
-          </button>
-          <p className="font-medium">1</p>
-          <button className="rounded-full py-2.5 px-3.5 text-center text-xl text-gray-600 transition-colors hover:text-gray-900">
-            <PlusIcon className="h-3 w-3" />
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-const ShoppingCartNew = ({ isShoppingCartOpen, closeShoppingCart }: Props) => {
+const ShoppingCart = ({ isShoppingCartOpen, closeShoppingCart }: Props) => {
   const isCartFull = true;
 
   return (
@@ -87,7 +40,7 @@ const ShoppingCartNew = ({ isShoppingCartOpen, closeShoppingCart }: Props) => {
                 leaveTo="translate-x-full"
               >
                 <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
-                  <div className="relative flex h-full flex-col gap-4 overflow-y-scroll bg-gray-100 py-4 shadow-xl lg:py-6">
+                  <div className="relative flex h-full flex-col gap-4 overflow-y-auto bg-gray-100 pt-4 shadow-xl lg:pt-6">
                     <div className="flex items-center justify-between px-4 lg:px-6">
                       <Dialog.Title as="h3" className="text-xl">
                         Моја кошничка
@@ -98,6 +51,7 @@ const ShoppingCartNew = ({ isShoppingCartOpen, closeShoppingCart }: Props) => {
                         onClick={closeShoppingCart}
                         title="Затвори кошничка"
                         aria-label="Затвори кошничка"
+                        className="text-gray-900 transition-colors hover:text-primary-600"
                       >
                         <span className="sr-only">Затвори кошничка</span>
                         <XMarkIcon className="h-4 w-4" />
@@ -109,6 +63,32 @@ const ShoppingCartNew = ({ isShoppingCartOpen, closeShoppingCart }: Props) => {
                         <ShoppingCartItem />
 
                         <ShoppingCartItem />
+
+                        <div className="sticky inset-x-0 bottom-0 grid grid-cols-1 gap-2 bg-white py-4 px-4 text-sm font-medium shadow-sm lg:px-6">
+                          <div className="flex items-center justify-between">
+                            <p>1 производ</p>
+
+                            <p>1000 ден.</p>
+                          </div>
+
+                          <div className="flex items-center justify-between">
+                            <p>Достава</p>
+
+                            <p>100 ден.</p>
+                          </div>
+
+                          <hr className="border border-gray-200" />
+
+                          <div className="flex items-center justify-between text-base">
+                            <p>Вкупно</p>
+
+                            <p>1100 ден.</p>
+                          </div>
+
+                          <Button title="Оди на каса" aria-label="Оди на каса">
+                            Оди на каса
+                          </Button>
+                        </div>
                       </div>
                     ) : (
                       <div className="absolute top-1/2 left-1/2 flex w-full -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center gap-2 p-6">
@@ -135,4 +115,4 @@ const ShoppingCartNew = ({ isShoppingCartOpen, closeShoppingCart }: Props) => {
   );
 };
 
-export default ShoppingCartNew;
+export default ShoppingCart;
