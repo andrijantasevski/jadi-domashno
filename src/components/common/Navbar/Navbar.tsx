@@ -7,19 +7,16 @@ import {
   Bars3Icon,
   ChefIcon,
   ForumIcon,
-  HowItFunctionsIcon,
   MenuIcon,
   OfferIcon,
   SearchIcon,
-  ShoppingCartIcon,
   UserAccountIcon,
   ShoppingBasketIcon,
-  XMarkIcon,
 } from "@components/icons";
 import NavbarLinkButton from "@components/common/Navbar/NavbarLinkButton";
 import BannerTop from "./BannerTop";
 const ShoppingCart = dynamic(() => import("../ShoppingCart/ShoppingCart"));
-const SlideInMenu = dynamic(() => import("@components/ui/SlideInMenu"));
+const NavbarSlideInMenu = dynamic(() => import("./NavbarSlideInMenu"));
 const SearchModal = dynamic(
   () => import("@components/common/Navbar/SearchModal")
 );
@@ -148,9 +145,9 @@ export default function Navbar() {
             >
               <ShoppingBasketIcon className="h-6 w-6 text-inherit hover:text-inherit" />
               <p className="hidden xl:block">Кошничка</p>
-              <p className="bg-primary bg-primary-1 absolute left-4 -top-3 flex h-5 w-5 items-center justify-center rounded-full p-1 text-xs text-white xl:left-10">
+              <div className="absolute left-4 -top-3 flex h-5 w-5 items-center justify-center rounded-full bg-primary-600 text-xs text-primary-50 xl:left-10">
                 1
-              </p>
+              </div>
             </NavbarLinkButton>
 
             <NavbarLinkButton
@@ -172,64 +169,10 @@ export default function Navbar() {
           closeShoppingCart={closeShoppingCart}
         />
 
-        <SlideInMenu
-          isSlideInMenuOpen={isSlideInMenuOpen}
+        <NavbarSlideInMenu
           closeSlideInMenu={closeSlideInMenu}
-        >
-          <div className="flex justify-end">
-            <button
-              type="button"
-              onClick={closeShoppingCart}
-              title="Затвори мени"
-              aria-label="Затвори мени"
-            >
-              <span className="sr-only">Затвори мени</span>
-              <XMarkIcon className="h-4 w-4" />
-            </button>
-          </div>
-
-          <div className="grid grid-cols-1 gap-4">
-            <NavbarLinkButton
-              intent={asPath === "/about" ? "active" : "primary"}
-              href="/about"
-            >
-              <HowItFunctionsIcon className="h-6 w-6 text-inherit hover:text-inherit" />
-              <p>Како функционира</p>
-            </NavbarLinkButton>
-
-            <NavbarLinkButton
-              intent={asPath === "/cooks" ? "active" : "primary"}
-              href="/cooks"
-            >
-              <ChefIcon className="h-6 w-6 text-inherit hover:text-inherit" />
-              <p>Готвачи</p>
-            </NavbarLinkButton>
-
-            <NavbarLinkButton
-              intent={asPath === "/offers" ? "active" : "primary"}
-              href="/offers"
-            >
-              <OfferIcon className="h-6 w-6 text-inherit hover:text-inherit" />
-              <p>Побарај понуда</p>
-            </NavbarLinkButton>
-
-            <NavbarLinkButton
-              intent={asPath === "/menu" ? "active" : "primary"}
-              href="/menu"
-            >
-              <MenuIcon className="h-6 w-6 text-inherit hover:text-inherit" />
-              <p>Мени</p>
-            </NavbarLinkButton>
-
-            <NavbarLinkButton
-              intent={asPath === "/forum" ? "active" : "primary"}
-              href="/forum"
-            >
-              <ForumIcon className="h-6 w-6 text-inherit hover:text-inherit" />
-              <p>Форум</p>
-            </NavbarLinkButton>
-          </div>
-        </SlideInMenu>
+          isSlideInMenuOpen={isSlideInMenuOpen}
+        />
       </nav>
     </header>
   );

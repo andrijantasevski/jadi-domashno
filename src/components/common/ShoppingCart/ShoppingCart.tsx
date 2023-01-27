@@ -85,8 +85,12 @@ const ShoppingCart = ({ isShoppingCartOpen, closeShoppingCart }: Props) => {
                             <p>1100 ден.</p>
                           </div>
 
-                          <Button title="Оди на каса" aria-label="Оди на каса">
-                            Оди на каса
+                          <Button
+                            href="/checkout"
+                            title="Оди на каса"
+                            aria-label="Оди на каса"
+                          >
+                            Продолжете кон наплата
                           </Button>
                         </div>
                       </div>

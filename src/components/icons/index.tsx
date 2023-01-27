@@ -15,6 +15,9 @@ import QuestionMarkCircleIcon from "./QuestionMarkCircleIcon";
 import QuestionMarkIcon from "./QuestionMarkIcon";
 import MinusIcon from "./MinusIcon";
 import PlusIcon from "./PlusIcon";
+import FacebookIcon from "./FacebookIcon";
+import YouTubeIcon from "./YouTubeIcon";
+import TwitterIcon from "./TwitterIcon";
 
 export interface IconProps {
   className?: string;
@@ -38,4 +41,7 @@ export {
   QuestionMarkIcon,
   MinusIcon,
   PlusIcon,
+  FacebookIcon,
+  YouTubeIcon,
+  TwitterIcon,
 };

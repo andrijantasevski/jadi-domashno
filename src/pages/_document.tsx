@@ -23,7 +23,7 @@ export default function Document() {
         />
         <link rel="manifest" href="/site.webmanifest" />
       </Head>
-      <body className="bg-background-main">
+      <body className="bg-background-main text-gray-900">
         <Main />
         <NextScript />
       </body>
