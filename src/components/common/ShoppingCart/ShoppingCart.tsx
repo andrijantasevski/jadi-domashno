@@ -3,6 +3,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import { ShoppingBasketIcon, XMarkIcon } from "../../icons";
 import ShoppingCartItem from "./ShoppingCartItem";
 import Button from "@/components/ui/Button";
+import IconButton from "@/components/ui/IconButton";
 
 interface Props {
   isShoppingCartOpen: boolean;
@@ -46,16 +47,14 @@ const ShoppingCart = ({ isShoppingCartOpen, closeShoppingCart }: Props) => {
                         Моја кошничка
                       </Dialog.Title>
 
-                      <button
-                        type="button"
+                      <IconButton
                         onClick={closeShoppingCart}
                         title="Затвори кошничка"
-                        aria-label="Затвори кошничка"
-                        className="text-gray-900 transition-colors hover:text-primary-600"
+                        ariaLabel="Затвори кошничка"
                       >
                         <span className="sr-only">Затвори кошничка</span>
                         <XMarkIcon className="h-4 w-4" />
-                      </button>
+                      </IconButton>
                     </div>
 
                     {isCartFull ? (

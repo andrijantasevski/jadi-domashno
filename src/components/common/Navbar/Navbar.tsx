@@ -15,6 +15,7 @@ import {
 } from "@components/icons";
 import NavbarLinkButton from "@components/common/Navbar/NavbarLinkButton";
 import BannerTop from "./BannerTop";
+import SearchInput from "./SearchInput";
 const ShoppingCart = dynamic(() => import("../ShoppingCart/ShoppingCart"));
 const NavbarSlideInMenu = dynamic(() => import("./NavbarSlideInMenu"));
 const SearchModal = dynamic(
@@ -61,14 +62,6 @@ export default function Navbar() {
             </Link>
 
             <div className="hidden items-center gap-5 xl:flex">
-              {/* <NavbarLinkButton
-                intent={asPath === "/about" ? "active" : "primary"}
-                href="/about"
-              >
-                <HowItFunctionsIcon className="h-6 w-6 text-inherit hover:text-inherit" />
-                <p>Како функционира</p>
-              </NavbarLinkButton> */}
-
               <NavbarLinkButton
                 intent={asPath === "/cooks" ? "active" : "primary"}
                 href="/cooks"
@@ -104,7 +97,7 @@ export default function Navbar() {
           </div>
 
           <div className="flex items-center gap-5">
-            <button
+            {/* <button
               onClick={openSearch}
               className="bg-background-main hidden items-center gap-2 rounded-full border border-gray-400 py-2 px-3 xl:flex"
             >
@@ -115,7 +108,9 @@ export default function Navbar() {
                 type="search"
                 placeholder="Пребарај"
               />
-            </button>
+            </button> */}
+
+            <SearchInput />
 
             <NavbarLinkButton
               intent="primary"

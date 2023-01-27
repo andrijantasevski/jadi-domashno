@@ -1,7 +1,6 @@
 import {
   MegaphoneIcon,
   QuestionMarkCircleIcon,
-  QuestionMarkIcon,
   UserAccountIcon,
 } from "@/components/icons";
 import Button from "@/components/ui/Button";

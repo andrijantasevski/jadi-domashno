@@ -7,6 +7,7 @@ import {
   YouTubeIcon,
 } from "@/components/icons";
 import Link from "next/link";
+import IconButton from "@/components/ui/IconButton";
 
 interface Props {
   isSlideInMenuOpen: boolean;
@@ -65,16 +66,14 @@ const NavbarSlideInMenu = ({ isSlideInMenuOpen, closeSlideInMenu }: Props) => {
                 <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
                   <div className="relative flex h-full flex-col gap-4 overflow-y-auto bg-gray-100 pt-4 shadow-xl lg:pt-6">
                     <div className="flex justify-end px-4 lg:px-6">
-                      <button
-                        className="text-gray-900 transition-colors hover:text-primary-600"
-                        type="button"
+                      <IconButton
                         onClick={closeSlideInMenu}
                         title="Затвори мени"
-                        aria-label="Затвори мени"
+                        ariaLabel="Затвори мени"
                       >
                         <span className="sr-only">Затвори мени</span>
                         <XMarkIcon className="h-4 w-4" />
-                      </button>
+                      </IconButton>
                     </div>
 
                     <ul className="grid grid-cols-1">

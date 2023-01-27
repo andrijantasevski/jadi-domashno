@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { MinusIcon, PlusIcon, XMarkIcon } from "@/components/icons";
+import IconButton from "@/components/ui/IconButton";
 
 const ShoppingCartItem = () => {
   return (
@@ -16,15 +17,13 @@ const ShoppingCartItem = () => {
           <div className="flex w-full items-center justify-between">
             <p className="font-medium">Гравче тавче</p>
 
-            <button
-              type="button"
+            <IconButton
               title="Избриши од кошничката"
-              aria-label="Избриши од кошничката"
-              className="text-gray-900 transition-colors hover:text-primary-600"
+              ariaLabel="Избриши од кошничката"
             >
               <span className="sr-only">Избриши од кошничката</span>
               <XMarkIcon className="h-3 w-3" />
-            </button>
+            </IconButton>
           </div>
 
           <p className="text-sm text-gray-700">Припремено од Александар</p>
@@ -37,23 +36,23 @@ const ShoppingCartItem = () => {
         <p className="font-medium">150 ден.</p>
 
         <div className="flex items-center justify-center gap-1 rounded-full bg-gray-100">
-          <button
-            aria-label="Избриши еден производ"
+          <IconButton
+            ariaLabel="Избриши еден производ"
             title="Избриши еден производ"
-            className="rounded-full py-2.5 px-3.5 text-center text-xl text-gray-600 transition-colors hover:text-primary-600"
+            className="rounded-full py-2.5 px-3.5 text-center text-xl"
           >
             <span className="sr-only">Избриши еден производ</span>
             <MinusIcon className="h-3 w-3" />
-          </button>
+          </IconButton>
           <p className="font-medium">1</p>
-          <button
-            aria-label="Избриши еден производ"
+          <IconButton
+            ariaLabel="Додади еден производ"
             title="Додади еден производ"
-            className="rounded-full py-2.5 px-3.5 text-center text-xl text-gray-600 transition-colors hover:text-primary-600"
+            className="rounded-full py-2.5 px-3.5 text-center text-xl"
           >
-            <span className="sr-only">Избриши еден производ</span>
+            <span className="sr-only">Додади еден производ</span>
             <PlusIcon className="h-3 w-3" />
-          </button>
+          </IconButton>
         </div>
       </div>
     </div>

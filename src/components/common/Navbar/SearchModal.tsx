@@ -1,7 +1,8 @@
 import { Fragment, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { Dialog, Transition } from "@headlessui/react";
-import { SearchIcon } from "@/components/icons";
+import { SearchIcon, XMarkIcon } from "@/components/icons";
+import IconButton from "@/components/ui/IconButton";
 
 interface Props {
   isModalOpen: boolean;
@@ -52,7 +53,7 @@ const SearchModal = ({ isModalOpen, closeModal }: Props) => {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <Dialog.Panel className="relative w-full max-w-xl transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+              <Dialog.Panel className="relative grid w-full max-w-xl transform grid-cols-1 gap-2 overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
                 <form onSubmit={handleSearch}>
                   <label
                     htmlFor="search-navbar"
