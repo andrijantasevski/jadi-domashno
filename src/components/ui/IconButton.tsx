@@ -34,10 +34,9 @@ const IconButton = ({
 }: Props) => {
   if (href) {
     return (
-      <Link
-        href={href}
-        className={iconButtonStyles({ intent, className })}
-      ></Link>
+      <Link href={href} className={iconButtonStyles({ intent, className })}>
+        {children}
+      </Link>
     );
   }
 
