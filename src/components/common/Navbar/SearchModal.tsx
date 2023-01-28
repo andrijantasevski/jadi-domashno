@@ -3,7 +3,9 @@ import { useRouter } from "next/router";
 import { Dialog, Transition } from "@headlessui/react";
 import { SearchIcon, XMarkIcon } from "@/components/icons";
 import IconButton from "@/components/ui/IconButton";
-import useLocalStorageSearchQuery from "@/components/utils/useLocalStorageSearchQuery";
+import useLocalStorageSearchQuery, {
+  SearchQuery,
+} from "@/components/utils/useLocalStorageSearchQuery";
 
 interface Props {
   isModalOpen: boolean;
@@ -36,6 +38,14 @@ const SearchModal = ({ isModalOpen, closeModal }: Props) => {
 
   const addPastSearchToInput = (searchQuery: string) => {
     setSearchQuery(searchQuery);
+  };
+
+  const removeSearchQuery = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent> | undefined,
+    searchQuery: SearchQuery
+  ) => {
+    e?.stopPropagation();
+    removeSearchQueryFromLocalStorage(searchQuery);
   };
 
   return (
@@ -83,23 +93,30 @@ const SearchModal = ({ isModalOpen, closeModal }: Props) => {
                 </form>
 
                 {searchQueries.length > 0 ? (
-                  <div className="grid grid-cols-1 gap-2">
+                  <div className="grid grid-cols-1 gap-2 overflow-y-auto">
                     <p className="font-medium">Претходни пребарувања</p>
 
                     <div className="grid grid-cols-1 gap-2">
                       {searchQueries.map((searchQuery, index) => (
                         <div
                           key={index}
-                          onClick={() => addPastSearchToInput(searchQuery)}
+                          onClick={() =>
+                            addPastSearchToInput(searchQuery.searchQuery)
+                          }
                           className="flex cursor-pointer items-center justify-between"
                         >
-                          <p>{searchQuery}</p>
+                          <p className="transition-colors hover:text-primary-600">
+                            {searchQuery.searchQuery}
+                          </p>
 
                           <IconButton
-                            onClick={() =>
-                              removeSearchQueryFromLocalStorage(searchQuery)
-                            }
+                            ariaLabel="Избриши пребарување"
+                            title={`Избриши ${searchQuery}`}
+                            onClick={(e) => removeSearchQuery(e, searchQuery)}
                           >
+                            <span className="sr-only">
+                              Избриши {searchQuery.searchQuery}
+                            </span>
                             <XMarkIcon className="h-3 w-3" />
                           </IconButton>
                         </div>

@@ -20,7 +20,7 @@ interface Props
   href?: string;
   title?: string;
   ariaLabel?: string;
-  onClick?: () => void;
+  onClick?: (e?: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
 
 const IconButton = ({
@@ -35,7 +35,6 @@ const IconButton = ({
   if (href) {
     return (
       <Link
-        onClick={onClick}
         href={href}
         className={iconButtonStyles({ intent, className })}
       ></Link>
