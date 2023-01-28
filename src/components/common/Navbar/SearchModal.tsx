@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { Dialog, Transition } from "@headlessui/react";
 import { SearchIcon, XMarkIcon } from "@/components/icons";
 import IconButton from "@/components/ui/IconButton";
+import useLocalStorageSearchQuery from "@/components/utils/useLocalStorageSearchQuery";
 
 interface Props {
   isModalOpen: boolean;
@@ -10,11 +11,17 @@ interface Props {
 }
 
 const SearchModal = ({ isModalOpen, closeModal }: Props) => {
-  const [searchQuery, setSearchQuery] = useState("");
   const router = useRouter();
+  const [searchQuery, setSearchQuery] = useState("");
+  const {
+    addSearchQueryToLocalStorage,
+    searchQueries,
+    removeSearchQueryFromLocalStorage,
+  } = useLocalStorageSearchQuery();
 
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    addSearchQueryToLocalStorage(searchQuery);
     router.push({
       pathname: "/search",
       query: { searchQuery },
@@ -26,6 +33,10 @@ const SearchModal = ({ isModalOpen, closeModal }: Props) => {
       router.query.searchQuery ? (router.query.searchQuery as string) : ""
     );
   }, [router.query]);
+
+  const addPastSearchToInput = (searchQuery: string) => {
+    setSearchQuery(searchQuery);
+  };
 
   return (
     <Transition appear show={isModalOpen} as={Fragment}>
@@ -53,11 +64,11 @@ const SearchModal = ({ isModalOpen, closeModal }: Props) => {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <Dialog.Panel className="relative grid w-full max-w-xl transform grid-cols-1 gap-2 overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+              <Dialog.Panel className="relative grid w-full max-w-xl transform grid-cols-1 gap-4 overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
                 <form onSubmit={handleSearch}>
                   <label
                     htmlFor="search-navbar"
-                    className="flex items-center gap-2 rounded-full border border-gray-400 py-2 px-3"
+                    className="flex items-center gap-2 rounded-lg border border-gray-400 py-2 px-3"
                   >
                     <SearchIcon className="h-4 w-4" />
                     <input
@@ -66,10 +77,40 @@ const SearchModal = ({ isModalOpen, closeModal }: Props) => {
                       id="search-navbar"
                       className="w-full bg-transparent focus:outline-none"
                       type="search"
-                      placeholder="Пребарај"
+                      placeholder="Пребарајте"
                     />
                   </label>
                 </form>
+
+                {searchQueries.length > 0 ? (
+                  <div className="grid grid-cols-1 gap-2">
+                    <p className="font-medium">Претходни пребарувања</p>
+
+                    <div className="grid grid-cols-1 gap-2">
+                      {searchQueries.map((searchQuery, index) => (
+                        <div
+                          key={index}
+                          onClick={() => addPastSearchToInput(searchQuery)}
+                          className="flex cursor-pointer items-center justify-between"
+                        >
+                          <p>{searchQuery}</p>
+
+                          <IconButton
+                            onClick={() =>
+                              removeSearchQueryFromLocalStorage(searchQuery)
+                            }
+                          >
+                            <XMarkIcon className="h-3 w-3" />
+                          </IconButton>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ) : (
+                  <div className="flex items-center justify-center">
+                    <p>Немате претходни пребарувања.</p>
+                  </div>
+                )}
               </Dialog.Panel>
             </Transition.Child>
           </div>

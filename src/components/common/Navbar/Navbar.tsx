@@ -15,7 +15,6 @@ import {
 } from "@components/icons";
 import NavbarLinkButton from "@components/common/Navbar/NavbarLinkButton";
 import BannerTop from "./BannerTop";
-import SearchInput from "./SearchInput";
 const ShoppingCart = dynamic(() => import("../ShoppingCart/ShoppingCart"));
 const NavbarSlideInMenu = dynamic(() => import("./NavbarSlideInMenu"));
 const SearchModal = dynamic(
@@ -97,25 +96,18 @@ export default function Navbar() {
           </div>
 
           <div className="flex items-center gap-5">
-            {/* <button
+            <button
               onClick={openSearch}
-              className="bg-background-main hidden items-center gap-2 rounded-full border border-gray-400 py-2 px-3 xl:flex"
+              className="hidden w-60 items-center gap-2 rounded-lg border border-gray-400 py-2 px-3 transition-colors hover:border-primary-600 xl:flex"
             >
               <SearchIcon className="h-4 w-4" />
-              <input
-                id="search-navbar"
-                className="bg-transparent focus:outline-none"
-                type="search"
-                placeholder="Пребарај"
-              />
-            </button> */}
-
-            <SearchInput />
+              <span className="text-gray-500">Пребарајте</span>
+            </button>
 
             <NavbarLinkButton
               intent="primary"
-              ariaLabel="Пребарај"
-              title="Пребарај"
+              ariaLabel="Пребарајте"
+              title="Пребарајте"
               className="xl:hidden"
               onClick={openSearch}
             >
