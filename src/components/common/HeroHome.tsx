@@ -102,7 +102,7 @@ const HeroHome = () => {
 
         <SectionTitle>Вкусот на твоето соседство</SectionTitle>
 
-        <div className="flex items-center gap-4">
+        <div className="flex flex-col items-center gap-4 lg:flex-row">
           <SearchCitiesComboBox />
           <Button>Пребарајте</Button>
         </div>
