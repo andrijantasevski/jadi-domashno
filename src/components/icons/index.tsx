@@ -18,7 +18,7 @@ import PlusIcon from "./PlusIcon";
 import FacebookIcon from "./FacebookIcon";
 import YouTubeIcon from "./YouTubeIcon";
 import TwitterIcon from "./TwitterIcon";
-import EmailIcon from "./EMailIcon";
+import EmailIcon from "./EmailIcon";
 
 export interface IconProps {
   className?: string;
