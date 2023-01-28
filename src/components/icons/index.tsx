@@ -19,6 +19,8 @@ import FacebookIcon from "./FacebookIcon";
 import YouTubeIcon from "./YouTubeIcon";
 import TwitterIcon from "./TwitterIcon";
 import EmailIcon from "./EmailIcon";
+import LocationIcon from "./LocationIcon";
+import ChevronUpDownIcon from "./ChevronUpDownIcon";
 
 export interface IconProps {
   className?: string;
@@ -46,4 +48,6 @@ export {
   YouTubeIcon,
   TwitterIcon,
   EmailIcon,
+  LocationIcon,
+  ChevronUpDownIcon,
 };
