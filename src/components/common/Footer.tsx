@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
+import Link from "@components/ui/Link";
 import { EmailIcon, FacebookIcon, TwitterIcon, YouTubeIcon } from "../icons";
 import Button from "../ui/Button";
 import { useForm, SubmitHandler } from "react-hook-form";
@@ -23,7 +23,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-gray-800 py-10 font-light text-gray-50">
+    <footer className="bg-gray-800 py-8 font-light text-gray-50 lg:py-10">
       <div className="mx-auto grid w-11/12 grid-cols-1 gap-5 md:grid-cols-4 lg:gap-10">
         <div className="flex flex-col justify-between">
           <div className="flex gap-4">
@@ -43,7 +43,7 @@ const Footer = () => {
             </div>
           </div>
 
-          <div className="flex items-center gap-3 self-center">
+          <div className="hidden items-center gap-3 self-center lg:flex">
             <IconButton href="/hello">
               <TwitterIcon className="h-5 w-5 text-gray-50 hover:text-primary-600" />
             </IconButton>
@@ -58,61 +58,81 @@ const Footer = () => {
           </div>
         </div>
 
-        <ul className="grid list-inside list-disc grid-cols-1 gap-1 underline">
+        <ul className="grid list-inside list-disc grid-cols-1 gap-1">
           <li>
-            <Link href="/about">За нас</Link>
+            <Link intent="light" underlined href="/about">
+              За нас
+            </Link>
           </li>
 
           <li>
-            <Link href="/menu">Мени</Link>
+            <Link intent="light" underlined href="/menu">
+              Мени
+            </Link>
           </li>
 
           <li>
-            <Link href="/sign-up">Стани готвач</Link>
+            <Link intent="light" underlined href="/sign-up">
+              Стани готвач
+            </Link>
           </li>
 
           <li>
-            <Link href="/sign-in">Најави се</Link>
+            <Link intent="light" underlined href="/sign-in">
+              Најави се
+            </Link>
           </li>
 
           <li>
-            <Link href="/faq">ЧПП</Link>
+            <Link intent="light" underlined href="/faq">
+              ЧПП
+            </Link>
           </li>
         </ul>
 
         <ul className="grid grid-cols-1 gap-1">
           <p className="font-medium">Правни</p>
           <li>
-            <Link href="/about">Политика за приватност</Link>
+            <Link intent="light" href="/about">
+              Политика за приватност
+            </Link>
           </li>
 
           <li>
-            <Link href="/menu">Услови за веб страница</Link>
+            <Link intent="light" href="/menu">
+              Услови за веб страница
+            </Link>
           </li>
 
           <li>
-            <Link href="/sign-up">Прифатлива политика за користење</Link>
+            <Link intent="light" href="/sign-up">
+              Прифатлива политика за користење
+            </Link>
           </li>
 
           <li>
-            <Link href="/sign-in">Политика за колачиња</Link>
+            <Link intent="light" href="/sign-in">
+              Политика за колачиња
+            </Link>
           </li>
 
           <li>
-            <Link href="/faq">Општи услови</Link>
+            <Link intent="light" href="/faq">
+              Општи услови
+            </Link>
           </li>
         </ul>
 
-        <div className="flex flex-col items-center gap-5 text-center">
-          <p>Пратете ги новостите</p>
+        <div className="flex w-full flex-col items-center gap-5 text-center">
+          <p className="font-normal">Пратете ги новостите</p>
 
           <EmailIcon className="h-10 w-10 text-primary-600" />
 
           <form
             onSubmit={handleSubmit(onSubmit)}
-            className="grid grid-cols-1 gap-3"
+            className="grid w-full grid-cols-1 gap-3"
           >
-            <div>
+            <div className="grid grid-cols-1 gap-2">
               <label htmlFor="email" className="sr-only">
                 Електронска пошта
               </label>
@@ -125,12 +145,29 @@ const Footer = () => {
                 type="email"
                 placeholder="Електронска пошта"
               />
+              {errors.email && (
+                <p className="text-red-500">Внесете ја вашата е-пошта.</p>
+              )}
             </div>
 
             <Button className="w-full font-normal" ariaLabel="Претплати се">
               <span>Претплати се</span>
             </Button>
           </form>
+        </div>
+
+        <div className="flex w-full items-center justify-center gap-3 lg:hidden">
+          <IconButton href="/hello">
+            <TwitterIcon className="h-5 w-5 text-gray-50 hover:text-primary-600" />
+          </IconButton>
+
+          <IconButton href="/">
+            <YouTubeIcon className="h-5 w-5 text-gray-50 hover:text-primary-600" />
+          </IconButton>
+
+          <IconButton href="/">
+            <FacebookIcon className="h-5 w-5 text-gray-50 hover:text-primary-600" />
+          </IconButton>
         </div>
       </div>
     </footer>

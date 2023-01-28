@@ -58,12 +58,14 @@ const ShoppingCart = ({ isShoppingCartOpen, closeShoppingCart }: Props) => {
                     </div>
 
                     {isCartFull ? (
-                      <div className="grid grid-cols-1 gap-4">
-                        <ShoppingCartItem />
+                      <div className="flex h-full flex-col justify-between gap-4">
+                        <div className="grid grid-cols-1 gap-4">
+                          <ShoppingCartItem />
 
-                        <ShoppingCartItem />
+                          <ShoppingCartItem />
+                        </div>
 
-                        <div className="sticky inset-x-0 bottom-0 grid grid-cols-1 gap-2 bg-white py-4 px-4 text-sm font-medium shadow-sm lg:px-6">
+                        <div className="grid grid-cols-1 gap-2 bg-white py-4 px-4 text-sm font-medium shadow-sm lg:px-6">
                           <div className="flex items-center justify-between">
                             <p>1 производ</p>
 
