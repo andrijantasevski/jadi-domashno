@@ -1,4 +1,4 @@
-import HeroHome from "@/components/common/HeroHome";
+import HeroHome from "@/components/common/HeroHome/HeroHome";
 import Head from "next/head";
 
 export default function Home() {

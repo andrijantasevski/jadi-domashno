@@ -40,7 +40,7 @@ export default function Navbar() {
   const closeSearch = () => setIsSearchOpen(false);
 
   return (
-    <header className="sticky top-0 z-50">
+    <header className="sticky top-0 z-20">
       <BannerTop />
       <nav className="bg-gray-50 py-3 shadow-md">
         <div className="mx-auto flex w-11/12 items-center justify-between">
