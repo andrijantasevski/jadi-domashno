@@ -24,6 +24,9 @@ const buttonStyles = cva(
         small: ["text-sm", "py-1.5", "px-3"],
         medium: ["text-base", "py-2", "px-4"],
       },
+      fullWidth: {
+        true: "w-full",
+      },
     },
     compoundVariants: [{ intent: "primary", size: "medium", className: "" }],
     defaultVariants: {
@@ -50,10 +53,15 @@ const Button = ({
   className,
   intent,
   size,
+  fullWidth,
+  ...props
 }: Props) => {
   if (href) {
     return (
-      <Link className={buttonStyles({ className, intent, size })} href={href}>
+      <Link
+        className={buttonStyles({ className, intent, size, fullWidth })}
+        href={href}
+      >
         {children}
       </Link>
     );
@@ -61,7 +69,8 @@ const Button = ({
 
   return (
     <button
-      className={buttonStyles({ className, intent, size })}
+      {...props}
+      className={buttonStyles({ className, intent, size, fullWidth })}
       title={title}
       aria-label={ariaLabel}
     >

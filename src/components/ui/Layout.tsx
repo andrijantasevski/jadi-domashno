@@ -10,7 +10,7 @@ const badScript = Bad_Script({
 });
 
 const roboto = Roboto({
-  subsets: ["cyrillic"],
+  subsets: ["cyrillic", "latin"],
   variable: "--font-roboto",
   weight: ["300", "400", "700"],
 });
@@ -21,7 +21,9 @@ interface Props {
 
 export default function Layout({ children }: Props) {
   return (
-    <div className={`${roboto.variable} ${badScript.variable} font-roboto`}>
+    <div
+      className={`${roboto.variable} ${badScript.variable} bg-primary-50 font-roboto`}
+    >
       <Navbar />
       {children}
       <Footer />

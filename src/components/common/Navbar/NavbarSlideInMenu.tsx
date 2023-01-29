@@ -38,7 +38,7 @@ const NavbarSlideInMenuItem = ({
 const NavbarSlideInMenu = ({ isSlideInMenuOpen, closeSlideInMenu }: Props) => {
   return (
     <Transition.Root appear show={isSlideInMenuOpen} as={Fragment}>
-      <Dialog as="div" className="relative z-10" onClose={closeSlideInMenu}>
+      <Dialog as="div" className="relative z-30" onClose={closeSlideInMenu}>
         <Transition.Child
           as={Fragment}
           enter="ease-in-out duration-500"

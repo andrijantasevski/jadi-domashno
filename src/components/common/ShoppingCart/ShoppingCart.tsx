@@ -15,7 +15,7 @@ const ShoppingCart = ({ isShoppingCartOpen, closeShoppingCart }: Props) => {
 
   return (
     <Transition.Root appear show={isShoppingCartOpen} as={Fragment}>
-      <Dialog as="div" className="relative z-10" onClose={closeShoppingCart}>
+      <Dialog as="div" className="relative z-30" onClose={closeShoppingCart}>
         <Transition.Child
           as={Fragment}
           enter="ease-in-out duration-500"
