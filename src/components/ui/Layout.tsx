@@ -12,7 +12,7 @@ const badScript = Bad_Script({
 const roboto = Roboto({
   subsets: ["cyrillic", "latin"],
   variable: "--font-roboto",
-  weight: ["300", "400", "700"],
+  weight: ["300", "400", "500", "700"],
 });
 
 interface Props {

@@ -21,8 +21,12 @@ import TwitterIcon from "./TwitterIcon";
 import EmailIcon from "./EmailIcon";
 import LocationIcon from "./LocationIcon";
 import ChevronUpDownIcon from "./ChevronUpDownIcon";
+import BadgeIcon from "./BadgeIcon";
+import StarIcon from "./StarIcon";
+import HeartIcon from "./HeartIcon";
+import FoodBowlIcon from "./FoodBowlIcon";
 
-export interface IconProps {
+export interface IconProps extends React.SVGProps<SVGSVGElement> {
   className?: string;
 }
 
@@ -50,4 +54,8 @@ export {
   EmailIcon,
   LocationIcon,
   ChevronUpDownIcon,
+  BadgeIcon,
+  StarIcon,
+  HeartIcon,
+  FoodBowlIcon,
 };

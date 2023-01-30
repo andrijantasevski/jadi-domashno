@@ -5,7 +5,7 @@ const SearchCitiesComboBox = dynamic(() => import("./SearchCitiesComboBox"));
 
 const HeroHome = () => {
   return (
-    <section className="mx-auto flex w-11/12 items-center justify-center gap-10 py-20">
+    <section className="mx-auto flex w-11/12 items-center justify-center gap-10 pb-10 pt-20">
       <div className="flex flex-col items-center gap-6">
         <div className="flex items-center gap-4">
           <Image
