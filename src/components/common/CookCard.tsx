@@ -21,9 +21,12 @@ const CookCard = ({
 }: Props) => {
   const ratingStars = [...Array(5)].map((_, index) =>
     index < rating ? (
-      <StarIcon className="h-4 w-4 fill-primary-600 text-primary-600" />
+      <StarIcon
+        key={index}
+        className="h-4 w-4 fill-primary-600 text-primary-600"
+      />
     ) : (
-      <StarIcon className="h-4 w-4 text-primary-600" />
+      <StarIcon key={index} className="h-4 w-4 text-primary-600" />
     )
   );
 
@@ -50,8 +53,10 @@ const CookCard = ({
 
         <div className="flex justify-between">
           <div>
-            {cuisines.map((cuisine) => (
-              <p className="text-primary-600">{cuisine}</p>
+            {cuisines.map((cuisine, index) => (
+              <p key={index} className="text-primary-600">
+                {cuisine}
+              </p>
             ))}
           </div>
 

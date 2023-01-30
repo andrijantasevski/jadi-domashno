@@ -1,7 +1,5 @@
-import Image from "next/image";
 import SectionTitle from "../ui/SectionTitle";
 import Button from "../ui/Button";
-import { BadgeIcon, LocationIcon, StarIcon } from "../icons";
 import CookCard from "./CookCard";
 
 const OurCooks = () => {
