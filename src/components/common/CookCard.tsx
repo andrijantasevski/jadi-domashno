@@ -33,7 +33,7 @@ const CookCard = ({
   return (
     <div className="relative flex flex-col items-center justify-center shadow-sm">
       <Image
-        className="rounded-lg"
+        className="w-full rounded-lg lg:max-w-full"
         src={imageSrc}
         width="300"
         height="250"

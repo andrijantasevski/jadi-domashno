@@ -8,7 +8,7 @@ const StatisticsHome = () => {
         <div className="flex flex-col items-center justify-center">
           <HeartIcon className="mb-2 h-10 w-10 text-gray-500" />
 
-          <p className="text-3xl text-primary-600">10 501+</p>
+          <p className="text-3xl font-semibold text-primary-600">10 501+</p>
 
           <p className="font-bad-script text-xl">задоволни клиенти</p>
         </div>
@@ -16,7 +16,7 @@ const StatisticsHome = () => {
         <div className="flex flex-col items-center justify-center">
           <FoodBowlIcon className="mb-2 h-10 w-10 text-gray-500" />
 
-          <p className="text-3xl text-primary-600">13 765+</p>
+          <p className="text-3xl font-semibold text-primary-600">13 765+</p>
 
           <p className="font-bad-script text-xl">подготвени јадења</p>
         </div>
@@ -24,7 +24,7 @@ const StatisticsHome = () => {
         <div className="flex flex-col items-center justify-center">
           <ChefIcon className="mb-2 h-10 w-10 text-gray-500" />
 
-          <p className="text-3xl text-primary-600">864 +</p>
+          <p className="text-3xl font-semibold text-primary-600">864 +</p>
 
           <p className="font-bad-script text-xl">среќни готвачи</p>
         </div>

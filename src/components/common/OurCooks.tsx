@@ -12,7 +12,7 @@ const OurCooks = () => {
         <span className="lg:hidden">Нашите готвачи</span>
       </SectionTitle>
 
-      <div className="grid grid-cols-1 gap-10 lg:grid-cols-3 lg:gap-20">
+      <div className="grid w-full grid-cols-1 gap-10 lg:w-auto lg:grid-cols-3 lg:gap-20">
         <CookCard
           href=""
           cuisines={["Македонска", "Италијанска", "Шпанска"]}
