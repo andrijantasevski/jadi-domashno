@@ -19,6 +19,14 @@ const buttonStyles = cva(
           "text-primary-50",
           "hover:bg-primary-700",
         ],
+        outline: [
+          "bg-transparent",
+          "text-primary-600",
+          "border",
+          "border-primary-600",
+          "hover:bg-primary-600",
+          "hover:text-primary-50",
+        ],
       },
       size: {
         small: ["text-sm", "py-1.5", "px-3"],
