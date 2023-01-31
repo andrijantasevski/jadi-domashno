@@ -44,7 +44,7 @@ const CookCard = ({
         <BadgeIcon className="h-5 w-5 text-primary-50" />
       </div>
 
-      <div className="-mt-4 flex w-full flex-col gap-1 rounded-lg bg-primary-100 p-3">
+      <div className="-mt-4 flex w-full flex-col gap-1 rounded-lg bg-primary-100 p-4">
         <div className="flex items-center justify-between gap-2">
           <p className="truncate text-lg">{name}</p>
 

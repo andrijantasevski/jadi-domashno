@@ -25,6 +25,12 @@ import BadgeIcon from "./BadgeIcon";
 import StarIcon from "./StarIcon";
 import HeartIcon from "./HeartIcon";
 import FoodBowlIcon from "./FoodBowlIcon";
+import PizzaIcon from "./PizzaIcon";
+import PersonPlusIcon from "./PersonPlusIcon";
+import CalendarHeartIcon from "./CalendarHeartIcon";
+import ComputerDesktopCheckIcon from "./ComputerDesktopCheckIcon";
+import ServingHandIcon from "./ServingHandIcon";
+import EditWriteIcon from "./EditWriteIcon";
 
 export interface IconProps extends React.SVGProps<SVGSVGElement> {
   className?: string;
@@ -58,4 +64,10 @@ export {
   StarIcon,
   HeartIcon,
   FoodBowlIcon,
+  PizzaIcon,
+  PersonPlusIcon,
+  CalendarHeartIcon,
+  ComputerDesktopCheckIcon,
+  ServingHandIcon,
+  EditWriteIcon,
 };
