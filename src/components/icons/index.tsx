@@ -31,6 +31,8 @@ import CalendarHeartIcon from "./CalendarHeartIcon";
 import ComputerDesktopCheckIcon from "./ComputerDesktopCheckIcon";
 import ServingHandIcon from "./ServingHandIcon";
 import EditWriteIcon from "./EditWriteIcon";
+import ChevronLeft from "./ChevronLeft";
+import ChevronRight from "./ChevronRight";
 
 export interface IconProps extends React.SVGProps<SVGSVGElement> {
   className?: string;
@@ -70,4 +72,6 @@ export {
   ComputerDesktopCheckIcon,
   ServingHandIcon,
   EditWriteIcon,
+  ChevronLeft,
+  ChevronRight,
 };
