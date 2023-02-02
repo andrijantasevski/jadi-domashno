@@ -63,7 +63,8 @@ const SliderDays = () => {
     }
 
     if (splideRef.current) {
-      splideRef.current.go(Number(router.query.day));
+      splideRef.current.forceUpdate();
+      splideRef.current.go(Number(activeDay));
     }
   }, [router.query]);
 
