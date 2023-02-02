@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, use } from "react";
 import { useRouter } from "next/router";
 import { Splide, SplideTrack, SplideSlide } from "@splidejs/react-splide";
 import { ChevronRight, PizzaIcon } from "@/components/icons";
@@ -77,12 +77,14 @@ const SliderFoodCategories = () => {
     } else {
       setActiveFoodCategory(0);
     }
+  }, [router.query]);
 
+  useEffect(() => {
     if (splideRef.current) {
       splideRef.current.forceUpdate();
       splideRef.current.go(Number(router.query.foodCategory) - 1);
     }
-  }, [router.query]);
+  }, [activeFoodCategory]);
 
   const handleSearchByCategory = (id: number) => {
     router.push({

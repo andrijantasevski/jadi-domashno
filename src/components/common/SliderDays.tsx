@@ -61,12 +61,14 @@ const SliderDays = () => {
     } else {
       setActiveDay(0);
     }
+  }, [router.query]);
 
+  useEffect(() => {
     if (splideRef.current) {
       splideRef.current.forceUpdate();
       splideRef.current.go(Number(activeDay));
     }
-  }, [router.query]);
+  }, [activeDay]);
 
   const handleSearchByDay = (id: number) => {
     router.push({
