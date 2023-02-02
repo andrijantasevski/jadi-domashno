@@ -1,3 +1,32 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* STYLES FOR SPLIDEJS SLIDERS
+  REMOVES ARROWS AND ADD CUSTOM ARROWS
+  CHANGES THEIR POSITION
+*/
+
+.splide__arrow {
+  background: none !important;
+}
+
+.splide__arrow svg {
+  fill: none !important;
+}
+
+.splide__arrow--prev {
+  left: -3.5rem !important;
+}
+
+.splide__arrow--next {
+  right: -3.5rem !important;
+}
+
+.food-category-buttons .splide__arrow--prev {
+  left: -1.5rem !important;
+}
+
+.food-category-buttons .splide__arrow--next {
+  right: -1.5rem !important;
+}
