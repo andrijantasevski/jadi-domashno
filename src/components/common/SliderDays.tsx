@@ -1,8 +1,18 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { ChevronRight } from "@/components/icons";
 import { Splide, SplideSlide, SplideTrack } from "@splidejs/react-splide";
 import { useRouter } from "next/router";
 import dayjs from "dayjs";
+
+const now = dayjs();
+const next28Days = Array.from({ length: 28 }, (_, i) => {
+  return {
+    id: i,
+    day: i === 0 ? "денес" : now.add(i, "day").locale("mk").format("ddd"),
+    date: now.add(i, "day").locale("mk").format("DD"),
+    month: now.add(i, "day").locale("mk").format("MMM"),
+  };
+});
 
 interface SingleDay {
   id: number;
@@ -43,33 +53,31 @@ const SingleDay = ({
 const SliderDays = () => {
   const router = useRouter();
   const [activeDay, setActiveDay] = useState(0);
-  const now = dayjs();
-  const next28Days = Array.from({ length: 28 }, (_, i) => {
-    return {
-      id: i,
-      day: i === 0 ? "денес" : now.add(i, "day").locale("mk").format("ddd"),
-      date: now.add(i, "day").locale("mk").format("DD"),
-      month: now.add(i, "day").locale("mk").format("MMM"),
-    };
-  });
+  const splideRef = useRef<Splide>(null);
 
   useEffect(() => {
     if (router.query.day) {
-      setActiveDay(Number(router.query.day));
+      setActiveDay(Number(router.query.day as string));
     } else {
       setActiveDay(0);
+    }
+
+    if (splideRef.current) {
+      splideRef.current.go(Number(router.query.day));
     }
   }, [router.query]);
 
   const handleSearchByDay = (id: number) => {
     router.push({
       pathname: "/menu",
-      query: { day: id },
+      query: { ...router.query, day: id },
     });
   };
 
   return (
     <Splide
+      ref={splideRef}
+      onMounted={(splide) => splide.go(activeDay)}
       hasTrack={false}
       options={{
         pagination: false,

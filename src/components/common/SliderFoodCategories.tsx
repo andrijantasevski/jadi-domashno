@@ -1,7 +1,7 @@
+import { useEffect, useState, useRef } from "react";
+import { useRouter } from "next/router";
 import { Splide, SplideTrack, SplideSlide } from "@splidejs/react-splide";
 import { ChevronRight, PizzaIcon } from "@/components/icons";
-import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
 
 const foodCategories = [
   {
@@ -69,6 +69,7 @@ const SingleFoodCategory = ({
 const SliderFoodCategories = () => {
   const router = useRouter();
   const [activeFoodCategory, setActiveFoodCategory] = useState(0);
+  const splideRef = useRef<Splide>(null);
 
   useEffect(() => {
     if (router.query.foodCategory) {
@@ -76,17 +77,22 @@ const SliderFoodCategories = () => {
     } else {
       setActiveFoodCategory(0);
     }
+
+    if (splideRef.current) {
+      splideRef.current.go(Number(router.query.foodCategory) - 1);
+    }
   }, [router.query]);
 
   const handleSearchByCategory = (id: number) => {
     router.push({
       pathname: "/menu",
-      query: { foodCategory: id },
+      query: { ...router.query, foodCategory: id },
     });
   };
 
   return (
     <Splide
+      ref={splideRef}
       hasTrack={false}
       options={{
         pagination: false,
