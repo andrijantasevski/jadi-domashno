@@ -1,4 +1,5 @@
 import { NextPage } from "next";
+import Head from "next/head";
 import "@splidejs/react-splide/css";
 import "dayjs/locale/mk";
 import SectionTitle from "@/components/ui/SectionTitle";
@@ -9,6 +10,9 @@ import SidebarFiltering from "@/components/common/SidebarFiltering/SidebarFilter
 const Menu: NextPage = () => {
   return (
     <>
+      <Head>
+        <title>Мени</title>
+      </Head>
       <div className="flex justify-center py-10">
         <SectionTitle>Мени</SectionTitle>
       </div>
