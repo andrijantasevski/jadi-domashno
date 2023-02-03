@@ -17,15 +17,18 @@ interface Props {
 interface NavbarSlideInMenuItemProps {
   children: React.ReactNode;
   href: string;
+  closeSlideInMenu: () => void;
 }
 
 const NavbarSlideInMenuItem = ({
   children,
   href,
+  closeSlideInMenu,
 }: NavbarSlideInMenuItemProps) => {
   return (
     <li>
       <Link
+        onClick={closeSlideInMenu}
         className="flex items-center gap-2 px-6 py-2 transition-colors hover:bg-primary-600 hover:text-primary-50"
         href={href}
       >
@@ -77,23 +80,38 @@ const NavbarSlideInMenu = ({ isSlideInMenuOpen, closeSlideInMenu }: Props) => {
                     </div>
 
                     <ul className="grid grid-cols-1">
-                      <NavbarSlideInMenuItem href="/about">
+                      <NavbarSlideInMenuItem
+                        closeSlideInMenu={closeSlideInMenu}
+                        href="/about"
+                      >
                         Како функционира Јади домашно?
                       </NavbarSlideInMenuItem>
 
-                      <NavbarSlideInMenuItem href="/cooks">
+                      <NavbarSlideInMenuItem
+                        closeSlideInMenu={closeSlideInMenu}
+                        href="/cooks"
+                      >
                         Готвачи
                       </NavbarSlideInMenuItem>
 
-                      <NavbarSlideInMenuItem href="/offers">
+                      <NavbarSlideInMenuItem
+                        closeSlideInMenu={closeSlideInMenu}
+                        href="/offers"
+                      >
                         Побарај понуда
                       </NavbarSlideInMenuItem>
 
-                      <NavbarSlideInMenuItem href="/menu">
+                      <NavbarSlideInMenuItem
+                        closeSlideInMenu={closeSlideInMenu}
+                        href="/menu"
+                      >
                         Мени
                       </NavbarSlideInMenuItem>
 
-                      <NavbarSlideInMenuItem href="/forum">
+                      <NavbarSlideInMenuItem
+                        closeSlideInMenu={closeSlideInMenu}
+                        href="/forum"
+                      >
                         Форум
                       </NavbarSlideInMenuItem>
                     </ul>
