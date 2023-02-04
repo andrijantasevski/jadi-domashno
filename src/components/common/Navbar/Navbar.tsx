@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import dynamic from "next/dynamic";
@@ -22,7 +22,7 @@ const SearchModal = dynamic(
 );
 
 export default function Navbar() {
-  const { asPath } = useRouter();
+  const { pathname } = useRouter();
   const [isShoppingCartOpen, setIsShoppingCartOpen] = useState(false);
   const [isSlideInMenuOpen, setIsSlideInMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -62,7 +62,7 @@ export default function Navbar() {
 
             <div className="hidden items-center gap-5 xl:flex">
               <NavbarLinkButton
-                intent={asPath === "/cooks" ? "active" : "primary"}
+                intent={pathname === "/cooks" ? "active" : "primary"}
                 href="/cooks"
               >
                 <ChefIcon className="h-6 w-6 text-inherit hover:text-inherit" />
@@ -70,7 +70,7 @@ export default function Navbar() {
               </NavbarLinkButton>
 
               <NavbarLinkButton
-                intent={asPath === "/offers" ? "active" : "primary"}
+                intent={pathname === "/offers" ? "active" : "primary"}
                 href="/offers"
               >
                 <OfferIcon className="h-6 w-6 text-inherit hover:text-inherit" />
@@ -78,7 +78,7 @@ export default function Navbar() {
               </NavbarLinkButton>
 
               <NavbarLinkButton
-                intent={asPath === "/menu" ? "active" : "primary"}
+                intent={pathname === "/menu" ? "active" : "primary"}
                 href="/menu"
               >
                 <MenuIcon className="h-6 w-6 text-inherit hover:text-inherit" />
@@ -86,7 +86,7 @@ export default function Navbar() {
               </NavbarLinkButton>
 
               <NavbarLinkButton
-                intent={asPath === "/forum" ? "active" : "primary"}
+                intent={pathname === "/forum" ? "active" : "primary"}
                 href="/forum"
               >
                 <ForumIcon className="h-6 w-6 text-inherit hover:text-inherit" />
@@ -115,7 +115,7 @@ export default function Navbar() {
             </NavbarLinkButton>
 
             <NavbarLinkButton
-              intent={asPath === "/account" ? "active" : "primary"}
+              intent={pathname === "/account" ? "active" : "primary"}
               href="/account"
               className="hidden xl:flex"
             >

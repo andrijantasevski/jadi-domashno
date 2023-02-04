@@ -6,7 +6,7 @@ import { ChevronRight, PizzaIcon } from "@/components/icons";
 const foodCategories = [
   {
     id: 1,
-    foodCategoryLabel: "Домашни јадења",
+    foodCategoryLabel: "Домашна храна",
   },
   {
     id: 2,
@@ -37,7 +37,10 @@ interface FoodCategory {
 
 interface SingleFoodCategoryProps {
   foodCategory: FoodCategory;
-  handleSearchByCategory: (id: number) => void;
+  handleSearchByCategory: (
+    id: number,
+    event: React.MouseEvent<HTMLDivElement, MouseEvent>
+  ) => void;
   activeFoodCategory: number;
 }
 
@@ -50,15 +53,11 @@ const SingleFoodCategory = ({
   return (
     <SplideSlide>
       <div
-        onClick={() => handleSearchByCategory(id)}
-        className="hidden h-full cursor-pointer items-center justify-center gap-2 p-4 text-lg transition-colors lg:flex"
+        onClick={(event) => handleSearchByCategory(id, event)}
+        className="бо group hidden h-full cursor-pointer items-center justify-center gap-2 rounded-lg border-b-2 border-b-primary-600 bg-gray-50 p-4 shadow-md transition-colors hover:text-primary-600 lg:flex"
       >
         <PizzaIcon className="h-6 w-6 shrink-0 text-primary-600" />
-        <p
-          className={`hover:text-primary-600 ${
-            activeFoodCategory === id ? "text-primary-600" : ""
-          }`}
-        >
+        <p className={`${activeFoodCategory === id ? "text-primary-600" : ""}`}>
           {foodCategoryLabel}
         </p>
       </div>
@@ -86,7 +85,11 @@ const SliderFoodCategories = () => {
     }
   }, [activeFoodCategory]);
 
-  const handleSearchByCategory = (id: number) => {
+  const handleSearchByCategory = (
+    id: number,
+    event: React.MouseEvent<HTMLDivElement, MouseEvent>
+  ) => {
+    event.preventDefault();
     router.push({
       pathname: "/menu",
       query: { ...router.query, foodCategory: id },
@@ -121,7 +124,7 @@ const SliderFoodCategories = () => {
         ))}
       </SplideTrack>
 
-      <div className="splide__arrows food-category-buttons hidden lg:block">
+      <div className="splide__arrows hidden lg:block">
         <button className="splide__arrow splide__arrow--prev">
           <ChevronRight className="h-6 w-6 text-primary-600" />
         </button>

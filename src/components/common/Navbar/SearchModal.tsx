@@ -5,7 +5,7 @@ import { SearchIcon, XMarkIcon } from "@/components/icons";
 import IconButton from "@/components/ui/IconButton";
 import useLocalStorageSearchQuery, {
   SearchQuery,
-} from "@/components/utils/useLocalStorageSearchQuery";
+} from "@/utils/useLocalStorageSearchQuery";
 
 interface Props {
   isModalOpen: boolean;

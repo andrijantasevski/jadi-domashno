@@ -24,7 +24,10 @@ interface SingleDay {
 interface SingleDayProps {
   singleDay: SingleDay;
   activeDay: number;
-  handleSearchByDay: (id: number) => void;
+  handleSearchByDay: (
+    id: number,
+    event: React.MouseEvent<HTMLDivElement, MouseEvent>
+  ) => void;
 }
 
 const SingleDay = ({
@@ -37,7 +40,7 @@ const SingleDay = ({
   return (
     <SplideSlide>
       <div
-        onClick={() => handleSearchByDay(id)}
+        onClick={(event) => handleSearchByDay(id, event)}
         className={`flex cursor-pointer flex-col items-center justify-center rounded-b-lg border-b-2 border-primary-600 bg-gray-50 py-2 px-10 text-sm uppercase shadow-md transition-colors hover:text-primary-600 md:text-base ${
           activeDay === id ? "text-primary-600" : ""
         }`}
@@ -70,7 +73,11 @@ const SliderDays = () => {
     }
   }, [activeDay]);
 
-  const handleSearchByDay = (id: number) => {
+  const handleSearchByDay = (
+    id: number,
+    event: React.MouseEvent<HTMLDivElement, MouseEvent>
+  ) => {
+    event.preventDefault();
     router.push({
       pathname: "/menu",
       query: { ...router.query, day: id },

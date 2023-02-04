@@ -4,18 +4,24 @@ import { useState, Fragment } from "react";
 import { CheckMarkIcon, ChevronUpDownIcon, LocationIcon } from "../../icons";
 import Button from "@/components/ui/Button";
 
+interface City {
+  id: number;
+  label: string;
+  value: string;
+}
+
 const cities = [
-  { id: 1, name: "Скопје", latin: "Skopje" },
-  { id: 2, name: "Битола", latin: "Bitola" },
-  { id: 3, name: "Куманово", latin: "Kumanovo" },
-  { id: 4, name: "Струмица", latin: "Strumica" },
-  { id: 5, name: "Кочани", latin: "Kochani" },
-  { id: 6, name: "Кавадарци", latin: "Kavadarci" },
+  { id: 1, label: "Скопје", value: "Skopje" },
+  { id: 2, label: "Битола", value: "Bitola" },
+  { id: 3, label: "Куманово", value: "Kumanovo" },
+  { id: 4, label: "Струмица", value: "Strumica" },
+  { id: 5, label: "Кочани", value: "Kochani" },
+  { id: 6, label: "Кавадарци", value: "Kavadarci" },
 ];
 
 const SearchCitiesComboBox = () => {
   const router = useRouter();
-  const [selectedCity, setSelectedCity] = useState("");
+  const [selectedCity, setSelectedCity] = useState({} as City);
   const [cityQuery, setCityQuery] = useState("");
 
   const filteredCities =
@@ -23,16 +29,20 @@ const SearchCitiesComboBox = () => {
       ? cities
       : cities.filter(
           (city) =>
-            city.latin.toLowerCase().includes(cityQuery.toLowerCase()) ||
-            city.name.toLowerCase().includes(cityQuery.toLowerCase())
+            city.value.toLowerCase().includes(cityQuery.toLowerCase()) ||
+            city.label.toLowerCase().includes(cityQuery.toLowerCase())
         );
 
-  const handleSearchCity = () => {
-    console.log("hi");
-    if (selectedCity === "") return;
+  const handleSearchCity = (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    if (Object.keys(selectedCity).length === 0) return;
+
+    event.preventDefault();
+
     router.push({
-      pathname: "/restaurants",
-      query: { city: selectedCity },
+      pathname: "/menu",
+      query: { city: selectedCity.value },
     });
   };
 
@@ -48,6 +58,7 @@ const SearchCitiesComboBox = () => {
           <div className="flex w-full items-center gap-1">
             <LocationIcon className="h-5 w-5 text-primary-600" />
             <Combobox.Input
+              displayValue={(city: City) => city.label}
               placeholder="Внесете град"
               className="w-full bg-transparent font-normal focus:outline-none lg:w-auto"
               onChange={(e) => setCityQuery(e.target.value)}
@@ -83,7 +94,7 @@ const SearchCitiesComboBox = () => {
                     }`
                   }
                   key={city.id}
-                  value={city.name}
+                  value={city}
                 >
                   {({ selected, active }) => (
                     <>
@@ -93,7 +104,7 @@ const SearchCitiesComboBox = () => {
                         } ${active ? "text-primary-50" : ""} h-4 w-4`}
                       />
 
-                      {city.name}
+                      {city.label}
                     </>
                   )}
                 </Combobox.Option>

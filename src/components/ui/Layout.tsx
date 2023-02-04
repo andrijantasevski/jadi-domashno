@@ -1,18 +1,19 @@
-import dynamic from "next/dynamic";
 import { Roboto, Bad_Script } from "@next/font/google";
-const Navbar = dynamic(() => import("@components/common/Navbar/Navbar"));
-const Footer = dynamic(() => import("@components/common/Footer"));
+import Navbar from "@components/common/Navbar/Navbar";
+import Footer from "@components/common/Footer";
 
 const badScript = Bad_Script({
   subsets: ["cyrillic"],
   weight: ["400"],
   variable: "--font-bad-script",
+  display: "swap",
 });
 
 const roboto = Roboto({
   subsets: ["cyrillic", "latin"],
   variable: "--font-roboto",
   weight: ["300", "400", "500", "700"],
+  display: "swap",
 });
 
 interface Props {
@@ -22,7 +23,7 @@ interface Props {
 export default function Layout({ children }: Props) {
   return (
     <div
-      className={`${roboto.variable} ${badScript.variable} bg-primary-50 font-roboto`}
+      className={`${roboto.variable} ${badScript.variable} bg-primary-50 font-roboto text-gray-900`}
     >
       <Navbar />
       {children}

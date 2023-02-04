@@ -2,7 +2,7 @@ import { Html, Head, Main, NextScript } from "next/document";
 
 export default function Document() {
   return (
-    <Html lang="mk">
+    <Html lang="mk" className="scroll-smooth">
       <Head>
         <link
           rel="apple-touch-icon"
@@ -23,7 +23,7 @@ export default function Document() {
         />
         <link rel="manifest" href="/site.webmanifest" />
       </Head>
-      <body className="bg-background-main text-gray-900">
+      <body>
         <Main />
         <NextScript />
       </body>
