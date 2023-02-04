@@ -10,19 +10,21 @@ interface Props {
 
 const FilterByPriceSlider = ({ queries }: Props) => {
   const router = useRouter();
-  const priceDefaultValue = queries.price ? [Number(queries.price)] : [50];
+  const priceDefaultValue = queries.price ? [Number(queries.price)] : [-1];
   const [price, setPrice] = useState(priceDefaultValue);
   const [priceDebounced] = useDebounce(price, 300);
 
   useEffect(() => {
-    router.push(
-      {
-        pathname: "/menu",
-        query: { price: priceDebounced },
-      },
-      undefined,
-      { scroll: false }
-    );
+    if (priceDebounced !== -1) {
+      router.push(
+        {
+          pathname: "/menu",
+          query: { price: priceDebounced },
+        },
+        undefined,
+        { scroll: false }
+      );
+    }
   }, [priceDebounced]);
 
   return (
