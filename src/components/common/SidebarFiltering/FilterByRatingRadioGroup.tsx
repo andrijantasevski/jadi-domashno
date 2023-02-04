@@ -1,0 +1,105 @@
+import { RadioGroup } from "@headlessui/react";
+import { StarIcon } from "@/components/icons";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import { Queries } from "@/pages/menu";
+
+interface Rating {
+  id: number;
+  ratingValue: number;
+}
+
+const ratings = [
+  {
+    id: 1,
+    ratingValue: 3,
+  },
+  {
+    id: 2,
+    ratingValue: 4,
+  },
+  {
+    id: 3,
+    ratingValue: 5,
+  },
+];
+
+interface SingleRatingOption {
+  rating: Rating;
+}
+
+const SingleRatingOption = ({ rating }: SingleRatingOption) => {
+  const { ratingValue } = rating;
+  return (
+    <>
+      <RadioGroup.Label className="sr-only font-medium text-gray-900">
+        {`${ratingValue} ѕвезди`}
+      </RadioGroup.Label>
+      <RadioGroup.Option
+        as="div"
+        value={ratingValue}
+        title={`${ratingValue} ѕвезди`}
+      >
+        {({ checked }) => (
+          <div className="group flex cursor-pointer items-center justify-between px-1 transition-colors hover:text-primary-600">
+            <div className="flex items-center gap-2">
+              {[...Array(ratingValue)].map((_, index) => (
+                <StarIcon
+                  className="h-5 w-5 fill-primary-600 text-primary-600"
+                  key={index}
+                />
+              ))}
+            </div>
+
+            <div className="flex h-6 w-6 items-center justify-center rounded-full border border-gray-400">
+              <div
+                className={`h-4 w-4 rounded-full transition-colors group-hover:bg-primary-600 ${
+                  checked ? "bg-primary-600" : "bg-transparent"
+                }`}
+              />
+            </div>
+          </div>
+        )}
+      </RadioGroup.Option>
+    </>
+  );
+};
+
+interface Props {
+  queries: Queries;
+}
+
+const FilterByRatingRadioGroup = ({ queries }: Props) => {
+  const router = useRouter();
+
+  const ratingDefaultValue = queries?.rating ? Number(queries.rating) : 0;
+  const [selectedRating, setSelectedRating] = useState(ratingDefaultValue);
+
+  useEffect(() => {
+    router.push({
+      pathname: "menu",
+      query: {
+        ...router.query,
+        rating: selectedRating,
+      },
+    });
+  }, [selectedRating]);
+
+  return (
+    <div className="grid grid-cols-1 gap-2 px-1">
+      <p>Покажи по оцени:</p>
+      <RadioGroup
+        value={selectedRating}
+        onChange={setSelectedRating}
+        as="div"
+        className="flex flex-col gap-3"
+      >
+        {ratings.map((rating) => (
+          <SingleRatingOption key={rating.id} rating={rating} />
+        ))}
+      </RadioGroup>
+    </div>
+  );
+};
+
+export default FilterByRatingRadioGroup;
