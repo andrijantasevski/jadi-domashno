@@ -10,6 +10,7 @@ import SidebarFiltering from "@/components/common/SidebarFiltering/SidebarFilter
 export interface Queries {
   city?: string;
   availability?: string;
+  price?: string;
 }
 
 interface Props {
@@ -206,11 +207,12 @@ const Menu: NextPage<Props> = ({ queries }) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
-  const { availability, city } = query;
+  const { availability, city, price } = query;
 
   const queries = {
     availability: availability ?? "",
     city: city ?? "",
+    price: price ?? "",
   };
 
   return {

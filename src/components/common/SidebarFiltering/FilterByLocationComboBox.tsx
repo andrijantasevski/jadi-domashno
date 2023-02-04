@@ -28,9 +28,13 @@ interface Props {
 }
 
 const FilterByLocationComboBox = ({ queries }: Props) => {
+  const cityDefaultValue = (cityQuery: string | undefined) => {
+    return cities.find((city) => city.value === cityQuery) ?? ({} as City);
+  };
+
   const router = useRouter();
   const [selectedCity, setSelectedCity] = useState(
-    cities.find((city) => city.value === queries.city) || ({} as City)
+    cityDefaultValue(queries.city)
   );
   const [cityQuery, setCityQuery] = useState("");
 
@@ -42,15 +46,6 @@ const FilterByLocationComboBox = ({ queries }: Props) => {
             city.value.toLowerCase().includes(cityQuery.toLowerCase()) ||
             city.label.toLowerCase().includes(cityQuery.toLowerCase())
         );
-
-  useEffect(() => {
-    if (router.query.city) {
-      const city = cities.find((city) => city.value === router.query.city);
-      setSelectedCity(city as City);
-    } else {
-      setSelectedCity({} as City);
-    }
-  }, [router.query]);
 
   useEffect(() => {
     if (Object.keys(selectedCity).length !== 0) {
@@ -100,7 +95,7 @@ const FilterByLocationComboBox = ({ queries }: Props) => {
       >
         <Combobox.Options
           as="div"
-          className="absolute mt-2 max-h-56 w-full overflow-y-auto rounded-lg bg-gray-50 py-2 shadow-md"
+          className="absolute z-50 mt-2 max-h-56 w-full overflow-y-auto rounded-lg bg-gray-50 py-2 shadow-md"
         >
           {filteredCities.length > 0 ? (
             filteredCities.map((city) => (

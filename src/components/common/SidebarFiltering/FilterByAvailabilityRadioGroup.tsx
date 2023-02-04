@@ -67,16 +67,16 @@ const SingleAvailabilityOption = ({
 const FilterByAvailabilityRadioGroup = ({ queries }: { queries: Queries }) => {
   const router = useRouter();
   const [selectedAvailability, setSelectedAvailability] = useState(
-    queries?.availability ?? ""
+    queries?.availability ?? "immediately"
   );
 
-  useEffect(() => {
-    if (router.query.availability) {
-      setSelectedAvailability(router.query.availability as string);
-    } else {
-      setSelectedAvailability("");
-    }
-  }, [router.query]);
+  // useEffect(() => {
+  //   if (router.query.availability) {
+  //     setSelectedAvailability(router.query.availability as string);
+  //   } else {
+  //     setSelectedAvailability("");
+  //   }
+  // }, [router.query]);
 
   const handleAvailabilityChange = (value: string) => {
     router.push({
