@@ -2,7 +2,7 @@ import { Html, Head, Main, NextScript } from "next/document";
 
 export default function Document() {
   return (
-    <Html lang="mk">
+    <Html lang="mk" className="scroll-smooth">
       <Head>
         <link
           rel="apple-touch-icon"

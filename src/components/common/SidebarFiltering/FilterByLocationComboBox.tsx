@@ -74,7 +74,7 @@ const FilterByLocationComboBox = ({ queries }: Props) => {
           <Combobox.Input
             displayValue={(city: City) => (city ? city.label : "")}
             placeholder="Внесете град"
-            className="w-full bg-transparent font-normal focus:outline-none lg:w-auto"
+            className="w-full bg-transparent font-normal focus:outline-none"
             onChange={(e) => setCityQuery(e.target.value)}
           />
         </div>

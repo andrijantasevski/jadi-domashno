@@ -23,7 +23,7 @@ interface Props {
 export default function Layout({ children }: Props) {
   return (
     <div
-      className={`${roboto.variable} ${badScript.variable} scroll-smooth bg-primary-50 font-roboto text-gray-900`}
+      className={`${roboto.variable} ${badScript.variable} bg-primary-50 font-roboto text-gray-900`}
     >
       <Navbar />
       {children}

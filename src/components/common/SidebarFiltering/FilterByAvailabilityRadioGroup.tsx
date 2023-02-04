@@ -70,14 +70,6 @@ const FilterByAvailabilityRadioGroup = ({ queries }: { queries: Queries }) => {
     queries?.availability ?? "immediately"
   );
 
-  // useEffect(() => {
-  //   if (router.query.availability) {
-  //     setSelectedAvailability(router.query.availability as string);
-  //   } else {
-  //     setSelectedAvailability("");
-  //   }
-  // }, [router.query]);
-
   const handleAvailabilityChange = (value: string) => {
     router.push({
       pathname: "/menu",
