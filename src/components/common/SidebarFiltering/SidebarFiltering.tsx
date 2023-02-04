@@ -4,6 +4,7 @@ import FilterByAvailabilityRadioGroup from "./FilterByAvailabilityRadioGroup";
 import FilterByPriceSlider from "./FilterByPriceSlider";
 import FilterByAllergensCheckboxes from "./FilterByAllergensCheckboxes";
 import FilterByRatingRadioGroup from "./FilterByRatingRadioGroup";
+import FilterByDeliveryRadioGroup from "./FilterByDeliveryRadioGroup";
 
 interface Props {
   queries: Queries;
@@ -18,6 +19,7 @@ const SidebarFiltering = ({ queries }: Props) => {
         <FilterByPriceSlider queries={queries} />
         <FilterByAllergensCheckboxes queries={queries} />
         <FilterByRatingRadioGroup queries={queries} />
+        <FilterByDeliveryRadioGroup queries={queries} />
       </div>
     </aside>
   );

@@ -19,7 +19,7 @@ const FilterByPriceSlider = ({ queries }: Props) => {
       router.push(
         {
           pathname: "/menu",
-          query: { price: priceDebounced },
+          query: { ...router.query, price: priceDebounced },
         },
         undefined,
         { scroll: false }

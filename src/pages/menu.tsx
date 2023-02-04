@@ -13,6 +13,7 @@ export interface Queries {
   price?: string;
   allergens?: string[];
   rating?: number;
+  delivery: "delivery" | "pickup";
 }
 
 interface Props {
@@ -209,7 +210,7 @@ const Menu: NextPage<Props> = ({ queries }) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
-  const { availability, city, price, allergens, rating } = query;
+  const { availability, city, price, allergens, rating, delivery } = query;
 
   const queries = {
     availability: availability ?? "",
@@ -217,6 +218,7 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
     price: price ?? "",
     allergens: allergens ? (allergens as string).split(",") : [],
     rating: Number(rating as string) ?? 0,
+    delivery: delivery ?? "",
   };
 
   return {

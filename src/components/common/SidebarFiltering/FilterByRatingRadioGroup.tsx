@@ -76,18 +76,20 @@ const FilterByRatingRadioGroup = ({ queries }: Props) => {
   const [selectedRating, setSelectedRating] = useState(ratingDefaultValue);
 
   useEffect(() => {
-    router.push({
-      pathname: "menu",
-      query: {
-        ...router.query,
-        rating: selectedRating,
-      },
-    });
+    if (selectedRating !== 0) {
+      router.push({
+        pathname: "menu",
+        query: {
+          ...router.query,
+          rating: selectedRating,
+        },
+      });
+    }
   }, [selectedRating]);
 
   return (
-    <div className="grid grid-cols-1 gap-2 px-1">
-      <p>Покажи по оцени:</p>
+    <div className="grid grid-cols-1 gap-2">
+      <p className="px-1">Покажи по оцени:</p>
       <RadioGroup
         value={selectedRating}
         onChange={setSelectedRating}
