@@ -6,6 +6,7 @@ import {
   ChevronUpDownIcon,
   LocationIcon,
 } from "@components/icons";
+import { Queries } from "@/pages/menu";
 
 interface City {
   id: number;
@@ -22,9 +23,15 @@ const cities = [
   { id: 6, label: "Кавадарци", value: "Kavadarci" },
 ];
 
-const FilterByLocationComboBox = () => {
+interface Props {
+  queries: Queries;
+}
+
+const FilterByLocationComboBox = ({ queries }: Props) => {
   const router = useRouter();
-  const [selectedCity, setSelectedCity] = useState({} as City);
+  const [selectedCity, setSelectedCity] = useState(
+    cities.find((city) => city.value === queries.city) || ({} as City)
+  );
   const [cityQuery, setCityQuery] = useState("");
 
   const filteredCities =
@@ -66,7 +73,7 @@ const FilterByLocationComboBox = () => {
       className="relative w-full"
       name="city"
     >
-      <div className="flex justify-between rounded-lg bg-gray-50 py-2 px-3 shadow-md">
+      <div className="flex cursor-pointer justify-between rounded-lg bg-gray-50 py-2 px-3 shadow-md">
         <div className="flex w-full items-center gap-1">
           <LocationIcon className="h-5 w-5 text-primary-600" />
           <Combobox.Input

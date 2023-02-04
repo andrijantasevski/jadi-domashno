@@ -1,4 +1,4 @@
-import { NextPage } from "next";
+import { GetServerSideProps, NextPage } from "next";
 import Head from "next/head";
 import "@splidejs/react-splide/css";
 import "dayjs/locale/mk";
@@ -7,12 +7,22 @@ import SliderDays from "@/components/common/SliderDays";
 import SliderFoodCategories from "@/components/common/SliderFoodCategories";
 import SidebarFiltering from "@/components/common/SidebarFiltering/SidebarFiltering";
 
-const Menu: NextPage = () => {
+export interface Queries {
+  city?: string;
+  availability?: string;
+}
+
+interface Props {
+  queries: Queries;
+}
+
+const Menu: NextPage<Props> = ({ queries }) => {
   return (
     <>
       <Head>
         <title>Мени</title>
       </Head>
+
       <div className="flex justify-center py-10">
         <SectionTitle>Мени</SectionTitle>
       </div>
@@ -26,7 +36,7 @@ const Menu: NextPage = () => {
       </section>
 
       <section className="relative flex">
-        <SidebarFiltering />
+        <SidebarFiltering queries={queries} />
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia,
         veritatis! Nihil possimus numquam optio cumque distinctio ipsa. Quia,
         aspernatur? Ut corporis, quod nobis vero asperiores perspiciatis vitae
@@ -193,6 +203,19 @@ const Menu: NextPage = () => {
       </section>
     </>
   );
+};
+
+export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+  const { availability, city } = query;
+
+  const queries = {
+    availability: availability ?? "",
+    city: city ?? "",
+  };
+
+  return {
+    props: { queries },
+  };
 };
 
 export default Menu;

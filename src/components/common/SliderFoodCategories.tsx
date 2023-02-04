@@ -54,7 +54,7 @@ const SingleFoodCategory = ({
     <SplideSlide>
       <div
         onClick={(event) => handleSearchByCategory(id, event)}
-        className="бо hidden h-full cursor-pointer items-center justify-center gap-2 rounded-lg border-b-2 border-b-primary-600 bg-gray-50 p-4 shadow-md transition-colors hover:text-primary-600 lg:flex"
+        className="бо group hidden h-full cursor-pointer items-center justify-center gap-2 rounded-lg border-b-2 border-b-primary-600 bg-gray-50 p-4 shadow-md transition-colors hover:text-primary-600 lg:flex"
       >
         <PizzaIcon className="h-6 w-6 shrink-0 text-primary-600" />
         <p className={`${activeFoodCategory === id ? "text-primary-600" : ""}`}>
