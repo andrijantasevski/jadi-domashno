@@ -34,6 +34,7 @@ import EditWriteIcon from "./EditWriteIcon";
 import ChevronLeft from "./ChevronLeft";
 import ChevronRight from "./ChevronRight";
 import FilterIcon from "./FilterIcon";
+import HomeIcon from "./HomeIcon";
 
 export interface IconProps extends React.SVGProps<SVGSVGElement> {
   className?: string;
@@ -76,4 +77,5 @@ export {
   ChevronLeft,
   ChevronRight,
   FilterIcon,
+  HomeIcon,
 };

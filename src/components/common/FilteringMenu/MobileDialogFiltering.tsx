@@ -23,7 +23,7 @@ const MobileDialogFiltering = ({ queries }: Props) => {
   const closeFilteringMenu = () => setIsFilteringMenuOpen(false);
 
   return (
-    <div className="mx-auto flex w-11/12 justify-end lg:hidden">
+    <div>
       <Button onClick={openFilteringMenu}>
         <FilterIcon className="h-4 w-4 text-inherit" />
         Филтри
