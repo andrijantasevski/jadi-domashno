@@ -31,7 +31,7 @@ const CookCard = ({
   );
 
   return (
-    <div className="relative flex flex-col items-center justify-center shadow-sm">
+    <div className="relative flex flex-col items-center justify-center">
       <Image
         className="w-full rounded-lg lg:max-w-full"
         src={imageSrc}
@@ -44,7 +44,7 @@ const CookCard = ({
         <BadgeIcon className="h-5 w-5 text-primary-50" />
       </div>
 
-      <div className="-mt-4 flex w-full flex-col gap-1 rounded-lg bg-primary-100 p-4">
+      <div className="-mt-4 flex w-full flex-col gap-1 rounded-lg border-b-2 border-primary-600 bg-gray-50 p-4">
         <div className="flex items-center justify-between gap-2">
           <p className="truncate text-lg">{name}</p>
 
