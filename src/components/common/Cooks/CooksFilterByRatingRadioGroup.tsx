@@ -2,7 +2,7 @@ import { RadioGroup } from "@headlessui/react";
 import { StarIcon } from "@/components/icons";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { Queries } from "@/pages/menu";
+import { QueriesCooks } from "@/pages/cooks";
 
 interface Rating {
   id: number;
@@ -66,19 +66,21 @@ const SingleRatingOption = ({ rating }: SingleRatingOption) => {
 };
 
 interface Props {
-  queries: Queries;
+  queriesCooks: QueriesCooks;
 }
 
-const FilterByRatingRadioGroup = ({ queries }: Props) => {
+const CooksFilterByRatingRadioGroup = ({ queriesCooks }: Props) => {
   const router = useRouter();
 
-  const ratingDefaultValue = queries?.rating ? Number(queries.rating) : 0;
+  const ratingDefaultValue = queriesCooks?.rating
+    ? Number(queriesCooks.rating)
+    : 0;
   const [selectedRating, setSelectedRating] = useState(ratingDefaultValue);
 
   useEffect(() => {
     if (selectedRating !== 0) {
       router.push({
-        pathname: "/menu",
+        pathname: "/cooks",
         query: {
           ...router.query,
           rating: selectedRating,
@@ -104,4 +106,4 @@ const FilterByRatingRadioGroup = ({ queries }: Props) => {
   );
 };
 
-export default FilterByRatingRadioGroup;
+export default CooksFilterByRatingRadioGroup;
