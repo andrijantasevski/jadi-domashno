@@ -7,6 +7,8 @@ import SectionTitle from "@/components/ui/SectionTitle";
 import SliderDays from "@/components/common/SliderDays";
 import SliderFoodCategories from "@/components/common/SliderFoodCategories";
 import SidebarFiltering from "@/components/common/FilteringMenu/SidebarFiltering";
+import MenuCard from "@/components/common/MenuCard";
+
 const MobileDialogFiltering = dynamic(
   () => import("@/components/common/FilteringMenu/MobileDialogFiltering")
 );
@@ -43,11 +45,28 @@ const Menu: NextPage<Props> = ({ queries }) => {
         <SliderFoodCategories />
       </section>
 
-      <section className="relative pb-10 lg:flex">
+      <section className="relative mx-auto w-11/12 max-w-[1600px] gap-4 pb-10 lg:flex">
         <SidebarFiltering queries={queries} />
 
-        <div>
-          <MobileDialogFiltering queries={queries} />
+        <div className="grid w-full grid-cols-1 gap-6">
+          <div className="flex justify-end lg:hidden">
+            <MobileDialogFiltering queries={queries} />
+          </div>
+
+          <div className="grid w-full grid-cols-1 gap-4 lg:grid-cols-2 2xl:grid-cols-3">
+            <MenuCard />
+            <MenuCard />
+            <MenuCard />
+            <MenuCard />
+            <MenuCard />
+            <MenuCard />
+            <MenuCard />
+            <MenuCard />
+            <MenuCard />
+            <MenuCard />
+            <MenuCard />
+            <MenuCard />
+          </div>
         </div>
       </section>
     </>
