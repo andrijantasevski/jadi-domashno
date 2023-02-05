@@ -59,9 +59,12 @@ const MenuCard = () => {
             <div className="flex items-center gap-1">
               {[...Array(5)].map((_, index) =>
                 index < 4 ? (
-                  <StarIcon className="h-4 w-4 fill-primary-600 text-primary-600" />
+                  <StarIcon
+                    key={index}
+                    className="h-4 w-4 fill-primary-600 text-primary-600"
+                  />
                 ) : (
-                  <StarIcon className="h-4 w-4 text-primary-600" />
+                  <StarIcon key={index} className="h-4 w-4 text-primary-600" />
                 )
               )}
             </div>
