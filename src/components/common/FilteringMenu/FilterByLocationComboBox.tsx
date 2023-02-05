@@ -25,6 +25,8 @@ const cities = [
 
 interface Props {
   queries: Queries;
+  closeFilteringMenu?: () => void;
+  isFilteringMenuOpen?: boolean;
 }
 
 const FilterByLocationComboBox = ({ queries }: Props) => {
