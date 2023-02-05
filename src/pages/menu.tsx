@@ -1,4 +1,5 @@
 import { GetServerSideProps, NextPage } from "next";
+import dynamic from "next/dynamic";
 import Head from "next/head";
 import "@splidejs/react-splide/css";
 import "dayjs/locale/mk";
@@ -6,7 +7,9 @@ import SectionTitle from "@/components/ui/SectionTitle";
 import SliderDays from "@/components/common/SliderDays";
 import SliderFoodCategories from "@/components/common/SliderFoodCategories";
 import SidebarFiltering from "@/components/common/FilteringMenu/SidebarFiltering";
-import MobileDialogFiltering from "@/components/common/FilteringMenu/MobileDialogFiltering";
+const MobileDialogFiltering = dynamic(
+  () => import("@/components/common/FilteringMenu/MobileDialogFiltering")
+);
 
 export interface Queries {
   city?: string;
