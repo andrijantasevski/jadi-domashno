@@ -83,7 +83,7 @@ const SliderFoodCategories = () => {
       splideRef.current.forceUpdate();
       splideRef.current.go(Number(router.query.foodCategory) - 1);
     }
-  }, [activeFoodCategory]);
+  }, [router.query.foodCategory]);
 
   const handleSearchByCategory = (
     id: number,
