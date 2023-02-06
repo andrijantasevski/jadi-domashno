@@ -1,6 +1,5 @@
 const { faker } = require("@faker-js/faker/locale/mk");
 const fs = require("fs");
-const path = require("path");
 
 const cuisines = [
   "vegetarian",
@@ -56,6 +55,7 @@ const cooks = [];
 for (let i = 0; i < 40; i++) {
   const cook = {
     id: faker.datatype.uuid(),
+    dateCreated: faker.date.past(),
     first_name: faker.name.firstName(),
     last_name: faker.name.lastName(),
     cuisines: [...selectRandomElementsFromArray(cuisines, 4)],
