@@ -3,6 +3,20 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import path from "path";
 import { promises as fs } from "fs";
 
+// DUPLICATE INTERFACE
+export interface Cook {
+  id: string;
+  dateCreated: Date;
+  first_name: "Самуил";
+  last_name: "Стефановска";
+  cuisines: string[];
+  city: string;
+  image_url: string;
+  rating: number;
+}
+
+const COOKS_FILE_PATH = path.join(process.cwd(), "data", "cooks.json");
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
@@ -12,37 +26,57 @@ export default async function handler(
     return;
   }
 
-  const { city, rating, cuisines } = req.query;
+  let cooks: Cook[] = [];
+
+  try {
+    const cooksJSON = await fs.readFile(COOKS_FILE_PATH, "utf-8");
+
+    cooks = JSON.parse(cooksJSON);
+  } catch (err) {
+    res
+      .status(500)
+      .json({ message: "Could not find file or parse JSON data." });
+    return;
+  }
+
+  const { city, rating, cuisines, sortBy } = req.query;
 
   const cuisinesArray = cuisines?.toString().split(",");
 
-  const cooksFilePath = path.join(process.cwd(), "data", "cooks.json");
+  const cooksFiltered = cooks.filter((cook: any) => {
+    const cityCondition = city ? cook.city === city : true;
+    const ratingCondition = rating ? cook.rating === Number(rating) : true;
+    const cuisinesCondition = cuisinesArray
+      ? cuisinesArray?.every((cuisine) => cook.cuisines.includes(cuisine))
+      : true;
 
-  const cooks = await fs.readFile(cooksFilePath, "utf-8");
+    const areAllConditionsMet =
+      cityCondition && ratingCondition && cuisinesCondition;
 
-  const cooksParsed = JSON.parse(cooks);
-
-  const cooksFiltered = cooksParsed.filter((cook: any) => {
-    if (city && rating && cuisines) {
-      return (
-        cook.city.toLowerCase() === city.toString().toLowerCase() &&
-        cook.rating === parseInt(rating as string) &&
-        cuisinesArray?.every((cuisine: any) => {
-          return cook.cuisines.includes(cuisine);
-        })
-      );
-    }
-
-    if (city) {
-      return cook.city.toLowerCase() === city.toString().toLowerCase();
-    }
-
-    if (rating) {
-      return cook.rating === parseInt(rating as string);
-    }
-
-    return true;
+    return areAllConditionsMet;
   });
 
-  res.status(200).json(cooksFiltered);
+  const cooksSorted =
+    typeof sortBy === "string"
+      ? [...cooksFiltered].sort((a, b) => {
+          if (sortBy === "highestRating") {
+            return b.rating - a.rating;
+          }
+
+          if (sortBy === "lowestRating") {
+            return a.rating - b.rating;
+          }
+
+          if (sortBy === "newest") {
+            return (
+              new Date(b.dateCreated).valueOf() -
+              new Date(a.dateCreated).valueOf()
+            );
+          }
+
+          return 0;
+        })
+      : cooksFiltered;
+
+  res.status(200).json(cooksSorted);
 }
