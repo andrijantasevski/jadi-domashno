@@ -18,9 +18,11 @@ const cities = [
   { id: 1, label: "Скопје", value: "Skopje" },
   { id: 2, label: "Битола", value: "Bitola" },
   { id: 3, label: "Куманово", value: "Kumanovo" },
-  { id: 4, label: "Струмица", value: "Strumica" },
-  { id: 5, label: "Кочани", value: "Kochani" },
-  { id: 6, label: "Кавадарци", value: "Kavadarci" },
+  { id: 4, label: "Охрид", value: "Ohrid" },
+  { id: 5, label: "Прилеп", value: "Prilep" },
+  { id: 6, label: "Тетово", value: "Tetovo" },
+  { id: 7, label: "Струга", value: "Struga" },
+  { id: 8, label: "Кавадарци", value: "Kavadarci" },
 ];
 
 interface Props {
@@ -31,7 +33,11 @@ interface Props {
 
 const FilterByLocationComboBox = ({ queries }: Props) => {
   const cityDefaultValue = (cityQuery: string | undefined) => {
-    return cities.find((city) => city.value === cityQuery) ?? ({} as City);
+    return (
+      cities.find(
+        (city) => city.value.toLowerCase() === cityQuery?.toLowerCase()
+      ) ?? ({} as City)
+    );
   };
 
   const router = useRouter();
