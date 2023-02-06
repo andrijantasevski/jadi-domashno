@@ -21,6 +21,12 @@
       "@components/*": ["src/components/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "src/pages/api/menu",
+    "data/utils/generateCooks.js"
+  ],
   "exclude": ["node_modules"]
 }
