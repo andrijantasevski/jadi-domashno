@@ -2,6 +2,7 @@ import CookCard from "@/components/common/CookCard";
 import CooksMobileDialogFiltering from "@/components/common/Cooks/CooksMobileDialogFiltering";
 import CooksSidebarFiltering from "@/components/common/Cooks/CooksSidebarFiltering";
 import SectionTitle from "@/components/ui/SectionTitle";
+import fetchCooks from "@/utils/fetchCooks";
 import { GetServerSideProps, NextPage } from "next";
 import Head from "next/head";
 
@@ -13,9 +14,10 @@ export interface QueriesCooks {
 
 interface Props {
   queriesCooks: QueriesCooks;
+  cooks: any;
 }
 
-const Cooks: NextPage<Props> = ({ queriesCooks }) => {
+const Cooks: NextPage<Props> = ({ queriesCooks, cooks }) => {
   return (
     <>
       <Head>
@@ -51,6 +53,14 @@ const Cooks: NextPage<Props> = ({ queriesCooks }) => {
           </div>
 
           <div className="grid w-full grid-cols-1 gap-4 lg:grid-cols-2 2xl:grid-cols-3">
+            {cooks.map((cook: any) => (
+              <CookCard
+                key={cook.id}
+                href={`/cooks/${cook.id}`}
+                location={cook.city}
+                {...cook}
+              />
+            ))}
             <CookCard
               href=""
               cuisines={["Македонска", "Италијанска", "Шпанска"]}
@@ -123,7 +133,7 @@ const Cooks: NextPage<Props> = ({ queriesCooks }) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
-  const { city, rating, cuisines } = query;
+  const { city, rating, cuisines, sortBy } = query;
 
   const queriesCooks = {
     city: city ? city : "",
@@ -131,8 +141,36 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
     cuisines: cuisines ? (cuisines as string).split(",") : [],
   };
 
+  if (city || rating || cuisines || sortBy) {
+    let query = "";
+
+    if (city) {
+      query += `city=${city}`;
+    }
+
+    if (rating) {
+      query += query ? `&rating=${rating}` : `rating=${rating}`;
+    }
+
+    if (cuisines) {
+      query += query ? `&cuisines=${cuisines}` : `cuisines=${cuisines}`;
+    }
+
+    if (sortBy) {
+      query += query ? `&sortBy=${sortBy}` : `sortBy=${sortBy}`;
+    }
+
+    const cooks = await fetchCooks(query);
+
+    return {
+      props: { queriesCooks, cooks },
+    };
+  }
+
+  const cooks = await fetchCooks();
+
   return {
-    props: { queriesCooks },
+    props: { queriesCooks, cooks },
   };
 };
 

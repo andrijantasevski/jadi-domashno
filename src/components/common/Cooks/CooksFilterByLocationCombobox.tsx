@@ -15,12 +15,14 @@ interface City {
 }
 
 const cities = [
-  { id: 1, label: "Скопје", value: "Skopje" },
-  { id: 2, label: "Битола", value: "Bitola" },
-  { id: 3, label: "Куманово", value: "Kumanovo" },
-  { id: 4, label: "Струмица", value: "Strumica" },
-  { id: 5, label: "Кочани", value: "Kochani" },
-  { id: 6, label: "Кавадарци", value: "Kavadarci" },
+  { id: 1, label: "Скопје", value: "skopje" },
+  { id: 2, label: "Битола", value: "bitola" },
+  { id: 3, label: "Куманово", value: "kumanovo" },
+  { id: 4, label: "Охрид", value: "ohrid" },
+  { id: 5, label: "Прилеп", value: "prilep" },
+  { id: 6, label: "Тетово", value: "tetovo" },
+  { id: 7, label: "Струга", value: "struga" },
+  { id: 8, label: "Кавадарци", value: "kavadarci" },
 ];
 
 interface Props {
