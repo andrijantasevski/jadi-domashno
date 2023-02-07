@@ -2,30 +2,30 @@ const { faker } = require("@faker-js/faker/locale/mk");
 const fs = require("fs");
 
 const cuisines = [
-  "vegetarian",
-  "vegan",
-  "chinese",
-  "indian",
-  "mexican",
-  "italian",
+  { label: "вегетаријанска", value: "vegetarian" },
+  { label: "веганска", value: "vegan" },
+  { label: "кинеска", value: "chinese" },
+  { label: "индијска", value: "indian" },
+  { label: "мексиканска", value: "mexican" },
+  { label: "италијанска", value: "italian" },
 ];
 
 const cities = [
-  "bitola",
-  "skopje",
-  "ohrid",
-  "prilep",
-  "kumanovo",
-  "struga",
-  "kavadarci",
-  "tetovo",
+  { label: "битола", value: "bitola" },
+  { label: "скопје", value: "skopje" },
+  { label: "охрид", value: "ohrid" },
+  { label: "прилeп", value: "prilep" },
+  { label: "куманово", value: "kumanovo" },
+  { label: "струга", value: "struga" },
+  { label: "кавадарци", value: "kavadarci" },
+  { label: "тетово", value: "tetovo" },
 ];
 
-function getRandomIntegerInclusive(min, max) {
+const getRandomIntegerInclusive = (min, max) => {
   min = Math.ceil(min);
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min + 1) + min);
-}
+};
 
 const selectRandomElementsFromArray = (arrayElements = [], repeatTimes = 1) => {
   const randomIntegerFromArrayLength = () =>
@@ -53,15 +53,26 @@ const selectRandomElementsFromArray = (arrayElements = [], repeatTimes = 1) => {
 const cooks = [];
 
 for (let i = 0; i < 40; i++) {
+  const randomGender = faker.name.sexType();
+
+  const randomImageURL = `/assets/people/${randomGender}/${getRandomIntegerInclusive(
+    1,
+    25
+  )}.jpg`;
+
+  const randomCity = { ...selectRandomElementsFromArray(cities, 1) };
+
   const cook = {
     id: faker.datatype.uuid(),
-    dateCreated: faker.date.past(),
-    first_name: faker.name.firstName(),
-    last_name: faker.name.lastName(),
-    cuisines: [...selectRandomElementsFromArray(cuisines, 4)],
-    city: [...selectRandomElementsFromArray(cities, 1)].join(""),
-    image_url: faker.image.avatar(),
+    date_created: faker.date.past(),
+    gender: randomGender,
+    first_name: faker.name.firstName(randomGender),
+    last_name: faker.name.lastName(randomGender),
+    cuisines: [...selectRandomElementsFromArray(cuisines, 3)],
+    city: randomCity["0"],
+    image_url: randomImageURL,
     rating: getRandomIntegerInclusive(2, 5),
+    isBadge: faker.datatype.boolean(),
   };
 
   cooks.push(cook);

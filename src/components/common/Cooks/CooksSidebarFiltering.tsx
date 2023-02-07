@@ -2,6 +2,7 @@ import { QueriesCooks } from "@/pages/cooks";
 import CooksFilterByLocationCombobox from "./CooksFilterByLocationCombobox";
 import CooksFilterByRatingRadioGroup from "./CooksFilterByRatingRadioGroup";
 import CooksFilterByCuisine from "./CooksFilterByCuisine";
+import EmptyQueriesButton from "../EmptyQueriesButton";
 
 interface Props {
   queriesCooks: QueriesCooks;
@@ -14,6 +15,7 @@ const CooksSidebarFiltering = ({ queriesCooks }: Props) => {
         <CooksFilterByLocationCombobox queriesCooks={queriesCooks} />
         <CooksFilterByRatingRadioGroup queriesCooks={queriesCooks} />
         <CooksFilterByCuisine queriesCooks={queriesCooks} />
+        <EmptyQueriesButton pathname="/cooks" />
       </div>
     </aside>
   );

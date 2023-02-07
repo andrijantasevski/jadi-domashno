@@ -2,8 +2,15 @@ import CookCard from "@/components/common/CookCard";
 import CooksMobileDialogFiltering from "@/components/common/Cooks/CooksMobileDialogFiltering";
 import CooksSidebarFiltering from "@/components/common/Cooks/CooksSidebarFiltering";
 import SectionTitle from "@/components/ui/SectionTitle";
+import fetchCooks from "@/utils/fetchCooks";
 import { GetServerSideProps, NextPage } from "next";
 import Head from "next/head";
+import { Cook } from "@/components/common/CookCard";
+import { Menu } from "@headlessui/react";
+import Button from "@/components/ui/Button";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import { ChevronDownIcon } from "@/components/icons";
 
 export interface QueriesCooks {
   city?: string;
@@ -13,9 +20,80 @@ export interface QueriesCooks {
 
 interface Props {
   queriesCooks: QueriesCooks;
+  cooks: Cook[];
 }
 
-const Cooks: NextPage<Props> = ({ queriesCooks }) => {
+const SortByMenu = () => {
+  const router = useRouter();
+  const [isMounted, setIsMounted] = useState(false);
+  const handleSortBy = (sortBy: string, pathname: string) => {
+    router.push({
+      pathname,
+      query: {
+        ...router.query,
+        sortBy,
+      },
+    });
+  };
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  return (
+    <>
+      {isMounted ? (
+        <Menu as="div" className="relative">
+          <Menu.Button>
+            <Button ariaLabel="Подредете ги готвачите по различни параметри">
+              <ChevronDownIcon className="h-4 w-4 text-inherit" />
+              Подредете
+            </Button>
+          </Menu.Button>
+
+          <Menu.Items className="absolute top-12 left-0 z-10 grid w-72 grid-cols-1 gap-2 rounded-lg bg-gray-100 p-4 shadow-md lg:left-auto lg:right-0">
+            <Menu.Item>
+              <Button
+                fullWidth
+                size="small"
+                onClick={() => handleSortBy("lowestRated", "/cooks")}
+              >
+                Оцена ниска кон висока
+              </Button>
+            </Menu.Item>
+            <Menu.Item>
+              <Button
+                fullWidth
+                size="small"
+                onClick={() => handleSortBy("highestRated", "/cooks")}
+              >
+                Оцена висока кон ниска
+              </Button>
+            </Menu.Item>
+
+            <Menu.Item>
+              <Button
+                fullWidth
+                size="small"
+                onClick={() => handleSortBy("newest", "/cooks")}
+              >
+                Најново додадени
+              </Button>
+            </Menu.Item>
+          </Menu.Items>
+        </Menu>
+      ) : (
+        <Button ariaLabel="Подредете ги готвачите по различни параметри">
+          <ChevronDownIcon className="h-4 w-4 text-inherit" />
+          Подредете
+        </Button>
+      )}
+    </>
+  );
+};
+
+const Cooks: NextPage<Props> = ({ queriesCooks, cooks }) => {
+  const cooksNumber = cooks.length === 0 ? "Нема" : cooks.length;
   return (
     <>
       <Head>
@@ -45,76 +123,20 @@ const Cooks: NextPage<Props> = ({ queriesCooks }) => {
       <section className="relative mx-auto w-11/12 max-w-[1600px] gap-4 pb-10 lg:flex">
         <CooksSidebarFiltering queriesCooks={queriesCooks} />
 
-        <div className="grid w-full grid-cols-1 gap-6">
-          <div className="flex justify-end lg:hidden">
+        <div className="grid w-full grid-cols-1 gap-4">
+          <div className="flex items-center justify-between">
+            <p className="hidden text-lg lg:block">
+              <span className="font-bold">{cooksNumber}</span>{" "}
+              {cooksNumber === 1 ? "готвач" : "готвачи"}
+            </p>
+            <SortByMenu />
             <CooksMobileDialogFiltering queriesCooks={queriesCooks} />
           </div>
 
           <div className="grid w-full grid-cols-1 gap-4 lg:grid-cols-2 2xl:grid-cols-3">
-            <CookCard
-              href=""
-              cuisines={["Македонска", "Италијанска", "Шпанска"]}
-              rating={4}
-              imageSrc="/assets/homepage/cook-example.jpg"
-              name="Петар Петровски"
-              location="Битола"
-            />
-            <CookCard
-              href=""
-              cuisines={["Македонска", "Италијанска", "Шпанска"]}
-              rating={4}
-              imageSrc="/assets/homepage/cook-example.jpg"
-              name="Петар Петровски"
-              location="Битола"
-            />
-            <CookCard
-              href=""
-              cuisines={["Македонска", "Италијанска", "Шпанска"]}
-              rating={4}
-              imageSrc="/assets/homepage/cook-example.jpg"
-              name="Петар Петровски"
-              location="Битола"
-            />
-            <CookCard
-              href=""
-              cuisines={["Македонска", "Италијанска", "Шпанска"]}
-              rating={4}
-              imageSrc="/assets/homepage/cook-example.jpg"
-              name="Петар Петровски"
-              location="Битола"
-            />
-            <CookCard
-              href=""
-              cuisines={["Македонска", "Италијанска", "Шпанска"]}
-              rating={4}
-              imageSrc="/assets/homepage/cook-example.jpg"
-              name="Петар Петровски"
-              location="Битола"
-            />
-            <CookCard
-              href=""
-              cuisines={["Македонска", "Италијанска", "Шпанска"]}
-              rating={4}
-              imageSrc="/assets/homepage/cook-example.jpg"
-              name="Петар Петровски"
-              location="Битола"
-            />
-            <CookCard
-              href=""
-              cuisines={["Македонска", "Италијанска", "Шпанска"]}
-              rating={4}
-              imageSrc="/assets/homepage/cook-example.jpg"
-              name="Петар Петровски"
-              location="Битола"
-            />
-            <CookCard
-              href=""
-              cuisines={["Македонска", "Италијанска", "Шпанска"]}
-              rating={4}
-              imageSrc="/assets/homepage/cook-example.jpg"
-              name="Петар Петровски"
-              location="Битола"
-            />
+            {cooks.map((cook) => (
+              <CookCard key={cook.id} cook={cook} />
+            ))}
           </div>
         </div>
       </section>
@@ -123,7 +145,7 @@ const Cooks: NextPage<Props> = ({ queriesCooks }) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
-  const { city, rating, cuisines } = query;
+  const { city, rating, cuisines, sortBy } = query;
 
   const queriesCooks = {
     city: city ? city : "",
@@ -131,8 +153,36 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
     cuisines: cuisines ? (cuisines as string).split(",") : [],
   };
 
+  if (city || rating || cuisines || sortBy) {
+    let query = "";
+
+    if (city) {
+      query += `city=${city}`;
+    }
+
+    if (rating) {
+      query += query ? `&rating=${rating}` : `rating=${rating}`;
+    }
+
+    if (cuisines) {
+      query += query ? `&cuisines=${cuisines}` : `cuisines=${cuisines}`;
+    }
+
+    if (sortBy) {
+      query += query ? `&sortBy=${sortBy}` : `sortBy=${sortBy}`;
+    }
+
+    const cooks = await fetchCooks(query);
+
+    return {
+      props: { queriesCooks, cooks },
+    };
+  }
+
+  const cooks = await fetchCooks();
+
   return {
-    props: { queriesCooks },
+    props: { queriesCooks, cooks },
   };
 };
 

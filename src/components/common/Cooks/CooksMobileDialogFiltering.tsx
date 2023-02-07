@@ -7,6 +7,7 @@ import CooksFilterByLocationCombobox from "./CooksFilterByLocationCombobox";
 import CooksFilterByRatingRadioGroup from "./CooksFilterByRatingRadioGroup";
 import CooksFilterByCuisine from "./CooksFilterByCuisine";
 import { QueriesCooks } from "@/pages/cooks";
+import EmptyQueriesButton from "../EmptyQueriesButton";
 
 interface Props {
   queriesCooks: QueriesCooks;
@@ -20,7 +21,7 @@ const CooksMobileDialogFiltering = ({ queriesCooks }: Props) => {
   const closeFilteringMenu = () => setIsFilteringMenuOpen(false);
 
   return (
-    <div>
+    <div className="lg:hidden">
       <Button onClick={openFilteringMenu}>
         <FilterIcon className="h-4 w-4 text-inherit" />
         Филтри
@@ -72,6 +73,8 @@ const CooksMobileDialogFiltering = ({ queriesCooks }: Props) => {
                           queriesCooks={queriesCooks}
                         />
                         <CooksFilterByCuisine queriesCooks={queriesCooks} />
+
+                        <EmptyQueriesButton pathname="/cooks" />
                       </div>
                     </div>
                   </Dialog.Panel>

@@ -1,18 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import path from "path";
 import { promises as fs } from "fs";
-
-// DUPLICATE INTERFACE
-interface Cook {
-  id: string;
-  dateCreated: Date;
-  first_name: "Самуил";
-  last_name: "Стефановска";
-  cuisines: string[];
-  city: string;
-  image_url: string;
-  rating: number;
-}
+import { Cook } from "@/components/common/CookCard";
 
 const COOKS_FILE_PATH = path.join(process.cwd(), "data", "cooks.json");
 
