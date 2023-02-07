@@ -1,8 +1,14 @@
 import SectionTitle from "../ui/SectionTitle";
 import Button from "../ui/Button";
-import CookCard from "./CookCard";
+import CookCard, { Cook } from "./CookCard";
 
-const OurCooks = () => {
+interface Props {
+  cooks: Cook[];
+}
+
+const OurCooks = ({ cooks }: Props) => {
+  const cooksToDisplay = cooks.filter((cook) => cook.rating === 5).slice(0, 3);
+
   return (
     <section className="mx-auto flex w-11/12 flex-col items-center justify-center gap-10 py-10">
       <SectionTitle>
@@ -13,30 +19,9 @@ const OurCooks = () => {
       </SectionTitle>
 
       <div className="grid w-full grid-cols-1 gap-10 lg:w-auto lg:grid-cols-3 lg:gap-20">
-        <CookCard
-          href=""
-          cuisines={["Македонска", "Италијанска", "Шпанска"]}
-          rating={3}
-          imageSrc="/assets/homepage/cook-example.jpg"
-          name="Софија Стојановa"
-          location="Скопје"
-        />
-        <CookCard
-          href=""
-          cuisines={["Македонска", "Италијанска", "Шпанска"]}
-          rating={4}
-          imageSrc="/assets/homepage/cook-example.jpg"
-          name="Петар Петровски"
-          location="Битола"
-        />
-        <CookCard
-          href=""
-          cuisines={["Македонска", "Италијанска", "Шпанска"]}
-          rating={5}
-          imageSrc="/assets/homepage/cook-example.jpg"
-          name="Јонас Јоновски"
-          location="Охрид"
-        />
+        {cooksToDisplay.map((cook) => (
+          <CookCard key={cook.id} cook={cook} />
+        ))}
       </div>
 
       <Button href="/cooks">Кон готвачи</Button>

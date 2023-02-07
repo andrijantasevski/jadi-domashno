@@ -89,6 +89,12 @@ const CooksFilterByRatingRadioGroup = ({ queriesCooks }: Props) => {
     }
   }, [selectedRating]);
 
+  useEffect(() => {
+    if (!router.query.rating) {
+      setSelectedRating(0);
+    }
+  }, [router.query]);
+
   return (
     <div className="grid grid-cols-1 gap-2">
       <p className="px-1">Покажи по оцени:</p>

@@ -109,6 +109,12 @@ const CooksFilterByCuisine = ({ queriesCooks }: Props) => {
     });
   }, [selectedCuisines]);
 
+  useEffect(() => {
+    if (!router.query.cuisines) {
+      setSelectedCuisines(cuisines);
+    }
+  }, [router.query]);
+
   return (
     <div className="grid grid-cols-1 gap-2 px-1">
       <p>Вид на кујна:</p>

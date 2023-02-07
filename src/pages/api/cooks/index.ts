@@ -2,18 +2,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import path from "path";
 import { promises as fs } from "fs";
-
-// DUPLICATE INTERFACE
-export interface Cook {
-  id: string;
-  dateCreated: Date;
-  first_name: "Самуил";
-  last_name: "Стефановска";
-  cuisines: string[];
-  city: string;
-  image_url: string;
-  rating: number;
-}
+import { Cook } from "@/components/common/CookCard";
 
 const COOKS_FILE_PATH = path.join(process.cwd(), "data", "cooks.json");
 
@@ -43,11 +32,15 @@ export default async function handler(
 
   const cuisinesArray = cuisines?.toString().split(",");
 
-  const cooksFiltered = cooks.filter((cook: any) => {
-    const cityCondition = city ? cook.city === city : true;
+  const cooksFiltered = cooks.filter((cook) => {
+    const cityCondition = city ? cook.city.value === city : true;
     const ratingCondition = rating ? cook.rating === Number(rating) : true;
     const cuisinesCondition = cuisinesArray
-      ? cuisinesArray?.every((cuisine) => cook.cuisines.includes(cuisine))
+      ? cuisinesArray?.every((cuisine) => {
+          const cuisineValues = cook.cuisines.map((cuisine) => cuisine.value);
+
+          return cuisineValues.includes(cuisine);
+        })
       : true;
 
     const areAllConditionsMet =
@@ -59,18 +52,25 @@ export default async function handler(
   const cooksSorted =
     typeof sortBy === "string"
       ? [...cooksFiltered].sort((a, b) => {
-          if (sortBy === "highestRating") {
+          if (sortBy === "highestRated") {
             return b.rating - a.rating;
           }
 
-          if (sortBy === "lowestRating") {
+          if (sortBy === "lowestRated") {
             return a.rating - b.rating;
           }
 
           if (sortBy === "newest") {
             return (
-              new Date(b.dateCreated).valueOf() -
-              new Date(a.dateCreated).valueOf()
+              new Date(b.date_created).valueOf() -
+              new Date(a.date_created).valueOf()
+            );
+          }
+
+          if (sortBy === "oldest") {
+            return (
+              new Date(a.date_created).valueOf() -
+              new Date(b.date_created).valueOf()
             );
           }
 
