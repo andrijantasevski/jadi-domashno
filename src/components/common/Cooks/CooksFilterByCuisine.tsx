@@ -19,8 +19,8 @@ const cuisines: Cuisine[] = [
   },
   {
     id: 3,
-    label: "Мексиканска",
-    value: "mexican",
+    label: "Салати",
+    value: "salad",
     checked: false,
   },
   {
@@ -31,14 +31,14 @@ const cuisines: Cuisine[] = [
   },
   {
     id: 5,
-    label: "Кинеска",
-    value: "chinese",
+    label: "Азијска",
+    value: "asian",
     checked: false,
   },
   {
     id: 6,
-    label: "Индијска",
-    value: "indian",
+    label: "Бургери",
+    value: "burger",
     checked: false,
   },
 ];

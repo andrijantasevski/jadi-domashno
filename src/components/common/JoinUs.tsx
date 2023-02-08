@@ -13,7 +13,7 @@ import Link from "../ui/Link";
 
 const JoinUs = () => {
   return (
-    <section className="mx-auto flex w-11/12 flex-col items-center justify-center gap-10 py-10">
+    <section className="mx-auto flex w-11/12 max-w-screen-2xl flex-col items-center justify-center gap-10 py-10">
       <h3 className="text-center text-3xl">
         Станете дел од семејството{" "}
         <span className="text-primary-600">Јади Домашно</span>

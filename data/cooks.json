@@ -1,1 +1,642 @@
-[{"id":"a5610cff-0bf5-4fd6-a146-bb652be3dbed","date_created":"2022-12-29T08:32:21.608Z","gender":"female","first_name":"Анѓа","last_name":"Панчевска","cuisines":[{"label":"кинеска","value":"chinese"},{"label":"индијска","value":"indian"},{"label":"мексиканска","value":"mexican"}],"city":{"label":"кавадарци","value":"kavadarci"},"image_url":"/assets/people/female/19.jpg","rating":5,"isBadge":false},{"id":"0236a408-f412-4b4d-b809-cd615151b437","date_created":"2022-02-21T23:10:05.576Z","gender":"male","first_name":"Емил","last_name":"Лакински","cuisines":[{"label":"веганска","value":"vegan"},{"label":"вегетаријанска","value":"vegetarian"},{"label":"кинеска","value":"chinese"}],"city":{"label":"тетово","value":"tetovo"},"image_url":"/assets/people/male/14.jpg","rating":4,"isBadge":true},{"id":"3f9cc2e7-36c1-4daa-9101-ba1258848dc7","date_created":"2022-08-09T02:38:51.211Z","gender":"male","first_name":"Злате","last_name":"Пепељуговски","cuisines":[{"label":"мексиканска","value":"mexican"},{"label":"кинеска","value":"chinese"},{"label":"вегетаријанска","value":"vegetarian"}],"city":{"label":"тетово","value":"tetovo"},"image_url":"/assets/people/male/13.jpg","rating":2,"isBadge":true},{"id":"34cb304f-abc3-46c2-a9fc-c8c364126ca5","date_created":"2022-05-02T05:14:09.623Z","gender":"female","first_name":"Грозда","last_name":"Бојаџи","cuisines":[{"label":"вегетаријанска","value":"vegetarian"},{"label":"италијанска","value":"italian"},{"label":"кинеска","value":"chinese"}],"city":{"label":"струга","value":"struga"},"image_url":"/assets/people/female/23.jpg","rating":4,"isBadge":false},{"id":"37cccb8f-e124-4d0b-8dc7-b0d893c05677","date_created":"2022-12-21T20:27:02.019Z","gender":"female","first_name":"Ирина","last_name":"Штерјоска","cuisines":[{"label":"вегетаријанска","value":"vegetarian"},{"label":"италијанска","value":"italian"},{"label":"индијска","value":"indian"}],"city":{"label":"струга","value":"struga"},"image_url":"/assets/people/female/22.jpg","rating":4,"isBadge":false},{"id":"a416ac5b-9793-47d3-8ad7-5fd96f3f4d1d","date_created":"2022-08-19T02:50:46.980Z","gender":"male","first_name":"Благе","last_name":"Наков","cuisines":[{"label":"италијанска","value":"italian"},{"label":"веганска","value":"vegan"},{"label":"кинеска","value":"chinese"}],"city":{"label":"битола","value":"bitola"},"image_url":"/assets/people/male/15.jpg","rating":3,"isBadge":false},{"id":"ab18b217-c21c-488b-b727-1379d22a5148","date_created":"2022-04-05T20:55:25.877Z","gender":"female","first_name":"Вероника","last_name":"Балабанова","cuisines":[{"label":"индијска","value":"indian"},{"label":"вегетаријанска","value":"vegetarian"},{"label":"веганска","value":"vegan"}],"city":{"label":"струга","value":"struga"},"image_url":"/assets/people/female/19.jpg","rating":5,"isBadge":false},{"id":"236132b0-1de8-4ea3-881e-fdcdb4a90de1","date_created":"2022-02-14T01:03:51.248Z","gender":"female","first_name":"Атанасија","last_name":"Божинова","cuisines":[{"label":"кинеска","value":"chinese"},{"label":"индијска","value":"indian"},{"label":"веганска","value":"vegan"}],"city":{"label":"кавадарци","value":"kavadarci"},"image_url":"/assets/people/female/1.jpg","rating":4,"isBadge":false},{"id":"86e833ba-7a2c-4caa-a298-ef4f3cc1b977","date_created":"2022-10-02T14:19:34.560Z","gender":"male","first_name":"Љубиша","last_name":"Симовски","cuisines":[{"label":"мексиканска","value":"mexican"},{"label":"индијска","value":"indian"},{"label":"веганска","value":"vegan"}],"city":{"label":"битола","value":"bitola"},"image_url":"/assets/people/male/22.jpg","rating":4,"isBadge":true},{"id":"b189005a-7244-411f-a4f6-9a41b8c4aebc","date_created":"2022-08-29T23:18:46.732Z","gender":"female","first_name":"Галаба","last_name":"Наумческа","cuisines":[{"label":"веганска","value":"vegan"},{"label":"мексиканска","value":"mexican"},{"label":"кинеска","value":"chinese"}],"city":{"label":"битола","value":"bitola"},"image_url":"/assets/people/female/10.jpg","rating":5,"isBadge":true},{"id":"31d07f37-ecce-48ab-9260-70ebfd39a79f","date_created":"2022-07-05T06:37:08.039Z","gender":"male","first_name":"Душан","last_name":"Попоски","cuisines":[{"label":"веганска","value":"vegan"},{"label":"индијска","value":"indian"},{"label":"мексиканска","value":"mexican"}],"city":{"label":"битола","value":"bitola"},"image_url":"/assets/people/male/9.jpg","rating":4,"isBadge":true},{"id":"ea85e639-1db0-4e46-a968-b5e3f3c5de20","date_created":"2022-11-17T11:53:27.538Z","gender":"female","first_name":"Славенка","last_name":"Никушевa","cuisines":[{"label":"мексиканска","value":"mexican"},{"label":"веганска","value":"vegan"},{"label":"вегетаријанска","value":"vegetarian"}],"city":{"label":"битола","value":"bitola"},"image_url":"/assets/people/female/13.jpg","rating":2,"isBadge":false},{"id":"ffcc7fc6-f457-480a-ae2f-b5363267fe1c","date_created":"2022-05-23T08:38:22.033Z","gender":"female","first_name":"Симјанка","last_name":"Силјановска","cuisines":[{"label":"кинеска","value":"chinese"},{"label":"мексиканска","value":"mexican"},{"label":"индијска","value":"indian"}],"city":{"label":"прилeп","value":"prilep"},"image_url":"/assets/people/female/6.jpg","rating":4,"isBadge":false},{"id":"fe75b327-a2b1-44bf-8f75-b2751da4c93b","date_created":"2022-10-10T00:13:01.401Z","gender":"female","first_name":"Васка","last_name":"Грујовска","cuisines":[{"label":"италијанска","value":"italian"},{"label":"веганска","value":"vegan"},{"label":"вегетаријанска","value":"vegetarian"}],"city":{"label":"охрид","value":"ohrid"},"image_url":"/assets/people/female/8.jpg","rating":5,"isBadge":false},{"id":"8fe37e42-e0a4-470d-af3a-03c7184f3be1","date_created":"2022-09-06T15:42:28.816Z","gender":"female","first_name":"Стојмена","last_name":"Куноска","cuisines":[{"label":"вегетаријанска","value":"vegetarian"},{"label":"веганска","value":"vegan"},{"label":"мексиканска","value":"mexican"}],"city":{"label":"скопје","value":"skopje"},"image_url":"/assets/people/female/7.jpg","rating":3,"isBadge":true},{"id":"b48afa02-2797-4aff-8f92-0c7b088546b0","date_created":"2022-10-20T20:58:52.570Z","gender":"male","first_name":"Евтим","last_name":"Караман","cuisines":[{"label":"мексиканска","value":"mexican"},{"label":"веганска","value":"vegan"},{"label":"италијанска","value":"italian"}],"city":{"label":"тетово","value":"tetovo"},"image_url":"/assets/people/male/5.jpg","rating":2,"isBadge":false},{"id":"55e51f0b-6449-4850-87bf-6fa4d2420fac","date_created":"2022-07-07T15:06:00.742Z","gender":"male","first_name":"Дојчин","last_name":"Полјански","cuisines":[{"label":"кинеска","value":"chinese"},{"label":"мексиканска","value":"mexican"},{"label":"веганска","value":"vegan"}],"city":{"label":"охрид","value":"ohrid"},"image_url":"/assets/people/male/3.jpg","rating":2,"isBadge":false},{"id":"a5b7eef7-5f9c-4287-9cca-3770edefe1c5","date_created":"2022-05-28T11:27:35.005Z","gender":"male","first_name":"Страхил","last_name":"Ѓорчев","cuisines":[{"label":"вегетаријанска","value":"vegetarian"},{"label":"индијска","value":"indian"},{"label":"кинеска","value":"chinese"}],"city":{"label":"куманово","value":"kumanovo"},"image_url":"/assets/people/male/2.jpg","rating":4,"isBadge":true},{"id":"43dd2c8e-6cae-4801-a66b-a03761a63454","date_created":"2022-08-15T00:16:49.942Z","gender":"male","first_name":"Владимир","last_name":"Серафимовски","cuisines":[{"label":"италијанска","value":"italian"},{"label":"индијска","value":"indian"},{"label":"веганска","value":"vegan"}],"city":{"label":"охрид","value":"ohrid"},"image_url":"/assets/people/male/8.jpg","rating":5,"isBadge":true},{"id":"b942d523-30c3-4aaf-a188-0018a77a0cb7","date_created":"2022-10-06T03:29:51.846Z","gender":"male","first_name":"Круме","last_name":"Кондов","cuisines":[{"label":"индијска","value":"indian"},{"label":"кинеска","value":"chinese"},{"label":"вегетаријанска","value":"vegetarian"}],"city":{"label":"охрид","value":"ohrid"},"image_url":"/assets/people/male/24.jpg","rating":2,"isBadge":true},{"id":"f9dab043-1047-4711-9874-ea94e4e82699","date_created":"2022-07-11T05:51:02.695Z","gender":"female","first_name":"Калина","last_name":"Атанасовa","cuisines":[{"label":"индијска","value":"indian"},{"label":"вегетаријанска","value":"vegetarian"},{"label":"кинеска","value":"chinese"}],"city":{"label":"струга","value":"struga"},"image_url":"/assets/people/female/3.jpg","rating":5,"isBadge":true},{"id":"e3a3fc4a-20da-4cdd-ae05-bc93757e20ad","date_created":"2022-07-05T12:03:25.973Z","gender":"male","first_name":"Вељо","last_name":"Георгиев","cuisines":[{"label":"индијска","value":"indian"},{"label":"кинеска","value":"chinese"},{"label":"италијанска","value":"italian"}],"city":{"label":"кавадарци","value":"kavadarci"},"image_url":"/assets/people/male/4.jpg","rating":3,"isBadge":false},{"id":"b3c29f93-00b1-4fd7-a59c-046edb1e8289","date_created":"2022-09-06T09:25:00.562Z","gender":"male","first_name":"Мирче","last_name":"Пандески","cuisines":[{"label":"веганска","value":"vegan"},{"label":"индијска","value":"indian"},{"label":"мексиканска","value":"mexican"}],"city":{"label":"кавадарци","value":"kavadarci"},"image_url":"/assets/people/male/10.jpg","rating":3,"isBadge":true},{"id":"b908e375-d4a2-42ab-ae43-8c6a1938d517","date_created":"2022-09-01T12:55:36.655Z","gender":"female","first_name":"Пелагија","last_name":"Кочовска","cuisines":[{"label":"мексиканска","value":"mexican"},{"label":"индијска","value":"indian"},{"label":"италијанска","value":"italian"}],"city":{"label":"битола","value":"bitola"},"image_url":"/assets/people/female/16.jpg","rating":5,"isBadge":true},{"id":"2e3ad0a2-d3cb-4cf5-a60d-2da2e877d020","date_created":"2022-05-10T17:24:15.358Z","gender":"male","first_name":"Ангеле","last_name":"Мицковски","cuisines":[{"label":"мексиканска","value":"mexican"},{"label":"индијска","value":"indian"},{"label":"италијанска","value":"italian"}],"city":{"label":"прилeп","value":"prilep"},"image_url":"/assets/people/male/19.jpg","rating":3,"isBadge":true},{"id":"ab9a8275-354c-4f53-8507-c7c2bd524ade","date_created":"2022-08-08T03:05:43.988Z","gender":"male","first_name":"Драган","last_name":"Миљовски","cuisines":[{"label":"мексиканска","value":"mexican"},{"label":"веганска","value":"vegan"},{"label":"индијска","value":"indian"}],"city":{"label":"битола","value":"bitola"},"image_url":"/assets/people/male/20.jpg","rating":2,"isBadge":true},{"id":"a719b0d4-4c5e-47aa-9d65-94b4c4336cee","date_created":"2022-02-27T18:46:12.539Z","gender":"male","first_name":"Санде","last_name":"Давков","cuisines":[{"label":"италијанска","value":"italian"},{"label":"мексиканска","value":"mexican"},{"label":"веганска","value":"vegan"}],"city":{"label":"струга","value":"struga"},"image_url":"/assets/people/male/1.jpg","rating":2,"isBadge":false},{"id":"6e1b5926-effa-4c0c-b5b1-fb041d8c613a","date_created":"2022-03-10T08:09:38.838Z","gender":"male","first_name":"Момчило","last_name":"Пандески","cuisines":[{"label":"италијанска","value":"italian"},{"label":"вегетаријанска","value":"vegetarian"},{"label":"веганска","value":"vegan"}],"city":{"label":"прилeп","value":"prilep"},"image_url":"/assets/people/male/20.jpg","rating":2,"isBadge":true},{"id":"789e3157-22f1-4392-bde2-6275c0da4f67","date_created":"2022-08-10T09:29:23.298Z","gender":"female","first_name":"Стојна","last_name":"Глигоровска","cuisines":[{"label":"веганска","value":"vegan"},{"label":"кинеска","value":"chinese"},{"label":"вегетаријанска","value":"vegetarian"}],"city":{"label":"тетово","value":"tetovo"},"image_url":"/assets/people/female/18.jpg","rating":3,"isBadge":true},{"id":"d00cbc8a-7e4a-48d5-b455-a9ae06708bc0","date_created":"2022-09-23T07:21:01.475Z","gender":"female","first_name":"Мирјана","last_name":"Шијак","cuisines":[{"label":"индијска","value":"indian"},{"label":"италијанска","value":"italian"},{"label":"веганска","value":"vegan"}],"city":{"label":"скопје","value":"skopje"},"image_url":"/assets/people/female/12.jpg","rating":5,"isBadge":true},{"id":"3bee05a7-75db-4a27-8a91-de512c6ea2a1","date_created":"2022-04-04T13:59:12.408Z","gender":"male","first_name":"Душан","last_name":"Велјанов","cuisines":[{"label":"кинеска","value":"chinese"},{"label":"индијска","value":"indian"},{"label":"италијанска","value":"italian"}],"city":{"label":"куманово","value":"kumanovo"},"image_url":"/assets/people/male/19.jpg","rating":2,"isBadge":false},{"id":"beb0c1fe-8f7b-4abd-935a-18de2d30f9c7","date_created":"2023-01-07T03:27:43.406Z","gender":"male","first_name":"Драгољуб","last_name":"Панов","cuisines":[{"label":"индијска","value":"indian"},{"label":"мексиканска","value":"mexican"},{"label":"кинеска","value":"chinese"}],"city":{"label":"скопје","value":"skopje"},"image_url":"/assets/people/male/5.jpg","rating":2,"isBadge":true},{"id":"3c7f600a-440d-4285-abbd-8b7957c8f8ff","date_created":"2022-11-26T05:32:09.414Z","gender":"female","first_name":"Искра","last_name":"Ристовска","cuisines":[{"label":"индијска","value":"indian"},{"label":"мексиканска","value":"mexican"},{"label":"вегетаријанска","value":"vegetarian"}],"city":{"label":"куманово","value":"kumanovo"},"image_url":"/assets/people/female/23.jpg","rating":5,"isBadge":false},{"id":"514b8b63-153a-4be3-981f-bd27ce47b0e8","date_created":"2022-03-04T00:28:03.979Z","gender":"female","first_name":"Роска","last_name":"Узуновска","cuisines":[{"label":"италијанска","value":"italian"},{"label":"мексиканска","value":"mexican"},{"label":"индијска","value":"indian"}],"city":{"label":"битола","value":"bitola"},"image_url":"/assets/people/female/13.jpg","rating":5,"isBadge":false},{"id":"0c8471b5-09bf-42a2-bfbd-6553166523f4","date_created":"2022-09-19T17:55:30.960Z","gender":"female","first_name":"Сребра","last_name":"Абаџиевa","cuisines":[{"label":"кинеска","value":"chinese"},{"label":"италијанска","value":"italian"},{"label":"веганска","value":"vegan"}],"city":{"label":"прилeп","value":"prilep"},"image_url":"/assets/people/female/21.jpg","rating":3,"isBadge":true},{"id":"52f2e6e3-de8f-4830-8d46-1f3ea5ae98ca","date_created":"2022-10-24T19:38:56.653Z","gender":"male","first_name":"Методија","last_name":"Мојсовски","cuisines":[{"label":"италијанска","value":"italian"},{"label":"вегетаријанска","value":"vegetarian"},{"label":"веганска","value":"vegan"}],"city":{"label":"прилeп","value":"prilep"},"image_url":"/assets/people/male/9.jpg","rating":3,"isBadge":false},{"id":"b438ddb6-5625-42ee-8cdd-cae69bfdf27d","date_created":"2023-01-27T10:46:13.388Z","gender":"female","first_name":"Галаба","last_name":"Дилевa","cuisines":[{"label":"вегетаријанска","value":"vegetarian"},{"label":"индијска","value":"indian"},{"label":"мексиканска","value":"mexican"}],"city":{"label":"струга","value":"struga"},"image_url":"/assets/people/female/19.jpg","rating":2,"isBadge":true},{"id":"dfb344cf-9589-47f3-866b-23d725ebe7cf","date_created":"2022-10-10T12:02:53.534Z","gender":"female","first_name":"Лилјана","last_name":"Пендовска","cuisines":[{"label":"италијанска","value":"italian"},{"label":"кинеска","value":"chinese"},{"label":"веганска","value":"vegan"}],"city":{"label":"кавадарци","value":"kavadarci"},"image_url":"/assets/people/female/20.jpg","rating":4,"isBadge":false},{"id":"0d110434-65a5-49e3-8b88-6f505a83f126","date_created":"2022-05-07T12:19:06.322Z","gender":"female","first_name":"Рахилка","last_name":"Џувалековска","cuisines":[{"label":"индијска","value":"indian"},{"label":"вегетаријанска","value":"vegetarian"},{"label":"веганска","value":"vegan"}],"city":{"label":"охрид","value":"ohrid"},"image_url":"/assets/people/female/16.jpg","rating":4,"isBadge":true},{"id":"e4c232a3-59dd-4d7e-8342-9b2df208156e","date_created":"2022-12-11T00:56:03.058Z","gender":"female","first_name":"Ката","last_name":"Псалтировa","cuisines":[{"label":"вегетаријанска","value":"vegetarian"},{"label":"индијска","value":"indian"},{"label":"италијанска","value":"italian"}],"city":{"label":"тетово","value":"tetovo"},"image_url":"/assets/people/female/10.jpg","rating":3,"isBadge":false}]
+[
+  {
+    "id": "9058b91a-e3fd-4f4a-9a02-874f03e871ad",
+    "date_created": "2022-12-17T10:41:50.213Z",
+    "gender": "male",
+    "first_name": "Милош",
+    "last_name": "Атанасов",
+    "cuisines": [
+      { "label": "азијска", "value": "asian" },
+      { "label": "вегетаријанска", "value": "vegetarian" },
+      { "label": "италијанска", "value": "italian" }
+    ],
+    "city": { "label": "тетово", "value": "tetovo" },
+    "image_url": "/assets/people/male/11.jpg",
+    "rating": 5,
+    "isBadge": false
+  },
+  {
+    "id": "618c84c4-6893-407e-a12a-ed51d5560853",
+    "date_created": "2022-06-11T20:27:42.381Z",
+    "gender": "female",
+    "first_name": "Мара",
+    "last_name": "Николовска",
+    "cuisines": [
+      { "label": "салати", "value": "salad" },
+      { "label": "италијанска", "value": "italian" },
+      { "label": "вегетаријанска", "value": "vegetarian" }
+    ],
+    "city": { "label": "охрид", "value": "ohrid" },
+    "image_url": "/assets/people/female/4.jpg",
+    "rating": 4,
+    "isBadge": false
+  },
+  {
+    "id": "e11c1654-c17e-4c67-a4b5-c9526ee9b600",
+    "date_created": "2022-09-30T16:49:42.135Z",
+    "gender": "male",
+    "first_name": "Бранко",
+    "last_name": "Смокварски",
+    "cuisines": [
+      { "label": "вегетаријанска", "value": "vegetarian" },
+      { "label": "азијска", "value": "asian" },
+      { "label": "салати", "value": "salad" }
+    ],
+    "city": { "label": "тетово", "value": "tetovo" },
+    "image_url": "/assets/people/male/6.jpg",
+    "rating": 5,
+    "isBadge": false
+  },
+  {
+    "id": "fc408986-d522-43ae-8a10-218ef3c574f5",
+    "date_created": "2022-04-07T14:28:48.505Z",
+    "gender": "male",
+    "first_name": "Величко",
+    "last_name": "Ортаков",
+    "cuisines": [
+      { "label": "бургери", "value": "burger" },
+      { "label": "веганска", "value": "vegan" },
+      { "label": "италијанска", "value": "italian" }
+    ],
+    "city": { "label": "куманово", "value": "kumanovo" },
+    "image_url": "/assets/people/male/22.jpg",
+    "rating": 4,
+    "isBadge": true
+  },
+  {
+    "id": "82c2d0bf-5593-4a76-acaf-4beaf40fa2fe",
+    "date_created": "2022-08-05T12:57:30.361Z",
+    "gender": "female",
+    "first_name": "Роска",
+    "last_name": "Петковска",
+    "cuisines": [
+      { "label": "веганска", "value": "vegan" },
+      { "label": "италијанска", "value": "italian" },
+      { "label": "салати", "value": "salad" }
+    ],
+    "city": { "label": "прилeп", "value": "prilep" },
+    "image_url": "/assets/people/female/7.jpg",
+    "rating": 5,
+    "isBadge": true
+  },
+  {
+    "id": "46e70ed6-da17-4333-a47a-e74b195661b9",
+    "date_created": "2022-03-19T13:04:06.722Z",
+    "gender": "male",
+    "first_name": "Вангел",
+    "last_name": "Маловски",
+    "cuisines": [
+      { "label": "веганска", "value": "vegan" },
+      { "label": "бургери", "value": "burger" },
+      { "label": "вегетаријанска", "value": "vegetarian" }
+    ],
+    "city": { "label": "куманово", "value": "kumanovo" },
+    "image_url": "/assets/people/male/2.jpg",
+    "rating": 5,
+    "isBadge": false
+  },
+  {
+    "id": "0ed1777d-cedc-407d-b50b-e720317fe654",
+    "date_created": "2022-02-19T18:15:52.504Z",
+    "gender": "male",
+    "first_name": "Спасе",
+    "last_name": "Костовски",
+    "cuisines": [
+      { "label": "веганска", "value": "vegan" },
+      { "label": "бургери", "value": "burger" },
+      { "label": "азијска", "value": "asian" }
+    ],
+    "city": { "label": "скопје", "value": "skopje" },
+    "image_url": "/assets/people/male/13.jpg",
+    "rating": 5,
+    "isBadge": true
+  },
+  {
+    "id": "623546dd-9416-42a9-ab8f-b141356f75b2",
+    "date_created": "2023-01-24T22:19:45.705Z",
+    "gender": "female",
+    "first_name": "Зорка",
+    "last_name": "Урдин",
+    "cuisines": [
+      { "label": "италијанска", "value": "italian" },
+      { "label": "салати", "value": "salad" },
+      { "label": "вегетаријанска", "value": "vegetarian" }
+    ],
+    "city": { "label": "куманово", "value": "kumanovo" },
+    "image_url": "/assets/people/female/11.jpg",
+    "rating": 3,
+    "isBadge": true
+  },
+  {
+    "id": "1d1f2acd-853c-4708-bd8c-210fb82e1cc9",
+    "date_created": "2022-12-09T11:49:53.129Z",
+    "gender": "female",
+    "first_name": "Здравка",
+    "last_name": "Дракул",
+    "cuisines": [
+      { "label": "италијанска", "value": "italian" },
+      { "label": "вегетаријанска", "value": "vegetarian" },
+      { "label": "салати", "value": "salad" }
+    ],
+    "city": { "label": "прилeп", "value": "prilep" },
+    "image_url": "/assets/people/female/4.jpg",
+    "rating": 5,
+    "isBadge": true
+  },
+  {
+    "id": "77ef1897-47c2-4120-bdc2-760606655b89",
+    "date_created": "2022-06-25T23:50:13.131Z",
+    "gender": "female",
+    "first_name": "Добрила",
+    "last_name": "Коцо",
+    "cuisines": [
+      { "label": "азијска", "value": "asian" },
+      { "label": "веганска", "value": "vegan" },
+      { "label": "бургери", "value": "burger" }
+    ],
+    "city": { "label": "кавадарци", "value": "kavadarci" },
+    "image_url": "/assets/people/female/15.jpg",
+    "rating": 3,
+    "isBadge": true
+  },
+  {
+    "id": "82253354-bfc8-4e1a-a5de-c2bfef9661e2",
+    "date_created": "2022-03-31T05:17:26.112Z",
+    "gender": "female",
+    "first_name": "Родна",
+    "last_name": "Масин",
+    "cuisines": [
+      { "label": "веганска", "value": "vegan" },
+      { "label": "вегетаријанска", "value": "vegetarian" },
+      { "label": "бургери", "value": "burger" }
+    ],
+    "city": { "label": "битола", "value": "bitola" },
+    "image_url": "/assets/people/female/19.jpg",
+    "rating": 5,
+    "isBadge": true
+  },
+  {
+    "id": "3dad4051-a7c7-4ca7-80d4-3e5ffd00de87",
+    "date_created": "2022-11-25T17:41:20.776Z",
+    "gender": "male",
+    "first_name": "Самоил",
+    "last_name": "Митревски",
+    "cuisines": [
+      { "label": "италијанска", "value": "italian" },
+      { "label": "вегетаријанска", "value": "vegetarian" },
+      { "label": "веганска", "value": "vegan" }
+    ],
+    "city": { "label": "струга", "value": "struga" },
+    "image_url": "/assets/people/male/4.jpg",
+    "rating": 5,
+    "isBadge": false
+  },
+  {
+    "id": "ab9eefda-5737-4f7d-9351-4f7b5de0fd94",
+    "date_created": "2022-03-14T01:55:41.263Z",
+    "gender": "male",
+    "first_name": "Арсениј",
+    "last_name": "Петровски",
+    "cuisines": [
+      { "label": "веганска", "value": "vegan" },
+      { "label": "азијска", "value": "asian" },
+      { "label": "италијанска", "value": "italian" }
+    ],
+    "city": { "label": "прилeп", "value": "prilep" },
+    "image_url": "/assets/people/male/14.jpg",
+    "rating": 4,
+    "isBadge": false
+  },
+  {
+    "id": "aa759ded-63a1-4c05-a2d7-d4d1685a5ad2",
+    "date_created": "2022-12-02T00:52:13.103Z",
+    "gender": "male",
+    "first_name": "Чедо",
+    "last_name": "Грабул",
+    "cuisines": [
+      { "label": "салати", "value": "salad" },
+      { "label": "вегетаријанска", "value": "vegetarian" },
+      { "label": "италијанска", "value": "italian" }
+    ],
+    "city": { "label": "охрид", "value": "ohrid" },
+    "image_url": "/assets/people/male/21.jpg",
+    "rating": 5,
+    "isBadge": false
+  },
+  {
+    "id": "3d24cfef-5c8b-461d-8de8-8d1358ff8403",
+    "date_created": "2022-10-04T02:13:51.687Z",
+    "gender": "female",
+    "first_name": "Лина",
+    "last_name": "Ристоска",
+    "cuisines": [
+      { "label": "салати", "value": "salad" },
+      { "label": "вегетаријанска", "value": "vegetarian" },
+      { "label": "азијска", "value": "asian" }
+    ],
+    "city": { "label": "прилeп", "value": "prilep" },
+    "image_url": "/assets/people/female/12.jpg",
+    "rating": 3,
+    "isBadge": true
+  },
+  {
+    "id": "e9d2907e-3005-4163-a1ea-aa495f10747a",
+    "date_created": "2022-09-29T00:11:24.363Z",
+    "gender": "female",
+    "first_name": "Василија",
+    "last_name": "Реџепова",
+    "cuisines": [
+      { "label": "вегетаријанска", "value": "vegetarian" },
+      { "label": "веганска", "value": "vegan" },
+      { "label": "азијска", "value": "asian" }
+    ],
+    "city": { "label": "скопје", "value": "skopje" },
+    "image_url": "/assets/people/female/7.jpg",
+    "rating": 4,
+    "isBadge": true
+  },
+  {
+    "id": "402afc81-5759-46d5-b65a-5a646207e299",
+    "date_created": "2022-08-24T04:49:52.227Z",
+    "gender": "male",
+    "first_name": "Здравко",
+    "last_name": "Пановски",
+    "cuisines": [
+      { "label": "вегетаријанска", "value": "vegetarian" },
+      { "label": "салати", "value": "salad" },
+      { "label": "италијанска", "value": "italian" }
+    ],
+    "city": { "label": "тетово", "value": "tetovo" },
+    "image_url": "/assets/people/male/2.jpg",
+    "rating": 5,
+    "isBadge": true
+  },
+  {
+    "id": "bf452c25-be0e-4e28-99fa-a854d26844c6",
+    "date_created": "2022-10-08T23:19:45.010Z",
+    "gender": "male",
+    "first_name": "Леонид",
+    "last_name": "Светиев",
+    "cuisines": [
+      { "label": "бургери", "value": "burger" },
+      { "label": "веганска", "value": "vegan" },
+      { "label": "азијска", "value": "asian" }
+    ],
+    "city": { "label": "прилeп", "value": "prilep" },
+    "image_url": "/assets/people/male/8.jpg",
+    "rating": 4,
+    "isBadge": false
+  },
+  {
+    "id": "6759e345-7be7-482f-b985-dc14db467f1d",
+    "date_created": "2022-09-08T20:33:05.877Z",
+    "gender": "male",
+    "first_name": "Гоце",
+    "last_name": "Коцо",
+    "cuisines": [
+      { "label": "бургери", "value": "burger" },
+      { "label": "салати", "value": "salad" },
+      { "label": "азијска", "value": "asian" }
+    ],
+    "city": { "label": "струга", "value": "struga" },
+    "image_url": "/assets/people/male/25.jpg",
+    "rating": 5,
+    "isBadge": true
+  },
+  {
+    "id": "2efe2a4d-7437-44e1-8c05-1112cc00dd72",
+    "date_created": "2022-11-15T00:06:00.866Z",
+    "gender": "male",
+    "first_name": "Кузман",
+    "last_name": "Иљоски",
+    "cuisines": [
+      { "label": "салати", "value": "salad" },
+      { "label": "вегетаријанска", "value": "vegetarian" },
+      { "label": "веганска", "value": "vegan" }
+    ],
+    "city": { "label": "кавадарци", "value": "kavadarci" },
+    "image_url": "/assets/people/male/23.jpg",
+    "rating": 4,
+    "isBadge": true
+  },
+  {
+    "id": "30c94e22-f002-4366-b5b1-891d6399dfe2",
+    "date_created": "2022-08-20T15:24:02.100Z",
+    "gender": "male",
+    "first_name": "Јован",
+    "last_name": "Кљусев",
+    "cuisines": [
+      { "label": "азијска", "value": "asian" },
+      { "label": "италијанска", "value": "italian" },
+      { "label": "бургери", "value": "burger" }
+    ],
+    "city": { "label": "куманово", "value": "kumanovo" },
+    "image_url": "/assets/people/male/24.jpg",
+    "rating": 5,
+    "isBadge": true
+  },
+  {
+    "id": "7f57cd46-0ef9-40db-92a7-b8d7d5cf9a5a",
+    "date_created": "2022-02-19T09:31:01.796Z",
+    "gender": "female",
+    "first_name": "Бојана",
+    "last_name": "Малеска",
+    "cuisines": [
+      { "label": "салати", "value": "salad" },
+      { "label": "бургери", "value": "burger" },
+      { "label": "италијанска", "value": "italian" }
+    ],
+    "city": { "label": "прилeп", "value": "prilep" },
+    "image_url": "/assets/people/female/14.jpg",
+    "rating": 3,
+    "isBadge": true
+  },
+  {
+    "id": "656f3ef8-1019-4301-bd2e-6eb7aeadc28d",
+    "date_created": "2022-11-10T00:43:35.500Z",
+    "gender": "female",
+    "first_name": "Радмила",
+    "last_name": "Чаловска",
+    "cuisines": [
+      { "label": "италијанска", "value": "italian" },
+      { "label": "веганска", "value": "vegan" },
+      { "label": "салати", "value": "salad" }
+    ],
+    "city": { "label": "охрид", "value": "ohrid" },
+    "image_url": "/assets/people/female/17.jpg",
+    "rating": 4,
+    "isBadge": true
+  },
+  {
+    "id": "6f026edc-bac1-4fdb-8760-39d165d1baf2",
+    "date_created": "2022-02-09T07:38:26.782Z",
+    "gender": "female",
+    "first_name": "Фросина",
+    "last_name": "Спасовска",
+    "cuisines": [
+      { "label": "салати", "value": "salad" },
+      { "label": "бургери", "value": "burger" },
+      { "label": "азијска", "value": "asian" }
+    ],
+    "city": { "label": "тетово", "value": "tetovo" },
+    "image_url": "/assets/people/female/17.jpg",
+    "rating": 3,
+    "isBadge": false
+  },
+  {
+    "id": "9a7196d6-9bf6-4f1b-acd8-e5714e40db51",
+    "date_created": "2022-08-08T01:52:26.906Z",
+    "gender": "female",
+    "first_name": "Надежда",
+    "last_name": "Марковска",
+    "cuisines": [
+      { "label": "веганска", "value": "vegan" },
+      { "label": "азијска", "value": "asian" },
+      { "label": "италијанска", "value": "italian" }
+    ],
+    "city": { "label": "куманово", "value": "kumanovo" },
+    "image_url": "/assets/people/female/22.jpg",
+    "rating": 3,
+    "isBadge": true
+  },
+  {
+    "id": "b280ba82-303c-4450-b00a-0528634ff4ab",
+    "date_created": "2022-03-09T01:43:24.242Z",
+    "gender": "male",
+    "first_name": "Мирче",
+    "last_name": "Грабул",
+    "cuisines": [
+      { "label": "бургери", "value": "burger" },
+      { "label": "салати", "value": "salad" },
+      { "label": "италијанска", "value": "italian" }
+    ],
+    "city": { "label": "скопје", "value": "skopje" },
+    "image_url": "/assets/people/male/8.jpg",
+    "rating": 4,
+    "isBadge": false
+  },
+  {
+    "id": "ba553698-404d-45d9-ac78-2d0ff021c419",
+    "date_created": "2023-01-03T13:07:37.545Z",
+    "gender": "female",
+    "first_name": "Темјана",
+    "last_name": "Величковска",
+    "cuisines": [
+      { "label": "италијанска", "value": "italian" },
+      { "label": "бургери", "value": "burger" },
+      { "label": "азијска", "value": "asian" }
+    ],
+    "city": { "label": "охрид", "value": "ohrid" },
+    "image_url": "/assets/people/female/18.jpg",
+    "rating": 3,
+    "isBadge": true
+  },
+  {
+    "id": "a0b71e27-42bb-484e-898a-e214398cb401",
+    "date_created": "2022-10-13T04:52:35.621Z",
+    "gender": "female",
+    "first_name": "Серафима",
+    "last_name": "Нестор",
+    "cuisines": [
+      { "label": "веганска", "value": "vegan" },
+      { "label": "вегетаријанска", "value": "vegetarian" },
+      { "label": "салати", "value": "salad" }
+    ],
+    "city": { "label": "струга", "value": "struga" },
+    "image_url": "/assets/people/female/14.jpg",
+    "rating": 4,
+    "isBadge": false
+  },
+  {
+    "id": "a55319c7-a940-40d1-901c-93d498e4982c",
+    "date_created": "2022-07-06T10:45:08.493Z",
+    "gender": "female",
+    "first_name": "Спаса",
+    "last_name": "Силјановска",
+    "cuisines": [
+      { "label": "веганска", "value": "vegan" },
+      { "label": "бургери", "value": "burger" },
+      { "label": "вегетаријанска", "value": "vegetarian" }
+    ],
+    "city": { "label": "струга", "value": "struga" },
+    "image_url": "/assets/people/female/1.jpg",
+    "rating": 3,
+    "isBadge": true
+  },
+  {
+    "id": "73671279-e2bb-4209-b37a-3b5fd2468ba3",
+    "date_created": "2022-09-03T22:09:38.467Z",
+    "gender": "male",
+    "first_name": "Слободан",
+    "last_name": "Ценев",
+    "cuisines": [
+      { "label": "веганска", "value": "vegan" },
+      { "label": "вегетаријанска", "value": "vegetarian" },
+      { "label": "салати", "value": "salad" }
+    ],
+    "city": { "label": "скопје", "value": "skopje" },
+    "image_url": "/assets/people/male/22.jpg",
+    "rating": 5,
+    "isBadge": false
+  },
+  {
+    "id": "160747b1-c5a5-4049-b8b0-f63bbc9fd719",
+    "date_created": "2022-10-17T19:55:27.183Z",
+    "gender": "male",
+    "first_name": "Трајко",
+    "last_name": "Ставрески",
+    "cuisines": [
+      { "label": "салати", "value": "salad" },
+      { "label": "бургери", "value": "burger" },
+      { "label": "азијска", "value": "asian" }
+    ],
+    "city": { "label": "тетово", "value": "tetovo" },
+    "image_url": "/assets/people/male/10.jpg",
+    "rating": 3,
+    "isBadge": false
+  },
+  {
+    "id": "7e0146b5-3aaa-417a-a972-4946626ecd49",
+    "date_created": "2022-12-11T05:24:10.787Z",
+    "gender": "female",
+    "first_name": "Сончица",
+    "last_name": "Пенушлиска",
+    "cuisines": [
+      { "label": "вегетаријанска", "value": "vegetarian" },
+      { "label": "азијска", "value": "asian" },
+      { "label": "веганска", "value": "vegan" }
+    ],
+    "city": { "label": "прилeп", "value": "prilep" },
+    "image_url": "/assets/people/female/16.jpg",
+    "rating": 5,
+    "isBadge": false
+  },
+  {
+    "id": "81ca475c-dde6-4fb5-913d-3bcfc3cedc28",
+    "date_created": "2022-12-25T02:46:42.795Z",
+    "gender": "male",
+    "first_name": "Србо",
+    "last_name": "Раковски",
+    "cuisines": [
+      { "label": "азијска", "value": "asian" },
+      { "label": "италијанска", "value": "italian" },
+      { "label": "салати", "value": "salad" }
+    ],
+    "city": { "label": "тетово", "value": "tetovo" },
+    "image_url": "/assets/people/male/6.jpg",
+    "rating": 5,
+    "isBadge": true
+  },
+  {
+    "id": "74928e4c-6982-48af-b842-d6cffeda920d",
+    "date_created": "2022-05-28T13:05:16.828Z",
+    "gender": "male",
+    "first_name": "Максим",
+    "last_name": "Стојменски",
+    "cuisines": [
+      { "label": "вегетаријанска", "value": "vegetarian" },
+      { "label": "бургери", "value": "burger" },
+      { "label": "азијска", "value": "asian" }
+    ],
+    "city": { "label": "скопје", "value": "skopje" },
+    "image_url": "/assets/people/male/7.jpg",
+    "rating": 3,
+    "isBadge": true
+  },
+  {
+    "id": "61ecace9-31c6-458a-b335-5d4d05693a84",
+    "date_created": "2022-10-30T13:40:10.802Z",
+    "gender": "male",
+    "first_name": "Атанас",
+    "last_name": "Ѓурлуков",
+    "cuisines": [
+      { "label": "вегетаријанска", "value": "vegetarian" },
+      { "label": "бургери", "value": "burger" },
+      { "label": "салати", "value": "salad" }
+    ],
+    "city": { "label": "куманово", "value": "kumanovo" },
+    "image_url": "/assets/people/male/20.jpg",
+    "rating": 3,
+    "isBadge": false
+  },
+  {
+    "id": "da3921b4-de00-4d10-9800-66c6f7bd9481",
+    "date_created": "2022-11-24T05:53:12.256Z",
+    "gender": "male",
+    "first_name": "Мирослав",
+    "last_name": "Корубин",
+    "cuisines": [
+      { "label": "азијска", "value": "asian" },
+      { "label": "вегетаријанска", "value": "vegetarian" },
+      { "label": "италијанска", "value": "italian" }
+    ],
+    "city": { "label": "кавадарци", "value": "kavadarci" },
+    "image_url": "/assets/people/male/20.jpg",
+    "rating": 4,
+    "isBadge": false
+  },
+  {
+    "id": "1e409396-d5bc-45b8-80c5-8e8e7c80e959",
+    "date_created": "2022-06-01T13:33:29.357Z",
+    "gender": "male",
+    "first_name": "Драги",
+    "last_name": "Герасимовски",
+    "cuisines": [
+      { "label": "салати", "value": "salad" },
+      { "label": "италијанска", "value": "italian" },
+      { "label": "бургери", "value": "burger" }
+    ],
+    "city": { "label": "прилeп", "value": "prilep" },
+    "image_url": "/assets/people/male/7.jpg",
+    "rating": 3,
+    "isBadge": false
+  },
+  {
+    "id": "033b0ec6-7c44-4fa3-b22a-713bbfd3a568",
+    "date_created": "2022-04-22T12:59:45.049Z",
+    "gender": "male",
+    "first_name": "Љубен",
+    "last_name": "Левенски",
+    "cuisines": [
+      { "label": "веганска", "value": "vegan" },
+      { "label": "бургери", "value": "burger" },
+      { "label": "азијска", "value": "asian" }
+    ],
+    "city": { "label": "охрид", "value": "ohrid" },
+    "image_url": "/assets/people/male/25.jpg",
+    "rating": 3,
+    "isBadge": true
+  },
+  {
+    "id": "a45c79d8-437c-4443-ae96-d3307b06d6cc",
+    "date_created": "2022-05-21T18:35:17.617Z",
+    "gender": "male",
+    "first_name": "Кочо",
+    "last_name": "Урдин",
+    "cuisines": [
+      { "label": "вегетаријанска", "value": "vegetarian" },
+      { "label": "веганска", "value": "vegan" },
+      { "label": "азијска", "value": "asian" }
+    ],
+    "city": { "label": "куманово", "value": "kumanovo" },
+    "image_url": "/assets/people/male/6.jpg",
+    "rating": 3,
+    "isBadge": false
+  },
+  {
+    "id": "cdc88ed1-5da8-42b6-b9c2-98828ecf573a",
+    "date_created": "2022-08-12T21:28:41.308Z",
+    "gender": "male",
+    "first_name": "Вангел",
+    "last_name": "Богоев",
+    "cuisines": [
+      { "label": "веганска", "value": "vegan" },
+      { "label": "салати", "value": "salad" },
+      { "label": "бургери", "value": "burger" }
+    ],
+    "city": { "label": "кавадарци", "value": "kavadarci" },
+    "image_url": "/assets/people/male/1.jpg",
+    "rating": 3,
+    "isBadge": true
+  }
+]

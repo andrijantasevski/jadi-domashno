@@ -45,7 +45,7 @@ const Menu: NextPage<Props> = ({ queries }) => {
         <SliderFoodCategories />
       </section>
 
-      <section className="relative mx-auto w-11/12 max-w-[1600px] gap-4 pb-10 lg:flex">
+      <section className="relative mx-auto w-11/12 max-w-screen-2xl gap-4 pb-10 lg:flex">
         <SidebarFiltering queries={queries} />
 
         <div className="grid w-full grid-cols-1 gap-6">

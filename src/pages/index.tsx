@@ -6,7 +6,7 @@ import OurValues from "@/components/common/OurValues";
 import SatisfiedCustomers from "@/components/common/SatisfiedCustomers";
 import StatisticsHome from "@/components/common/StatisticsHome";
 import fetchCooks from "@/utils/fetchCooks";
-import { NextPage } from "next";
+import { GetStaticProps, NextPage } from "next";
 import Head from "next/head";
 
 interface Props {
@@ -31,11 +31,12 @@ const Home: NextPage<Props> = ({ cooks }) => {
   );
 };
 
-export const getStaticProps = async () => {
+export const getStaticProps: GetStaticProps = async () => {
   const cooks = await fetchCooks();
 
   return {
     props: { cooks },
+    revalidate: 60,
   };
 };
 
