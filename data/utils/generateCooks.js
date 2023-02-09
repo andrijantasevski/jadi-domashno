@@ -1,5 +1,9 @@
 const { faker } = require("@faker-js/faker/locale/mk");
 const fs = require("fs");
+const pc = require("picocolors");
+
+console.log(pc.yellow("Script started!"));
+console.log(pc.blue("Generating cooks..."));
 
 const cuisines = [
   { label: "вегетаријанска", value: "vegetarian" },
@@ -8,6 +12,7 @@ const cuisines = [
   { label: "бургери", value: "burger" },
   { label: "италијанска", value: "italian" },
   { label: "салати", value: "salad" },
+  { label: "пица", value: "pizza" },
 ];
 
 const cities = [
@@ -623,9 +628,11 @@ for (let i = 0; i < 40; i++) {
 
 const cooksStringified = JSON.stringify(cooks);
 
-fs.writeFileSync("../cooks.json", cooksStringified, "utf-8");
+fs.writeFileSync("data/cooks.json", cooksStringified, "utf-8");
 
 // GENERATE MEALS FOR EACH COOK BASED ON THEIR CUISINES
+
+console.log(pc.blue("Generating meals..."));
 
 const meals = [];
 
@@ -680,4 +687,6 @@ cooks.forEach((cook) => {
   }
 });
 
-fs.writeFileSync("../meals.json", JSON.stringify(meals), "utf-8");
+fs.writeFileSync("data/meals.json", JSON.stringify(meals), "utf-8");
+
+console.log(pc.green("Data generated successfully!"));

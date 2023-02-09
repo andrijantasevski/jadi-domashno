@@ -59,8 +59,8 @@ const SliderDays = () => {
   const splideRef = useRef<Splide>(null);
 
   useEffect(() => {
-    if (router.query.day) {
-      setActiveDay(Number(router.query.day as string));
+    if (router.query.currentDay) {
+      setActiveDay(Number(router.query.currentDay as string));
     } else {
       setActiveDay(0);
     }
@@ -80,7 +80,7 @@ const SliderDays = () => {
     event.preventDefault();
     router.push({
       pathname: "/menu",
-      query: { ...router.query, day: id },
+      query: { ...router.query, currentDay: id },
     });
   };
 

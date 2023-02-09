@@ -17,6 +17,7 @@ specifiers:
   eslint: 8.32.0
   eslint-config-next: 13.1.5
   next: 13.1.5
+  picocolors: ^1.0.0
   postcss: ^8.4.21
   prettier: ^2.8.3
   prettier-plugin-tailwindcss: ^0.2.1
@@ -51,6 +52,7 @@ devDependencies:
   '@tailwindcss/forms': 0.5.3_tailwindcss@3.2.4
   '@types/uuid': 9.0.0
   autoprefixer: 10.4.13_postcss@8.4.21
+  picocolors: 1.0.0
   postcss: 8.4.21
   prettier: 2.8.3
   prettier-plugin-tailwindcss: 0.2.1_prettier@2.8.3

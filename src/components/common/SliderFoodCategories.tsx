@@ -6,27 +6,31 @@ import { ChevronRight, PizzaIcon } from "@/components/icons";
 const foodCategories = [
   {
     id: 1,
-    foodCategoryLabel: "Домашна храна",
+    foodCategoryLabel: "Вегетаријанска",
   },
   {
     id: 2,
-    foodCategoryLabel: "Чорби",
-  },
-  {
-    id: 3,
-    foodCategoryLabel: "Пици",
-  },
-  {
-    id: 4,
     foodCategoryLabel: "Веганска",
   },
   {
+    id: 3,
+    foodCategoryLabel: "Азијска",
+  },
+  {
+    id: 4,
+    foodCategoryLabel: "Бургери",
+  },
+  {
     id: 5,
-    foodCategoryLabel: "Оброк",
+    foodCategoryLabel: "Италијанска",
   },
   {
     id: 6,
     foodCategoryLabel: "Салати",
+  },
+  {
+    id: 6,
+    foodCategoryLabel: "Пици",
   },
 ];
 
