@@ -5,10 +5,12 @@ import "@splidejs/react-splide/css";
 import "dayjs/locale/mk";
 import SectionTitle from "@/components/ui/SectionTitle";
 import SliderDays from "@/components/common/SliderDays";
-import SliderFoodCategories from "@/components/common/SliderFoodCategories";
+import SliderFoodCategories from "@/components/common/SliderCuisines";
 import SidebarFiltering from "@/components/common/FilteringMenu/SidebarFiltering";
 import MenuCard from "@/components/common/MenuCard";
-
+import fetchMenu from "@/utils/fetchMenu";
+import { Meal } from "@/components/common/MenuCard";
+import getMinMaxPrice, { MinMaxPrices } from "@/utils/getMinMaxPrice";
 const MobileDialogFiltering = dynamic(
   () => import("@/components/common/FilteringMenu/MobileDialogFiltering")
 );
@@ -24,9 +26,11 @@ export interface Queries {
 
 interface Props {
   queries: Queries;
+  menu: Meal[];
+  minMaxPrices: MinMaxPrices;
 }
 
-const Menu: NextPage<Props> = ({ queries }) => {
+const Menu: NextPage<Props> = ({ queries, menu, minMaxPrices }) => {
   return (
     <>
       <Head>
@@ -45,27 +49,21 @@ const Menu: NextPage<Props> = ({ queries }) => {
         <SliderFoodCategories />
       </section>
 
-      <section className="relative mx-auto w-11/12 max-w-[1600px] gap-4 pb-10 lg:flex">
-        <SidebarFiltering queries={queries} />
+      <section className="relative mx-auto w-11/12 max-w-screen-2xl gap-4 pb-10 lg:flex">
+        <SidebarFiltering queries={queries} minMaxPrices={minMaxPrices} />
 
         <div className="grid w-full grid-cols-1 gap-6">
           <div className="flex justify-end lg:hidden">
-            <MobileDialogFiltering queries={queries} />
+            <MobileDialogFiltering
+              minMaxPrices={minMaxPrices}
+              queries={queries}
+            />
           </div>
 
           <div className="grid w-full grid-cols-1 gap-4 lg:grid-cols-2 2xl:grid-cols-3">
-            <MenuCard />
-            <MenuCard />
-            <MenuCard />
-            <MenuCard />
-            <MenuCard />
-            <MenuCard />
-            <MenuCard />
-            <MenuCard />
-            <MenuCard />
-            <MenuCard />
-            <MenuCard />
-            <MenuCard />
+            {menu.map((meal) => (
+              <MenuCard key={meal.id} meal={meal} />
+            ))}
           </div>
         </div>
       </section>
@@ -74,7 +72,17 @@ const Menu: NextPage<Props> = ({ queries }) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
-  const { availability, city, price, allergens, rating, delivery } = query;
+  const {
+    availability,
+    city,
+    price,
+    allergens,
+    rating,
+    delivery,
+    cuisine,
+    sortBy,
+    currentDay,
+  } = query;
 
   const queries = {
     availability: availability ?? "",
@@ -85,8 +93,71 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
     delivery: delivery ?? "",
   };
 
+  if (
+    availability ||
+    city ||
+    price ||
+    allergens ||
+    rating ||
+    delivery ||
+    cuisine ||
+    sortBy ||
+    currentDay ||
+    cuisine
+  ) {
+    let query = "";
+
+    if (availability) {
+      query += `availability=${availability}`;
+    }
+
+    if (currentDay) {
+      query += query ? `&currentDay=${currentDay}` : `currentDay=${currentDay}`;
+    }
+
+    if (city) {
+      query += query ? `&city=${city}` : `city=${city}`;
+    }
+
+    if (price) {
+      query += query ? `&price=${price}` : `price=${price}`;
+    }
+
+    if (allergens) {
+      query += query ? `&allergens=${allergens}` : `allergens=${allergens}`;
+    }
+
+    if (rating) {
+      query += query ? `&rating=${rating}` : `rating=${rating}`;
+    }
+
+    if (delivery) {
+      query += query ? `&delivery=${delivery}` : `delivery=${delivery}`;
+    }
+
+    if (cuisine) {
+      query += query ? `&cuisine=${cuisine}` : `cuisine=${cuisine}`;
+    }
+
+    if (sortBy) {
+      query += query ? `&sortBy=${sortBy}` : `sortBy=${sortBy}`;
+    }
+
+    const menu = await fetchMenu(query);
+
+    const minMaxPrices = await getMinMaxPrice();
+
+    return {
+      props: { queries, menu, minMaxPrices },
+    };
+  }
+
+  const menu = await fetchMenu();
+
+  const minMaxPrices = await getMinMaxPrice();
+
   return {
-    props: { queries },
+    props: { queries, menu, minMaxPrices },
   };
 };
 

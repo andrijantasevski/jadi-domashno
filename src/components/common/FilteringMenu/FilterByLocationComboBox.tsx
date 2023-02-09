@@ -68,6 +68,12 @@ const FilterByLocationComboBox = ({ queries }: Props) => {
     }
   }, [selectedCity]);
 
+  useEffect(() => {
+    if (!router.query.city) {
+      setSelectedCity({} as City);
+    }
+  }, [router.query]);
+
   return (
     <Combobox
       value={selectedCity}

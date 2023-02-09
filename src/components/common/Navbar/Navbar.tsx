@@ -43,7 +43,7 @@ export default function Navbar() {
     <header className="sticky top-0 z-20">
       <BannerTop />
       <nav className="bg-gray-50 py-3 shadow-md">
-        <div className="mx-auto flex w-11/12 items-center justify-between">
+        <div className="mx-auto flex w-11/12 max-w-screen-2xl items-center justify-between">
           <div className="flex items-center gap-10">
             <Link href="/">
               <div className="flex items-center gap-2 xl:flex-col xl:gap-0">

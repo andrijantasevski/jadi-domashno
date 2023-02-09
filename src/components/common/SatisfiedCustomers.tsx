@@ -24,7 +24,7 @@ const SatisfiedCustomerCard = ({
 
 const SatisfiedCustomers = () => {
   return (
-    <section className="mx-auto grid w-11/12 grid-cols-1 gap-10 py-10 lg:grid-cols-3 lg:gap-20">
+    <section className="mx-auto grid w-11/12 max-w-screen-2xl grid-cols-1 gap-10 py-10 lg:grid-cols-3 lg:gap-20">
       <SatisfiedCustomerCard
         imageSrc="/assets/homepage/satisfied-customer1.png"
         comment=",,Највкусната домашна храна што сум ја пробала! Едвај чекам да пробам уште многу вкусни јадења.’’"

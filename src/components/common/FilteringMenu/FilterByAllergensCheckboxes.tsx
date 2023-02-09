@@ -109,6 +109,12 @@ const FilterByAllergensCheckboxes = ({ queries }: Props) => {
     });
   }, [selectedAllergens]);
 
+  useEffect(() => {
+    if (!router.query.allergens) {
+      setSelectedAllergens(allergens);
+    }
+  }, [router.query.allergens]);
+
   return (
     <div className="grid grid-cols-1 gap-2 px-1">
       <p>Алергени:</p>

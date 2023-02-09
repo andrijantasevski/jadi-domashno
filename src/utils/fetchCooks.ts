@@ -1,14 +1,15 @@
 export default async function fetchCooks(query?: string) {
-  if (query) {
-    const responseCooks = await fetch(
-      `${process.env.NEXT_PUBLIC_URL}/api/cooks?${query}`
-    );
-    const dataCooks = await responseCooks.json();
+  const responseCooks = await fetch(
+    `${process.env.NEXT_PUBLIC_URL}/api/cooks${query ? `?${query}` : ""}`
+  );
 
-    return dataCooks;
+  if (!responseCooks.ok) {
+    return {
+      notFound: true,
+    };
   }
 
-  const responseCooks = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/cooks`);
   const dataCooks = await responseCooks.json();
+
   return dataCooks;
 }

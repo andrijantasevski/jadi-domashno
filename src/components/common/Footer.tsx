@@ -24,7 +24,7 @@ const Footer = () => {
 
   return (
     <footer className="bg-gray-800 py-8 font-light text-gray-50 lg:py-10">
-      <div className="mx-auto grid w-11/12 grid-cols-1 gap-5 md:grid-cols-4 lg:gap-10">
+      <div className="mx-auto grid w-11/12 max-w-screen-2xl grid-cols-1 gap-5 md:grid-cols-4 lg:gap-10">
         <div className="flex flex-col justify-between">
           <div className="flex gap-4">
             <Image

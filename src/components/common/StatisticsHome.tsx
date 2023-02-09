@@ -2,7 +2,7 @@ import { ChefIcon, HeartIcon, FoodBowlIcon } from "../icons";
 
 const StatisticsHome = () => {
   return (
-    <section className="mx-auto flex w-11/12 flex-col gap-10 py-10">
+    <section className="mx-auto flex w-11/12 max-w-screen-2xl flex-col gap-10 py-10">
       <hr className="border border-primary-600" />
       <div className="grid grid-cols-1 gap-10 lg:grid-cols-3 lg:gap-0">
         <div className="flex flex-col items-center justify-center">
