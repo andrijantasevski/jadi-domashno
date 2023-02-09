@@ -3,9 +3,35 @@ import Link from "next/link";
 import { HomeIcon, StarIcon } from "@/components/icons";
 import Button from "@/components/ui/Button";
 
-interface Props {}
+interface LabelValue {
+  label: string;
+  value: string;
+}
 
-const MenuCard = ({}: Props) => {
+export interface Meal {
+  id: string;
+  date_created: string;
+  title: string;
+  description: string;
+  image_url: string;
+  rating: number;
+  cuisine: LabelValue;
+  availability: LabelValue;
+  price: number;
+  delivery_type: LabelValue;
+  day_available: number;
+  allergens: LabelValue[];
+  cook_id: string;
+  cook_avatar: string;
+  city: LabelValue;
+}
+
+interface Props {
+  meal: Meal;
+}
+
+const MenuCard = ({ meal }: Props) => {
+  const { title, description, image_url, rating, price, city } = meal;
   return (
     <Link href="/" className="relative z-0 w-full">
       <Image
@@ -27,15 +53,15 @@ const MenuCard = ({}: Props) => {
 
         <div className="flex w-full flex-col justify-between">
           <div className="flex flex-col gap-0.5">
-            <div className="flex w-full justify-between">
-              <p>{"Салата со брокула"}</p>
+            <div className="flex w-full justify-between text-ellipsis">
+              <p>{title}</p>
 
-              <p className="text-primary-600">300 ден.</p>
+              <p className="text-primary-600">{price} ден.</p>
             </div>
 
             <div className="flex items-center gap-1">
               {[...Array(5)].map((_, index) =>
-                index < 4 ? (
+                index < rating ? (
                   <StarIcon
                     key={index}
                     className="h-4 w-4 fill-primary-600 text-primary-600"
@@ -50,7 +76,7 @@ const MenuCard = ({}: Props) => {
           <div className="flex items-center justify-between">
             <div className="flex gap-2">
               <HomeIcon className="block h-5 w-5 text-primary-600" />
-              <p>Битола</p>
+              <p className="capitalize">{city.label}</p>
             </div>
 
             <Button

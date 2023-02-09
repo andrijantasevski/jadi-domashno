@@ -2,30 +2,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import path from "path";
 import { promises as fs } from "fs";
-
-interface LabelValue {
-  label: string;
-  value: string;
-}
-
-interface Meal {
-  id: string;
-  date_created: string;
-  title: string;
-  description: string;
-  image_url: string;
-  rating: number;
-  cuisine: LabelValue;
-  availability: LabelValue;
-  price: number;
-  delivery_type: LabelValue;
-  day_available: number;
-  allergens: LabelValue[];
-  cook_id: string;
-  cook_avatar: string;
-  city: LabelValue;
-}
-
+import { Meal } from "@components/common/MenuCard";
 const MEALS_FILE_PATH = path.join(process.cwd(), "data", "meals.json");
 
 export default async function handler(

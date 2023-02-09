@@ -36,6 +36,12 @@ import ChevronRight from "./ChevronRight";
 import FilterIcon from "./FilterIcon";
 import HomeIcon from "./HomeIcon";
 import ChevronDownIcon from "./ChevronDownIcon";
+import CheeseIcon from "./CheeseIcon";
+import AsianFoodIcon from "./AsianFoodIcon";
+import VeganFoodIcon from "./VeganFoodIcon";
+import BurgerIcon from "./BurgerIcon";
+import ItalianFoodIcon from "./ItalianFoodIcon";
+import SaladIcon from "./SaladIcon";
 
 export interface IconProps extends React.SVGProps<SVGSVGElement> {
   className?: string;
@@ -80,4 +86,10 @@ export {
   FilterIcon,
   HomeIcon,
   ChevronDownIcon,
+  CheeseIcon,
+  AsianFoodIcon,
+  VeganFoodIcon,
+  BurgerIcon,
+  ItalianFoodIcon,
+  SaladIcon,
 };
