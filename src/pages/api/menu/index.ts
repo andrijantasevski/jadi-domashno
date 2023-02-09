@@ -30,7 +30,7 @@ export default async function handler(
   const {
     city,
     rating,
-    cuisines,
+    cuisine,
     sortBy,
     availability,
     delivery,
@@ -39,23 +39,25 @@ export default async function handler(
     currentDay,
   } = req.query;
 
-  const cuisinesArray = cuisines?.toString().split(",");
   const allergensArray = allergens?.toString().split(",");
 
   const cooksFiltered = meals.filter((meal) => {
     const currentDayCondition = currentDay
-      ? Number(currentDay) === meal.day_available
+      ? Number(currentDay as string) === meal.day_available
+      : 0 === meal.day_available;
+
+    const cuisineCondition = cuisine
+      ? meal.cuisine.value === cuisine.toString()
       : true;
-    const cuisinesCondition = cuisinesArray
-      ? cuisinesArray?.every((cuisine) => {
-          return meal.cuisine.value === cuisine;
-        })
-      : true;
+
     const cityCondition = city ? meal.city.value === city : true;
+
     const availabilityCondition = availability
       ? meal.availability.value === availability
       : true;
+
     const priceCondition = price ? meal.price <= Number(price) : true;
+
     const allergensCondition = allergens
       ? allergensArray?.every((allergen) => {
           const allergenValues = meal.allergens.map(
@@ -65,7 +67,9 @@ export default async function handler(
           return allergenValues.includes(allergen);
         })
       : true;
+
     const ratingCondition = rating ? meal.rating === Number(rating) : true;
+
     const deliveryCondition = delivery
       ? meal.delivery_type.value === delivery
       : true;
@@ -78,7 +82,7 @@ export default async function handler(
       priceCondition &&
       allergensCondition &&
       currentDayCondition &&
-      cuisinesCondition;
+      cuisineCondition;
 
     return areAllConditionsMet;
   });

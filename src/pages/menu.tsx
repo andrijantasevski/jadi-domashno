@@ -10,6 +10,7 @@ import SidebarFiltering from "@/components/common/FilteringMenu/SidebarFiltering
 import MenuCard from "@/components/common/MenuCard";
 import fetchMenu from "@/utils/fetchMenu";
 import { Meal } from "@/components/common/MenuCard";
+import getMinMaxPrice, { MinMaxPrices } from "@/utils/getMinMaxPrice";
 const MobileDialogFiltering = dynamic(
   () => import("@/components/common/FilteringMenu/MobileDialogFiltering")
 );
@@ -26,9 +27,10 @@ export interface Queries {
 interface Props {
   queries: Queries;
   menu: Meal[];
+  minMaxPrices: MinMaxPrices;
 }
 
-const Menu: NextPage<Props> = ({ queries, menu }) => {
+const Menu: NextPage<Props> = ({ queries, menu, minMaxPrices }) => {
   return (
     <>
       <Head>
@@ -48,11 +50,14 @@ const Menu: NextPage<Props> = ({ queries, menu }) => {
       </section>
 
       <section className="relative mx-auto w-11/12 max-w-screen-2xl gap-4 pb-10 lg:flex">
-        <SidebarFiltering queries={queries} />
+        <SidebarFiltering queries={queries} minMaxPrices={minMaxPrices} />
 
         <div className="grid w-full grid-cols-1 gap-6">
           <div className="flex justify-end lg:hidden">
-            <MobileDialogFiltering queries={queries} />
+            <MobileDialogFiltering
+              minMaxPrices={minMaxPrices}
+              queries={queries}
+            />
           </div>
 
           <div className="grid w-full grid-cols-1 gap-4 lg:grid-cols-2 2xl:grid-cols-3">
@@ -76,6 +81,7 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
     delivery,
     cuisine,
     sortBy,
+    currentDay,
   } = query;
 
   const queries = {
@@ -95,12 +101,18 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
     rating ||
     delivery ||
     cuisine ||
-    sortBy
+    sortBy ||
+    currentDay ||
+    cuisine
   ) {
     let query = "";
 
     if (availability) {
       query += `availability=${availability}`;
+    }
+
+    if (currentDay) {
+      query += query ? `&currentDay=${currentDay}` : `currentDay=${currentDay}`;
     }
 
     if (city) {
@@ -133,15 +145,19 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
 
     const menu = await fetchMenu(query);
 
+    const minMaxPrices = await getMinMaxPrice();
+
     return {
-      props: { queries, menu },
+      props: { queries, menu, minMaxPrices },
     };
   }
 
   const menu = await fetchMenu();
 
+  const minMaxPrices = await getMinMaxPrice();
+
   return {
-    props: { queries, menu },
+    props: { queries, menu, minMaxPrices },
   };
 };
 

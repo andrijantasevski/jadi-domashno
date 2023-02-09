@@ -80,7 +80,7 @@ const mealsData = [
   {
     name: "Вегански чиз бургер",
     cuisine: ["vegetarian", "vegan", "burger"],
-    image: "/assets/food/vegan-cheese-burger.jpg",
+    image: "/assets/food/vegan-cheeseburger.jpg",
   },
   {
     name: "Вегански бијонд бургер",
@@ -250,7 +250,7 @@ const mealsData = [
   {
     name: "Вистински чизбургер",
     cuisine: ["burger"],
-    image: "/assets/food/the-real-cheese-burger.jpg",
+    image: "/assets/food/the-real-double-cheese-burger.jpg",
   },
   {
     name: "Вистински дабл чизбургер",

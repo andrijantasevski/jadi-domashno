@@ -77,6 +77,12 @@ const FilterByDeliveryRadioGroup = ({ queries }: Props) => {
     }
   }, [selectedDeliveryOption]);
 
+  useEffect(() => {
+    if (!router.query.delivery) {
+      setSelectedDeliveryOption("");
+    }
+  }, [router.query.delivery]);
+
   return (
     <div>
       <RadioGroup

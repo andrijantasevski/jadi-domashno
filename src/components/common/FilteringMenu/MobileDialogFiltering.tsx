@@ -10,12 +10,15 @@ import FilterByPriceSlider from "./FilterByPriceSlider";
 import FilterByAllergensCheckboxes from "./FilterByAllergensCheckboxes";
 import FilterByRatingRadioGroup from "./FilterByRatingRadioGroup";
 import FilterByDeliveryRadioGroup from "./FilterByDeliveryRadioGroup";
+import { MinMaxPrices } from "@/utils/getMinMaxPrice";
+import EmptyQueriesButton from "../EmptyQueriesButton";
 
 interface Props {
   queries: Queries;
+  minMaxPrices: MinMaxPrices;
 }
 
-const MobileDialogFiltering = ({ queries }: Props) => {
+const MobileDialogFiltering = ({ queries, minMaxPrices }: Props) => {
   const [isFilteringMenuOpen, setIsFilteringMenuOpen] = useState(false);
 
   const openFilteringMenu = () => setIsFilteringMenuOpen(true);
@@ -70,10 +73,14 @@ const MobileDialogFiltering = ({ queries }: Props) => {
                       <div className="grid grid-cols-1 gap-6 px-4 lg:px-6">
                         <FilterByLocationComboBox queries={queries} />
                         <FilterByAvailabilityRadioGroup queries={queries} />
-                        <FilterByPriceSlider queries={queries} />
+                        <FilterByPriceSlider
+                          minMaxPrices={minMaxPrices}
+                          queries={queries}
+                        />
                         <FilterByAllergensCheckboxes queries={queries} />
                         <FilterByRatingRadioGroup queries={queries} />
                         <FilterByDeliveryRadioGroup queries={queries} />
+                        <EmptyQueriesButton pathname="/menu" />
                       </div>
                     </div>
                   </Dialog.Panel>

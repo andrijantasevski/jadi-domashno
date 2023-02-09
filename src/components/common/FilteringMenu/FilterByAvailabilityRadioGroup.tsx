@@ -77,6 +77,12 @@ const FilterByAvailabilityRadioGroup = ({ queries }: { queries: Queries }) => {
     });
   };
 
+  useEffect(() => {
+    if (!router.query.availability) {
+      setSelectedAvailability("");
+    }
+  }, [router.query.availability]);
+
   return (
     <RadioGroup
       as="div"

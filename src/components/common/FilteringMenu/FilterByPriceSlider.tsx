@@ -3,19 +3,24 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import useDebounce from "@/utils/useDebounce";
 import { Queries } from "@/pages/menu";
+import { MinMaxPrices } from "@/utils/getMinMaxPrice";
 
 interface Props {
   queries: Queries;
+  minMaxPrices: MinMaxPrices;
 }
 
-const FilterByPriceSlider = ({ queries }: Props) => {
+const FilterByPriceSlider = ({ queries, minMaxPrices }: Props) => {
   const router = useRouter();
-  const priceDefaultValue = queries.price ? [Number(queries.price)] : [-1];
+  const { minPrice, maxPrice } = minMaxPrices;
+  const priceDefaultValue = queries.price
+    ? [Number(queries.price)]
+    : [minPrice];
   const [price, setPrice] = useState(priceDefaultValue);
   const [priceDebounced] = useDebounce(price, 300);
 
   useEffect(() => {
-    if (priceDebounced !== -1) {
+    if (priceDebounced !== 250) {
       router.push(
         {
           pathname: "/menu",
@@ -27,6 +32,12 @@ const FilterByPriceSlider = ({ queries }: Props) => {
     }
   }, [priceDebounced]);
 
+  useEffect(() => {
+    if (!router.query.price) {
+      setPrice(priceDefaultValue);
+    }
+  }, [router.query.price]);
+
   return (
     <div className="grid grid-cols-1 gap-1 px-1">
       <p>Филтрирај по цена</p>
@@ -34,7 +45,8 @@ const FilterByPriceSlider = ({ queries }: Props) => {
       <SliderPrimitive.Root
         onValueChange={(value) => setPrice(value)}
         value={price}
-        max={100}
+        min={minPrice}
+        max={maxPrice}
         step={1}
         aria-label="value"
         className="relative flex h-5 w-full touch-none items-center"
@@ -50,9 +62,9 @@ const FilterByPriceSlider = ({ queries }: Props) => {
       </SliderPrimitive.Root>
 
       <div className="flex items-center justify-between">
-        <p className="text-sm text-gray-500">0 ден.</p>
+        <p className="text-sm text-gray-500">{minPrice} ден.</p>
 
-        <p className="text-sm text-gray-500">100 ден.</p>
+        <p className="text-sm text-gray-500">{maxPrice} ден.</p>
       </div>
     </div>
   );

@@ -31,32 +31,32 @@ interface Props {
 }
 
 const MenuCard = ({ meal }: Props) => {
-  const { title, description, image_url, rating, price, city } = meal;
+  const { title, image_url, rating, price, city, cook_avatar, id } = meal;
   return (
-    <Link href="/" className="relative z-0 w-full">
+    <Link href={`/menu/${id}`} className="relative z-0 w-full">
       <Image
-        src="/assets/example-image.png"
+        src={image_url}
         width="350"
         height="250"
         alt="Image"
-        className="w-full"
+        className="w-full rounded-lg"
       />
 
-      <div className="relative z-20 -mt-10 flex gap-2 rounded-lg border-b-2 border-primary-600 bg-gray-100 p-4 shadow-md">
+      <div className="relative z-20 -mt-2 flex gap-2 rounded-lg border-b-2 border-primary-600 bg-gray-100 p-4 shadow-md">
         <Image
-          src="/assets/homepage/satisfied-customer1.png"
+          src={cook_avatar}
           width="80"
           height="80"
           alt="Image"
-          className="rounded-full border-2 border-primary-600"
+          className="h-20 w-20 self-center rounded-full border-2 border-primary-600 object-cover"
         />
 
         <div className="flex w-full flex-col justify-between">
           <div className="flex flex-col gap-0.5">
-            <div className="flex w-full justify-between text-ellipsis">
+            <div className="flex w-full justify-between">
               <p>{title}</p>
 
-              <p className="text-primary-600">{price} ден.</p>
+              <p className="shrink-0 text-primary-600">{price} ден.</p>
             </div>
 
             <div className="flex items-center gap-1">
@@ -84,7 +84,7 @@ const MenuCard = ({ meal }: Props) => {
               ariaLabel="Додадете производ во кошничка"
               size="small"
             >
-              Во кошничка
+              Повеќе
             </Button>
           </div>
         </div>
