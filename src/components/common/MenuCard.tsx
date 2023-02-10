@@ -28,12 +28,16 @@ export interface Meal {
 
 interface Props {
   meal: Meal;
+  openMealModal: (meal: Meal) => void;
 }
 
-const MenuCard = ({ meal }: Props) => {
+const MenuCard = ({ meal, openMealModal }: Props) => {
   const { title, image_url, rating, price, city, cook_avatar, id } = meal;
   return (
-    <Link href={`/menu/${id}`} className="relative z-0 w-full">
+    <div
+      onClick={() => openMealModal(meal)}
+      className="relative z-0 w-full cursor-pointer"
+    >
       <Image
         src={image_url}
         width="350"
@@ -84,13 +88,13 @@ const MenuCard = ({ meal }: Props) => {
               ariaLabel="Додадете производ во кошничка"
               size="small"
             >
-              Повеќе
+              Избери
             </Button>
           </div>
         </div>
       </div>
       <p></p>
-    </Link>
+    </div>
   );
 };
 
