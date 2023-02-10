@@ -1,25 +1,37 @@
 import Image from "next/image";
 import { MinusIcon, PlusIcon, XMarkIcon } from "@/components/icons";
 import IconButton from "@/components/ui/IconButton";
+import { ShoppingCartItem } from "@/utils/useShoppingCart";
+import { useShoppingCartActions } from "@/utils/useShoppingCart";
 
-const ShoppingCartItem = () => {
+interface Props {
+  shoppingCartItem: ShoppingCartItem;
+}
+
+const ShoppingCartItem = ({ shoppingCartItem }: Props) => {
+  const { image_url, title, price, quantity, id } = shoppingCartItem;
+  const { removeFromShoppingCart } = useShoppingCartActions();
+
+  const calculatedPrice = price * quantity;
   return (
     <div className="flex flex-col gap-3 bg-white py-4 px-4 shadow-sm lg:px-6">
       <div className="flex gap-4">
         <Image
-          src="/assets/example-image.png"
+          src={image_url}
           alt="Product"
-          width="80"
-          height="80"
+          width="120"
+          height="120"
+          className="rounded-lg"
         />
 
         <div className="w-full">
           <div className="flex w-full items-center justify-between">
-            <p className="font-medium">Гравче тавче</p>
+            <p className="font-medium">{title}</p>
 
             <IconButton
               title="Избриши од кошничката"
               ariaLabel="Избриши од кошничката"
+              onClick={() => removeFromShoppingCart(id)}
             >
               <span className="sr-only">Избриши од кошничката</span>
               <XMarkIcon className="h-3 w-3" />
@@ -33,7 +45,7 @@ const ShoppingCartItem = () => {
       <hr className="border border-gray-200" />
 
       <div className="flex items-center justify-between">
-        <p className="font-medium">150 ден.</p>
+        <p className="font-medium">{calculatedPrice} ден.</p>
 
         <div className="flex items-center justify-center gap-1 rounded-full bg-gray-100">
           <IconButton

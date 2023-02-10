@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import dynamic from "next/dynamic";
@@ -20,12 +20,17 @@ const NavbarSlideInMenu = dynamic(() => import("./NavbarSlideInMenu"));
 const SearchModal = dynamic(
   () => import("@components/common/Navbar/SearchModal")
 );
+import { useShoppingCart } from "@/utils/useShoppingCart";
 
 export default function Navbar() {
   const { pathname } = useRouter();
   const [isShoppingCartOpen, setIsShoppingCartOpen] = useState(false);
   const [isSlideInMenuOpen, setIsSlideInMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+
+  const shoppingCart = useShoppingCart();
+  const numberOfItemsInShoppingCart = shoppingCart.length;
+  const areItemsInCart = numberOfItemsInShoppingCart > 0;
 
   const openShoppingCart = () => setIsShoppingCartOpen(true);
 
@@ -40,7 +45,7 @@ export default function Navbar() {
   const closeSearch = () => setIsSearchOpen(false);
 
   return (
-    <header className="sticky top-0 z-20">
+    <header className="z-20">
       <BannerTop />
       <nav className="bg-gray-50 py-3 shadow-md">
         <div className="mx-auto flex w-11/12 max-w-screen-2xl items-center justify-between">
@@ -132,9 +137,11 @@ export default function Navbar() {
             >
               <ShoppingBasketIcon className="h-6 w-6 text-inherit hover:text-inherit" />
               <p className="hidden xl:block">Кошничка</p>
-              <div className="absolute left-4 -top-3 flex h-5 w-5 items-center justify-center rounded-full bg-primary-600 text-xs text-primary-50 xl:left-10">
-                1
-              </div>
+              {areItemsInCart && (
+                <div className="absolute left-4 -top-3 flex h-5 w-5 items-center justify-center rounded-full bg-primary-600 text-xs text-primary-50 xl:left-10">
+                  {numberOfItemsInShoppingCart}
+                </div>
+              )}
             </NavbarLinkButton>
 
             <NavbarLinkButton

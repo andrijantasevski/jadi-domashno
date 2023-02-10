@@ -5,6 +5,7 @@ const iconButtonStyles = cva(["transition-colors"], {
   variants: {
     intent: {
       primary: ["text-gray-900", "hover:text-primary-600"],
+      secondary: ["text-primary-50", "hover:text-primary-400"],
     },
   },
   compoundVariants: [{ intent: "primary", className: "" }],
