@@ -37,6 +37,7 @@ export default async function handler(
     price,
     allergens,
     currentDay,
+    limit,
   } = req.query;
 
   const allergensArray = allergens?.toString().split(",");
@@ -44,7 +45,7 @@ export default async function handler(
   const cooksFiltered = meals.filter((meal) => {
     const currentDayCondition = currentDay
       ? Number(currentDay as string) === meal.day_available
-      : 0 === meal.day_available;
+      : true;
 
     const cuisineCondition = cuisine
       ? meal.cuisine.value === cuisine.toString()
@@ -124,5 +125,9 @@ export default async function handler(
         })
       : cooksFiltered;
 
-  res.status(200).json(cooksSorted);
+  const cooksLimited = limit
+    ? cooksSorted.slice(0, Number(limit))
+    : cooksSorted;
+
+  res.status(200).json(cooksLimited);
 }

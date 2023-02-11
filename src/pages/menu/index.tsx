@@ -11,9 +11,11 @@ import MenuCard from "@/components/common/MenuCard";
 import fetchMenu from "@/utils/fetchMenu";
 import { Meal } from "@/components/common/MenuCard";
 import getMinMaxPrice, { MinMaxPrices } from "@/utils/getMinMaxPrice";
+import { useState } from "react";
 const MobileDialogFiltering = dynamic(
   () => import("@/components/common/FilteringMenu/MobileDialogFiltering")
 );
+const MealModal = dynamic(() => import("@/components/common/MealModal"));
 
 export interface Queries {
   city?: string;
@@ -31,6 +33,15 @@ interface Props {
 }
 
 const Menu: NextPage<Props> = ({ queries, menu, minMaxPrices }) => {
+  const [selectedMeal, setSelectedMeal] = useState<Meal | null>(null);
+  const [isMealModalOpen, setIsMealModalOpen] = useState(false);
+
+  const openMealModal = (meal: Meal) => {
+    setSelectedMeal(meal);
+    setIsMealModalOpen(true);
+  };
+
+  const closeMealModal = () => setIsMealModalOpen(false);
   return (
     <>
       <Head>
@@ -62,11 +73,22 @@ const Menu: NextPage<Props> = ({ queries, menu, minMaxPrices }) => {
 
           <div className="grid w-full grid-cols-1 gap-4 lg:grid-cols-2 2xl:grid-cols-3">
             {menu.map((meal) => (
-              <MenuCard key={meal.id} meal={meal} />
+              <MenuCard
+                openMealModal={openMealModal}
+                key={meal.id}
+                meal={meal}
+              />
             ))}
           </div>
         </div>
       </section>
+      {isMealModalOpen && (
+        <MealModal
+          selectedMeal={selectedMeal}
+          closeMealModal={closeMealModal}
+          isMealModalOpen={isMealModalOpen}
+        />
+      )}
     </>
   );
 };

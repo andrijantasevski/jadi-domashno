@@ -4,6 +4,7 @@ import { ShoppingBasketIcon, XMarkIcon } from "../../icons";
 import ShoppingCartItem from "./ShoppingCartItem";
 import Button from "@/components/ui/Button";
 import IconButton from "@/components/ui/IconButton";
+import { useShoppingCart } from "@/utils/useShoppingCart";
 
 interface Props {
   isShoppingCartOpen: boolean;
@@ -11,7 +12,23 @@ interface Props {
 }
 
 const ShoppingCart = ({ isShoppingCartOpen, closeShoppingCart }: Props) => {
-  const isCartFull = true;
+  const shoppingCart = useShoppingCart();
+
+  const numberOfItemsInShoppingCart =
+    shoppingCart.length === 1
+      ? "1 производ"
+      : `${shoppingCart.length} производи`;
+  const areItemsInCart = shoppingCart.length > 0;
+
+  const totalWithoutDelivery = shoppingCart.reduce(
+    (sum, shoppingCartItem) =>
+      shoppingCartItem.price * shoppingCartItem.quantity + sum,
+    0
+  );
+
+  const delivery = 100;
+
+  const totalWithDelivery = totalWithoutDelivery + delivery;
 
   return (
     <Transition.Root appear show={isShoppingCartOpen} as={Fragment}>
@@ -57,25 +74,28 @@ const ShoppingCart = ({ isShoppingCartOpen, closeShoppingCart }: Props) => {
                       </IconButton>
                     </div>
 
-                    {isCartFull ? (
+                    {areItemsInCart ? (
                       <div className="flex h-full flex-col justify-between gap-4">
                         <div className="grid grid-cols-1 gap-4">
-                          <ShoppingCartItem />
-
-                          <ShoppingCartItem />
+                          {shoppingCart.map((shoppingCartItem) => (
+                            <ShoppingCartItem
+                              key={shoppingCartItem.id}
+                              shoppingCartItem={shoppingCartItem}
+                            />
+                          ))}
                         </div>
 
                         <div className="grid grid-cols-1 gap-2 bg-white py-4 px-4 text-sm font-medium shadow-sm lg:px-6">
                           <div className="flex items-center justify-between">
-                            <p>1 производ</p>
+                            <p>{numberOfItemsInShoppingCart}</p>
 
-                            <p>1000 ден.</p>
+                            <p>{totalWithoutDelivery} ден.</p>
                           </div>
 
                           <div className="flex items-center justify-between">
                             <p>Достава</p>
 
-                            <p>100 ден.</p>
+                            <p>{delivery} ден.</p>
                           </div>
 
                           <hr className="border border-gray-200" />
@@ -83,7 +103,7 @@ const ShoppingCart = ({ isShoppingCartOpen, closeShoppingCart }: Props) => {
                           <div className="flex items-center justify-between text-base">
                             <p>Вкупно</p>
 
-                            <p>1100 ден.</p>
+                            <p>{totalWithDelivery} ден.</p>
                           </div>
 
                           <Button

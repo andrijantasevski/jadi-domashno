@@ -1,6 +1,8 @@
 export default async function fetchMenu(query?: string) {
   const responseMenu = await fetch(
-    `${process.env.NEXT_PUBLIC_URL}/api/menu${query ? `?${query}` : ""}`
+    `${process.env.NEXT_PUBLIC_URL}/api/menu${
+      query ? `?${query}` : "?currentDay=0"
+    }`
   );
 
   if (!responseMenu.ok) {

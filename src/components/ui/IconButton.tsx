@@ -5,6 +5,7 @@ const iconButtonStyles = cva(["transition-colors"], {
   variants: {
     intent: {
       primary: ["text-gray-900", "hover:text-primary-600"],
+      secondary: ["text-primary-50", "hover:text-primary-400"],
     },
   },
   compoundVariants: [{ intent: "primary", className: "" }],
@@ -31,6 +32,7 @@ const IconButton = ({
   onClick,
   intent,
   className,
+  ...props
 }: Props) => {
   if (href) {
     return (
@@ -42,6 +44,7 @@ const IconButton = ({
 
   return (
     <button
+      {...props}
       type="button"
       aria-label={ariaLabel}
       title={title}
