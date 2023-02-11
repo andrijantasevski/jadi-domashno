@@ -12,7 +12,8 @@ interface ShoppingCartState {
   actions: {
     addToShoppingCart: (newShoppingCartItem: ShoppingCartItem) => void;
     removeFromShoppingCart: (mealId: string) => void;
-    updateShoppingCartItem: (meal: string, operation: string) => void;
+    incrementItemQuantity: (mealId: string) => void;
+    decrementItemQuantity: (mealId: string) => void;
   };
 }
 
@@ -29,20 +30,41 @@ const useShoppingCartStore = create<ShoppingCartState>((set) => ({
           (shoppingCartItem) => shoppingCartItem.id !== mealId
         ),
       })),
-    updateShoppingCartItem: (mealId, operation) =>
+    incrementItemQuantity: (mealId) =>
       set((state) => ({
         shoppingCart: state.shoppingCart.map((shoppingCartItem) => {
           if (shoppingCartItem.id === mealId) {
-            return operation === "increment"
-              ? { ...shoppingCartItem, quantity: shoppingCartItem.quantity + 1 }
-              : {
-                  ...shoppingCartItem,
-                  quantity: shoppingCartItem.quantity - 1,
-                };
+            return {
+              ...shoppingCartItem,
+              quantity: shoppingCartItem.quantity + 1,
+            };
           }
           return shoppingCartItem;
         }),
       })),
+    decrementItemQuantity: (mealId) =>
+      set((state) => {
+        const shoppingCartWithDecrementedItem = state.shoppingCart.map(
+          (shoppingCartItem) => {
+            if (shoppingCartItem.id === mealId) {
+              return {
+                ...shoppingCartItem,
+                quantity: shoppingCartItem.quantity - 1,
+              };
+            }
+            return shoppingCartItem;
+          }
+        );
+
+        const shoppingCartWithoutZeroQuantityItems =
+          shoppingCartWithDecrementedItem.filter(
+            (shoppingCartItem) => shoppingCartItem.quantity > 0
+          );
+
+        return {
+          shoppingCart: shoppingCartWithoutZeroQuantityItems,
+        };
+      }),
   },
 }));
 

@@ -40,17 +40,21 @@ const MealModal = ({
 }: Props) => {
   const initialFocusElement = useRef(null);
   const shoppingCart = useShoppingCart();
-  const { addToShoppingCart, updateShoppingCartItem, removeFromShoppingCart } =
-    useShoppingCartActions();
+  const {
+    addToShoppingCart,
+    removeFromShoppingCart,
+    incrementItemQuantity,
+    decrementItemQuantity,
+  } = useShoppingCartActions();
 
   const itemInCart = shoppingCart.find(
     (shoppingCartItem) => shoppingCartItem.id === selectedMeal?.id
   );
 
   const [productForm, setProductForm] = useState({
-    quantity: itemInCart ? itemInCart.quantity : 1,
-    date: itemInCart ? itemInCart.date : "",
-    time: itemInCart ? itemInCart.time : "",
+    quantity: 1,
+    date: "",
+    time: "",
   });
 
   const handleProductForm = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -61,7 +65,11 @@ const MealModal = ({
 
   const handleQuantity = (operation: string, mealId: string) => {
     if (itemInCart) {
-      updateShoppingCartItem(mealId as string, operation);
+      if (operation === "increment") {
+        incrementItemQuantity(mealId);
+      } else {
+        decrementItemQuantity(mealId);
+      }
     } else {
       setProductForm((prev) => ({
         ...prev,
@@ -77,6 +85,7 @@ const MealModal = ({
 
   const handleAddToCart = () => {
     if (itemInCart) return;
+
     addToShoppingCart({
       ...(selectedMeal as Meal),
       quantity: productForm.quantity,
@@ -173,18 +182,18 @@ const MealModal = ({
                 <div className="sticky inset-x-0 bottom-0 mt-2 flex gap-4">
                   <div className="flex items-center justify-center gap-1 rounded-lg bg-primary-600">
                     <IconButton
-                      disabled={itemInCart ? itemInCart.quantity === 1 : false}
+                      disabled={itemInCart ? false : productForm.quantity === 1}
                       onClick={() =>
                         handleQuantity("decrement", selectedMeal?.id as string)
                       }
-                      ariaLabel="Избриши еден производ"
-                      title="Избриши еден производ"
+                      ariaLabel="Избришете еден производ"
+                      title="Избришете еден производ"
                       className={`rounded-full py-2.5 px-3.5 text-center text-xl ${
-                        itemInCart?.quantity === 1 ? "cursor-not-allowed" : ""
+                        productForm.quantity === 1 ? "cursor-not-allowed" : ""
                       }`}
                       intent="secondary"
                     >
-                      <span className="sr-only">Избриши еден производ</span>
+                      <span className="sr-only">Избришете еден производ</span>
                       <MinusIcon className="h-3 w-3" />
                     </IconButton>
                     <p className="font-medium text-primary-50">
@@ -194,12 +203,12 @@ const MealModal = ({
                       onClick={() =>
                         handleQuantity("increment", selectedMeal?.id as string)
                       }
-                      ariaLabel="Додади еден производ"
-                      title="Додади еден производ"
+                      ariaLabel="Додадете еден производ"
+                      title="Додадете еден производ"
                       className="rounded-full py-2.5 px-3.5 text-center text-xl"
                       intent="secondary"
                     >
-                      <span className="sr-only">Додади еден производ</span>
+                      <span className="sr-only">Додадете еден производ</span>
                       <PlusIcon className="h-3 w-3" />
                     </IconButton>
                   </div>

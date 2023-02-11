@@ -20,7 +20,7 @@ const FilterByPriceSlider = ({ queries, minMaxPrices }: Props) => {
   const [priceDebounced] = useDebounce(price, 300);
 
   useEffect(() => {
-    if (priceDebounced !== 253) {
+    if (priceDebounced !== minPrice) {
       router.push(
         {
           pathname: "/menu",

@@ -10,8 +10,11 @@ interface Props {
 
 const ShoppingCartItem = ({ shoppingCartItem }: Props) => {
   const { image_url, title, price, quantity, id } = shoppingCartItem;
-  const { removeFromShoppingCart, updateShoppingCartItem } =
-    useShoppingCartActions();
+  const {
+    removeFromShoppingCart,
+    incrementItemQuantity,
+    decrementItemQuantity,
+  } = useShoppingCartActions();
 
   const calculatedPrice = price * quantity;
 
@@ -51,7 +54,7 @@ const ShoppingCartItem = ({ shoppingCartItem }: Props) => {
 
         <div className="flex items-center justify-center gap-1 rounded-full bg-gray-100">
           <IconButton
-            onClick={() => updateShoppingCartItem(id, "decrement")}
+            onClick={() => decrementItemQuantity(id)}
             ariaLabel="Избришете еден производ"
             title="Избришете еден производ"
             className="rounded-full py-2.5 px-3.5 text-center text-xl"
@@ -61,12 +64,12 @@ const ShoppingCartItem = ({ shoppingCartItem }: Props) => {
           </IconButton>
           <p className="font-medium">{quantity}</p>
           <IconButton
-            onClick={() => updateShoppingCartItem(id, "increment")}
-            ariaLabel="Додади еден производ"
+            onClick={() => incrementItemQuantity(id)}
+            ariaLabel="Додадете еден производ"
             title="Додади еден производ"
             className="rounded-full py-2.5 px-3.5 text-center text-xl"
           >
-            <span className="sr-only">Додади еден производ</span>
+            <span className="sr-only">Додадате еден производ</span>
             <PlusIcon className="h-3 w-3" />
           </IconButton>
         </div>
