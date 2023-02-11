@@ -20,6 +20,16 @@ const ShoppingCart = ({ isShoppingCartOpen, closeShoppingCart }: Props) => {
       : `${shoppingCart.length} производи`;
   const areItemsInCart = shoppingCart.length > 0;
 
+  const totalWithoutDelivery = shoppingCart.reduce(
+    (sum, shoppingCartItem) =>
+      shoppingCartItem.price * shoppingCartItem.quantity + sum,
+    0
+  );
+
+  const delivery = 100;
+
+  const totalWithDelivery = totalWithoutDelivery + delivery;
+
   return (
     <Transition.Root appear show={isShoppingCartOpen} as={Fragment}>
       <Dialog as="div" className="relative z-30" onClose={closeShoppingCart}>
@@ -79,13 +89,13 @@ const ShoppingCart = ({ isShoppingCartOpen, closeShoppingCart }: Props) => {
                           <div className="flex items-center justify-between">
                             <p>{numberOfItemsInShoppingCart}</p>
 
-                            <p>1000 ден.</p>
+                            <p>{totalWithoutDelivery} ден.</p>
                           </div>
 
                           <div className="flex items-center justify-between">
                             <p>Достава</p>
 
-                            <p>100 ден.</p>
+                            <p>{delivery} ден.</p>
                           </div>
 
                           <hr className="border border-gray-200" />
@@ -93,7 +103,7 @@ const ShoppingCart = ({ isShoppingCartOpen, closeShoppingCart }: Props) => {
                           <div className="flex items-center justify-between text-base">
                             <p>Вкупно</p>
 
-                            <p>1100 ден.</p>
+                            <p>{totalWithDelivery} ден.</p>
                           </div>
 
                           <Button

@@ -10,9 +10,11 @@ interface Props {
 
 const ShoppingCartItem = ({ shoppingCartItem }: Props) => {
   const { image_url, title, price, quantity, id } = shoppingCartItem;
-  const { removeFromShoppingCart } = useShoppingCartActions();
+  const { removeFromShoppingCart, updateShoppingCartItem } =
+    useShoppingCartActions();
 
   const calculatedPrice = price * quantity;
+
   return (
     <div className="flex flex-col gap-3 bg-white py-4 px-4 shadow-sm lg:px-6">
       <div className="flex gap-4">
@@ -29,11 +31,11 @@ const ShoppingCartItem = ({ shoppingCartItem }: Props) => {
             <p className="font-medium">{title}</p>
 
             <IconButton
-              title="Избриши од кошничката"
-              ariaLabel="Избриши од кошничката"
+              title="Избришете од кошничката"
+              ariaLabel="Избришете од кошничката"
               onClick={() => removeFromShoppingCart(id)}
             >
-              <span className="sr-only">Избриши од кошничката</span>
+              <span className="sr-only">Избришете од кошничката</span>
               <XMarkIcon className="h-3 w-3" />
             </IconButton>
           </div>
@@ -49,15 +51,17 @@ const ShoppingCartItem = ({ shoppingCartItem }: Props) => {
 
         <div className="flex items-center justify-center gap-1 rounded-full bg-gray-100">
           <IconButton
-            ariaLabel="Избриши еден производ"
-            title="Избриши еден производ"
+            onClick={() => updateShoppingCartItem(id, "decrement")}
+            ariaLabel="Избришете еден производ"
+            title="Избришете еден производ"
             className="rounded-full py-2.5 px-3.5 text-center text-xl"
           >
-            <span className="sr-only">Избриши еден производ</span>
+            <span className="sr-only">Избришете еден производ</span>
             <MinusIcon className="h-3 w-3" />
           </IconButton>
-          <p className="font-medium">1</p>
+          <p className="font-medium">{quantity}</p>
           <IconButton
+            onClick={() => updateShoppingCartItem(id, "increment")}
             ariaLabel="Додади еден производ"
             title="Додади еден производ"
             className="rounded-full py-2.5 px-3.5 text-center text-xl"

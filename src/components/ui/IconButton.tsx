@@ -32,6 +32,7 @@ const IconButton = ({
   onClick,
   intent,
   className,
+  ...props
 }: Props) => {
   if (href) {
     return (
@@ -43,6 +44,7 @@ const IconButton = ({
 
   return (
     <button
+      {...props}
       type="button"
       aria-label={ariaLabel}
       title={title}

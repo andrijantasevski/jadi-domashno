@@ -88,7 +88,7 @@ const MenuCard = ({ meal, openMealModal }: Props) => {
               ariaLabel="Додадете производ во кошничка"
               size="small"
             >
-              Избери
+              Изберете
             </Button>
           </div>
         </div>

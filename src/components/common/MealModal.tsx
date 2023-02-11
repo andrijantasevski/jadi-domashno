@@ -38,9 +38,9 @@ const MealModal = ({
   closeMealModal,
   selectedMeal,
 }: Props) => {
-  const openId = useRef<number>(1);
+  const initialFocusElement = useRef(null);
   const shoppingCart = useShoppingCart();
-  const { addToShoppingCart, updateShoppingCartItem } =
+  const { addToShoppingCart, updateShoppingCartItem, removeFromShoppingCart } =
     useShoppingCartActions();
 
   const itemInCart = shoppingCart.find(
@@ -49,8 +49,8 @@ const MealModal = ({
 
   const [productForm, setProductForm] = useState({
     quantity: itemInCart ? itemInCart.quantity : 1,
-    date: "",
-    time: "",
+    date: itemInCart ? itemInCart.date : "",
+    time: itemInCart ? itemInCart.time : "",
   });
 
   const handleProductForm = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -75,30 +75,8 @@ const MealModal = ({
     }
   };
 
-  useEffect(() => {
-    if (!open) {
-      setTimeout(
-        () => setProductForm({ quantity: 1, date: "", time: "" }),
-        500
-      );
-    } else {
-      setProductForm({
-        quantity: itemInCart ? itemInCart.quantity : 1,
-        date: "",
-        time: "",
-      });
-    }
-  }, [isMealModalOpen]);
-
-  useEffect(() => {
-    setProductForm({
-      quantity: itemInCart ? itemInCart.quantity : 1,
-      date: "",
-      time: "",
-    });
-  }, [shoppingCart]);
-
   const handleAddToCart = () => {
+    if (itemInCart) return;
     addToShoppingCart({
       ...(selectedMeal as Meal),
       quantity: productForm.quantity,
@@ -108,18 +86,14 @@ const MealModal = ({
     closeMealModal();
   };
 
-  const handleOnCloseMealModal = () => {
-    // setTimeout(() => setProductForm({ quantity: 1, date: "", time: "" }), 500);
-    closeMealModal();
-  };
-
   return (
-    <Transition appear show={isMealModalOpen} as={Fragment}>
+    <Transition appear show={true} as={Fragment}>
       <Dialog
-        key={openId.current}
+        initialFocus={initialFocusElement}
         as="div"
         className="relative z-30"
-        onClose={handleOnCloseMealModal}
+        onClose={closeMealModal}
+        open={true}
       >
         <Transition.Child
           as={Fragment}
@@ -148,7 +122,10 @@ const MealModal = ({
                 <div className="grid grid-cols-1 gap-4">
                   <ImageLoading selectedMeal={selectedMeal} />
                   <div className="grid grid-cols-1 gap-2">
-                    <p className="text-2xl font-medium">
+                    <p
+                      ref={initialFocusElement}
+                      className="text-2xl font-medium"
+                    >
                       {selectedMeal?.title}
                     </p>
                     <p className="text-lg font-medium text-primary-600">
@@ -196,19 +173,22 @@ const MealModal = ({
                 <div className="sticky inset-x-0 bottom-0 mt-2 flex gap-4">
                   <div className="flex items-center justify-center gap-1 rounded-lg bg-primary-600">
                     <IconButton
+                      disabled={itemInCart ? itemInCart.quantity === 1 : false}
                       onClick={() =>
                         handleQuantity("decrement", selectedMeal?.id as string)
                       }
                       ariaLabel="Избриши еден производ"
                       title="Избриши еден производ"
-                      className="rounded-full py-2.5 px-3.5 text-center text-xl"
+                      className={`rounded-full py-2.5 px-3.5 text-center text-xl ${
+                        itemInCart?.quantity === 1 ? "cursor-not-allowed" : ""
+                      }`}
                       intent="secondary"
                     >
                       <span className="sr-only">Избриши еден производ</span>
                       <MinusIcon className="h-3 w-3" />
                     </IconButton>
                     <p className="font-medium text-primary-50">
-                      {productForm.quantity}
+                      {itemInCart ? itemInCart.quantity : productForm.quantity}
                     </p>
                     <IconButton
                       onClick={() =>
@@ -223,8 +203,15 @@ const MealModal = ({
                       <PlusIcon className="h-3 w-3" />
                     </IconButton>
                   </div>
-                  <Button onClick={handleAddToCart} fullWidth>
-                    Во кошничка
+                  <Button
+                    onClick={() =>
+                      itemInCart
+                        ? removeFromShoppingCart(itemInCart.id)
+                        : handleAddToCart()
+                    }
+                    fullWidth
+                  >
+                    {itemInCart ? "Избришете од кошничка" : "Во кошничка"}
                   </Button>
                 </div>
               </Dialog.Panel>

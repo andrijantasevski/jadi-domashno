@@ -82,11 +82,13 @@ const Menu: NextPage<Props> = ({ queries, menu, minMaxPrices }) => {
           </div>
         </div>
       </section>
-      <MealModal
-        selectedMeal={selectedMeal}
-        closeMealModal={closeMealModal}
-        isMealModalOpen={isMealModalOpen}
-      />
+      {isMealModalOpen && (
+        <MealModal
+          selectedMeal={selectedMeal}
+          closeMealModal={closeMealModal}
+          isMealModalOpen={isMealModalOpen}
+        />
+      )}
     </>
   );
 };
