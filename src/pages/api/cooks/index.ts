@@ -28,12 +28,14 @@ export default async function handler(
     return;
   }
 
-  const { city, rating, cuisines, sortBy } = req.query;
+  const { city, rating, cuisines, sortBy, limit, page } = req.query;
 
   const cuisinesArray = cuisines?.toString().split(",");
 
   const cooksFiltered = cooks.filter((cook) => {
-    const cityCondition = city ? cook.city.value === city : true;
+    const cityCondition = city
+      ? cook.city.value.toLowerCase() === city.toString().toLowerCase()
+      : true;
     const ratingCondition = rating ? cook.rating === Number(rating) : true;
     const cuisinesCondition = cuisinesArray
       ? cuisinesArray?.every((cuisine) => {
@@ -78,5 +80,14 @@ export default async function handler(
         })
       : cooksFiltered;
 
-  res.status(200).json(cooksSorted);
+  const cooksLimited =
+    limit && !page ? cooksSorted.slice(0, Number(limit)) : cooksSorted;
+
+  const startIndex = (Number(page) - 1) * Number(limit);
+  const endIndex = Number(page) * Number(limit);
+
+  const paginatedCooks =
+    page && limit ? cooksSorted.slice(startIndex, endIndex) : cooksLimited;
+
+  res.status(200).json(paginatedCooks);
 }

@@ -79,7 +79,7 @@ const CookCard = ({ cook }: Props) => {
 
         <div className="flex justify-between">
           <div>
-            {cuisines.slice(0, 3).map((cuisine, index) => (
+            {cuisines?.slice(0, 3).map((cuisine, index) => (
               <p key={index} className="capitalize text-primary-600">
                 {cuisine.label}
               </p>
@@ -89,7 +89,7 @@ const CookCard = ({ cook }: Props) => {
           <div className="flex flex-col justify-between">
             <div className="flex items-center justify-end gap-1 capitalize">
               <LocationIcon className="text-cap h-4 w-4 text-primary-600" />
-              {city.label}
+              {city?.label}
             </div>
 
             <Button href={`/cooks/${id}`} size="small">

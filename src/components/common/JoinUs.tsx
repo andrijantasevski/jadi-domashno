@@ -10,14 +10,16 @@ import {
 } from "../icons";
 import Button from "../ui/Button";
 import Link from "../ui/Link";
+import SectionTitle from "../ui/SectionTitle";
 
 const JoinUs = () => {
   return (
     <section className="mx-auto flex w-11/12 max-w-screen-2xl flex-col items-center justify-center gap-10 py-10">
-      <h3 className="text-center text-3xl">
+      {/* <h3 className="text-center text-3xl">
         Станете дел од семејството{" "}
         <span className="text-primary-600">Јади Домашно</span>
-      </h3>
+      </h3> */}
+      <SectionTitle>Станете дел од семејството</SectionTitle>
 
       <div className="grid w-full grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-20">
         <div className="flex w-full flex-col items-center justify-center gap-4">

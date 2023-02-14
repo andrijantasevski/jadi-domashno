@@ -38,11 +38,12 @@ export default async function handler(
     allergens,
     currentDay,
     limit,
+    page,
   } = req.query;
 
   const allergensArray = allergens?.toString().split(",");
 
-  const cooksFiltered = meals.filter((meal) => {
+  const mealsFiltered = meals.filter((meal) => {
     const currentDayCondition = currentDay
       ? Number(currentDay as string) === meal.day_available
       : true;
@@ -88,9 +89,9 @@ export default async function handler(
     return areAllConditionsMet;
   });
 
-  const cooksSorted =
+  const mealsSorted =
     typeof sortBy === "string"
-      ? [...cooksFiltered].sort((a, b) => {
+      ? [...meals].sort((a, b) => {
           if (sortBy === "highestRated") {
             return b.rating - a.rating;
           }
@@ -123,11 +124,17 @@ export default async function handler(
 
           return 0;
         })
-      : cooksFiltered;
+      : mealsFiltered;
 
-  const cooksLimited = limit
-    ? cooksSorted.slice(0, Number(limit))
-    : cooksSorted;
+  const mealsLimited =
+    limit && !page ? mealsSorted.slice(0, Number(limit)) : mealsSorted;
 
-  res.status(200).json(cooksLimited);
+  const startIndex = (Number(page) - 1) * Number(limit);
+  const endIndex = Number(page) * Number(limit);
+
+  const mealsPaginated = page
+    ? mealsLimited.slice(startIndex, endIndex)
+    : mealsLimited;
+
+  res.status(200).json(mealsPaginated);
 }
