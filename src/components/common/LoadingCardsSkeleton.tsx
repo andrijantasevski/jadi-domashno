@@ -4,7 +4,7 @@ const LoadingCardsSkeleton = () => {
       {[...Array(6)].map((_, index) => (
         <div
           key={index}
-          className="h-56 w-full animate-pulse rounded-lg bg-gray-300"
+          className="h-56 w-full animate-pulse rounded-lg bg-gray-300 transition duration-300 ease-in-out"
         ></div>
       ))}
     </div>

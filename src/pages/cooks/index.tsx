@@ -98,9 +98,8 @@ const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 const Cooks: NextPage<Props> = ({ queriesCooks, cooks }) => {
   const router = useRouter();
-  const cooksNumber = cooks.length === 0 ? "Нема" : cooks.length;
 
-  const { data, size, setSize, isLoading, isValidating } = useSWRInfinite(
+  const { data, size, setSize, isValidating } = useSWRInfinite(
     (pageIndex: number) => {
       return `/api/cooks?page=${pageIndex + 1}&limit=12${
         router.query.sortBy ? `&sortBy=${router.query.sortBy}` : ""
@@ -116,7 +115,13 @@ const Cooks: NextPage<Props> = ({ queriesCooks, cooks }) => {
 
   const cooksData = data ? ([].concat(...data) as Cook[]) : [];
 
-  const isReachingEnd = cooksData.length < 10 * size;
+  const isEndOfMenu = cooksData.length < 12 || cooksData.length < 12 * size;
+
+  const cooksNumber = cooksData.length === 0 ? "Нема" : cooksData.length;
+
+  const handleLoadMore = () => {
+    setSize(size + 1);
+  };
 
   return (
     <>
@@ -163,9 +168,9 @@ const Cooks: NextPage<Props> = ({ queriesCooks, cooks }) => {
             ))}
           </div>
           {isValidating && <LoadingCardsSkeleton />}
-          {!isReachingEnd && (
+          {!isEndOfMenu && (
             <div className="flex items-center justify-center">
-              <Button onClick={() => setSize(size + 1)}>Прикажи повеќе</Button>
+              <Button onClick={handleLoadMore}>Прикажи повеќе</Button>
             </div>
           )}
         </div>

@@ -42,6 +42,8 @@ import VeganFoodIcon from "./VeganFoodIcon";
 import BurgerIcon from "./BurgerIcon";
 import ItalianFoodIcon from "./ItalianFoodIcon";
 import SaladIcon from "./SaladIcon";
+import ShareIcon from "./ShareIcon";
+import MessageIcon from "./MessageIcon";
 
 export interface IconProps extends React.SVGProps<SVGSVGElement> {
   className?: string;
@@ -92,4 +94,6 @@ export {
   BurgerIcon,
   ItalianFoodIcon,
   SaladIcon,
+  ShareIcon,
+  MessageIcon,
 };

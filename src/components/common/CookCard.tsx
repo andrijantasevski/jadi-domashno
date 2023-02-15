@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { BadgeIcon, LocationIcon, StarIcon } from "../icons";
 import Button from "../ui/Button";
+import Link from "next/link";
 
 interface City {
   label: string;
@@ -53,7 +54,10 @@ const CookCard = ({ cook }: Props) => {
   );
 
   return (
-    <div className="relative flex flex-col items-center justify-center">
+    <Link
+      href={`/cooks/${id}`}
+      className="relative flex flex-col items-center justify-center"
+    >
       <Image
         className="w-full rounded-lg lg:max-w-full"
         src={image_url}
@@ -92,13 +96,11 @@ const CookCard = ({ cook }: Props) => {
               {city?.label}
             </div>
 
-            <Button href={`/cooks/${id}`} size="small">
-              Дознајте повеќе
-            </Button>
+            <Button size="small">Дознајте повеќе</Button>
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

@@ -10,7 +10,7 @@ import MenuCard from "@/components/common/MenuCard";
 import fetchMenu from "@/utils/fetchMenu";
 import { Meal } from "@/components/common/MenuCard";
 import getMinMaxPrice, { MinMaxPrices } from "@/utils/getMinMaxPrice";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import MobileDialogFiltering from "@/components/common/FilteringMenu/MobileDialogFiltering";
 import MealModal from "@/components/common/MealModal";
 import useSWRInfinite from "swr/infinite";
@@ -73,6 +73,8 @@ const Menu: NextPage<Props> = ({ queries, menu, minMaxPrices }) => {
 
   const menuData = data ? ([].concat(...data) as Meal[]) : [];
 
+  const isEndOfMenu = menuData.length < 12 || menuData.length < 12 * size;
+
   const handleLoadMore = () => {
     setSize(size + 1);
   };
@@ -117,9 +119,11 @@ const Menu: NextPage<Props> = ({ queries, menu, minMaxPrices }) => {
           </div>
           {isValidating && <LoadingCardsSkeleton />}
 
-          <div className="flex items-center justify-center">
-            <Button onClick={handleLoadMore}>Прикажи повеќе</Button>
-          </div>
+          {!isEndOfMenu && (
+            <div className="flex items-center justify-center">
+              <Button onClick={handleLoadMore}>Прикажи повеќе</Button>
+            </div>
+          )}
         </div>
       </section>
       {isMealModalOpen && (
