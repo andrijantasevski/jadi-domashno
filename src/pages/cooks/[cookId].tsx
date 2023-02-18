@@ -428,8 +428,11 @@ const CookPage: NextPage<Props> = ({ cook }) => {
 
       <section className="py-4 lg:py-5">
         <div className="mx-auto grid w-11/12 max-w-screen-2xl grid-cols-1 gap-4">
-          {cuisines.map((cuisine) => (
-            <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
+          {cuisines.map((cuisine, index) => (
+            <div
+              key={index}
+              className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3"
+            >
               <h2 className="text-2xl font-medium capitalize">
                 {cuisine.label}
               </h2>
