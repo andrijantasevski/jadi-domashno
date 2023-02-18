@@ -13,12 +13,12 @@ const BannerTop = () => {
           <div className="rounded-lg bg-primary-500 p-1.5">
             <MegaphoneIcon className="h-4 w-4 text-primary-50" />
           </div>
-          <p>Вршиме бесплатна достава во Град Скопје.</p>
+          <p>Пријавете се уште денес на Јади домашно!</p>
         </div>
 
         <div className="flex gap-2">
           <Button
-            href="/about"
+            href="/how-it-functions/foodies"
             intent="secondary"
             size="small"
             className="hidden md:flex"

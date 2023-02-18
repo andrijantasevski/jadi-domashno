@@ -40,7 +40,7 @@ const FilterByPriceSlider = ({ queries, minMaxPrices }: Props) => {
 
   return (
     <div className="grid grid-cols-1 gap-1 px-1">
-      <p>Филтрирај по цена</p>
+      <p>Филтрирај по цена:</p>
 
       <SliderPrimitive.Root
         onValueChange={(value) => setPrice(value)}

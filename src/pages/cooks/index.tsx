@@ -11,6 +11,8 @@ import Button from "@/components/ui/Button";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { ChevronDownIcon } from "@/components/icons";
+import useSWRInfinite from "swr/infinite";
+import LoadingCardsSkeleton from "@/components/common/LoadingCardsSkeleton";
 
 export interface QueriesCooks {
   city?: string;
@@ -92,8 +94,35 @@ const SortByMenu = () => {
   );
 };
 
+const fetcher = (url: string) => fetch(url).then((res) => res.json());
+
 const Cooks: NextPage<Props> = ({ queriesCooks, cooks }) => {
-  const cooksNumber = cooks.length === 0 ? "Нема" : cooks.length;
+  const router = useRouter();
+
+  const { data, size, setSize, isValidating } = useSWRInfinite(
+    (pageIndex: number) => {
+      return `/api/cooks?page=${pageIndex + 1}&limit=12${
+        router.query.sortBy ? `&sortBy=${router.query.sortBy}` : ""
+      }${router.query.city ? `&city=${router.query.city}` : ""}${
+        router.query.rating ? `&rating=${router.query.rating}` : ""
+      }${router.query.cuisines ? `&cuisines=${router.query.cuisines}` : ""}`;
+    },
+    fetcher,
+    {
+      fallbackData: cooks,
+    }
+  );
+
+  const cooksData = data ? ([].concat(...data) as Cook[]) : [];
+
+  const isEndOfMenu = cooksData.length < 12 || cooksData.length < 12 * size;
+
+  const cooksNumber = cooksData.length === 0 ? "Нема" : cooksData.length;
+
+  const handleLoadMore = () => {
+    setSize(size + 1);
+  };
+
   return (
     <>
       <Head>
@@ -134,10 +163,16 @@ const Cooks: NextPage<Props> = ({ queriesCooks, cooks }) => {
           </div>
 
           <div className="grid w-full grid-cols-1 gap-4 lg:grid-cols-2 2xl:grid-cols-3">
-            {cooks.map((cook) => (
+            {cooksData?.map((cook) => (
               <CookCard key={cook.id} cook={cook} />
             ))}
           </div>
+          {isValidating && <LoadingCardsSkeleton />}
+          {!isEndOfMenu && (
+            <div className="flex items-center justify-center">
+              <Button onClick={handleLoadMore}>Прикажи повеќе</Button>
+            </div>
+          )}
         </div>
       </section>
     </>
@@ -145,7 +180,7 @@ const Cooks: NextPage<Props> = ({ queriesCooks, cooks }) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
-  const { city, rating, cuisines, sortBy } = query;
+  const { city, rating, cuisines, sortBy, limit, page } = query;
 
   const queriesCooks = {
     city: city ? city : "",
@@ -153,23 +188,31 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
     cuisines: cuisines ? (cuisines as string).split(",") : [],
   };
 
-  if (city || rating || cuisines || sortBy) {
-    let query = "";
+  if (city || rating || cuisines || sortBy || limit || page) {
+    let query = limit ? `?limit=${limit}` : "?limit=12";
 
     if (city) {
-      query += `city=${city}`;
+      query += `&city=${city}`;
     }
 
     if (rating) {
-      query += query ? `&rating=${rating}` : `rating=${rating}`;
+      query += `&rating=${rating}`;
     }
 
     if (cuisines) {
-      query += query ? `&cuisines=${cuisines}` : `cuisines=${cuisines}`;
+      query += `&cuisines=${cuisines}`;
     }
 
     if (sortBy) {
-      query += query ? `&sortBy=${sortBy}` : `sortBy=${sortBy}`;
+      query += `&sortBy=${sortBy}`;
+    }
+
+    if (limit) {
+      query += `&limit=${limit}`;
+    }
+
+    if (page) {
+      query += `&page=${page}`;
     }
 
     const cooks = await fetchCooks(query);

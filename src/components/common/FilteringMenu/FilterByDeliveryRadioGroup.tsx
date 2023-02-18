@@ -84,7 +84,8 @@ const FilterByDeliveryRadioGroup = ({ queries }: Props) => {
   }, [router.query.delivery]);
 
   return (
-    <div>
+    <div className="grid grid-cols-1 gap-2">
+      <p>Покажи по тип на достава:</p>
       <RadioGroup
         value={selectedDeliveryOption}
         as="div"

@@ -1,5 +1,4 @@
 import { GetServerSideProps, NextPage } from "next";
-import dynamic from "next/dynamic";
 import Head from "next/head";
 import "@splidejs/react-splide/css";
 import "dayjs/locale/mk";
@@ -12,10 +11,12 @@ import fetchMenu from "@/utils/fetchMenu";
 import { Meal } from "@/components/common/MenuCard";
 import getMinMaxPrice, { MinMaxPrices } from "@/utils/getMinMaxPrice";
 import { useState } from "react";
-const MobileDialogFiltering = dynamic(
-  () => import("@/components/common/FilteringMenu/MobileDialogFiltering")
-);
-const MealModal = dynamic(() => import("@/components/common/MealModal"));
+import MobileDialogFiltering from "@/components/common/FilteringMenu/MobileDialogFiltering";
+import MealModal from "@/components/common/MealModal";
+import useSWRInfinite from "swr/infinite";
+import { useRouter } from "next/router";
+import Button from "@/components/ui/Button";
+import LoadingCardsSkeleton from "@/components/common/LoadingCardsSkeleton";
 
 export interface Queries {
   city?: string;
@@ -32,7 +33,10 @@ interface Props {
   minMaxPrices: MinMaxPrices;
 }
 
+const fetcher = (url: string) => fetch(url).then((res) => res.json());
+
 const Menu: NextPage<Props> = ({ queries, menu, minMaxPrices }) => {
+  const router = useRouter();
   const [selectedMeal, setSelectedMeal] = useState<Meal | null>(null);
   const [isMealModalOpen, setIsMealModalOpen] = useState(false);
 
@@ -42,6 +46,39 @@ const Menu: NextPage<Props> = ({ queries, menu, minMaxPrices }) => {
   };
 
   const closeMealModal = () => setIsMealModalOpen(false);
+
+  const { data, size, setSize, isValidating } = useSWRInfinite(
+    (pageIndex: number) => {
+      return `/api/menu?page=${pageIndex + 1}&limit=12${
+        router.query.city ? `&city=${router.query.city}` : ""
+      }${
+        router.query.availability
+          ? `&availability=${router.query.availability}`
+          : ""
+      }${router.query.price ? `&price=${router.query.price}` : ""}${
+        router.query.rating ? `&rating=${router.query.rating}` : ""
+      }${router.query.delivery ? `&delivery=${router.query.delivery}` : ""}${
+        router.query.allergens ? `&allergens=${router.query.allergens}` : ""
+      }${router.query.cuisine ? `&cuisine=${router.query.cuisine}` : ""}${
+        router.query.currentDay
+          ? `&currentDay=${router.query.currentDay}`
+          : "&currentDay=0"
+      }`;
+    },
+    fetcher,
+    {
+      fallbackData: menu,
+    }
+  );
+
+  const menuData = data ? ([].concat(...data) as Meal[]) : [];
+
+  const isEndOfMenu = menuData.length < 12 || menuData.length < 12 * size;
+
+  const handleLoadMore = () => {
+    setSize(size + 1);
+  };
+
   return (
     <>
       <Head>
@@ -72,7 +109,7 @@ const Menu: NextPage<Props> = ({ queries, menu, minMaxPrices }) => {
           </div>
 
           <div className="grid w-full grid-cols-1 gap-4 lg:grid-cols-2 2xl:grid-cols-3">
-            {menu.map((meal) => (
+            {menuData.map((meal) => (
               <MenuCard
                 openMealModal={openMealModal}
                 key={meal.id}
@@ -80,6 +117,13 @@ const Menu: NextPage<Props> = ({ queries, menu, minMaxPrices }) => {
               />
             ))}
           </div>
+          {isValidating && <LoadingCardsSkeleton />}
+
+          {!isEndOfMenu && (
+            <div className="flex items-center justify-center">
+              <Button onClick={handleLoadMore}>Прикажи повеќе</Button>
+            </div>
+          )}
         </div>
       </section>
       {isMealModalOpen && (
@@ -104,6 +148,8 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
     cuisine,
     sortBy,
     currentDay,
+    limit,
+    page,
   } = query;
 
   const queries = {
@@ -125,44 +171,46 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
     cuisine ||
     sortBy ||
     currentDay ||
-    cuisine
+    cuisine ||
+    limit ||
+    page
   ) {
-    let query = "";
+    let query = limit ? `?limit=${limit}&` : "?limit=12";
+
+    query += currentDay ? `&currentDay=${currentDay}` : "&currentDay=0";
+
+    query += page ? `&page=${page}` : "&page=1";
 
     if (availability) {
-      query += `availability=${availability}`;
-    }
-
-    if (currentDay) {
-      query += query ? `&currentDay=${currentDay}` : `currentDay=${currentDay}`;
+      query += `&availability=${availability}`;
     }
 
     if (city) {
-      query += query ? `&city=${city}` : `city=${city}`;
+      query += `&city=${city}`;
     }
 
     if (price) {
-      query += query ? `&price=${price}` : `price=${price}`;
+      query += `&price=${price}`;
     }
 
     if (allergens) {
-      query += query ? `&allergens=${allergens}` : `allergens=${allergens}`;
+      query += `&allergens=${allergens}`;
     }
 
     if (rating) {
-      query += query ? `&rating=${rating}` : `rating=${rating}`;
+      query += `&rating=${rating}`;
     }
 
     if (delivery) {
-      query += query ? `&delivery=${delivery}` : `delivery=${delivery}`;
+      query += `&delivery=${delivery}`;
     }
 
     if (cuisine) {
-      query += query ? `&cuisine=${cuisine}` : `cuisine=${cuisine}`;
+      query += `&cuisine=${cuisine}`;
     }
 
     if (sortBy) {
-      query += query ? `&sortBy=${sortBy}` : `sortBy=${sortBy}`;
+      query += `&sortBy=${sortBy}`;
     }
 
     const menu = await fetchMenu(query);
