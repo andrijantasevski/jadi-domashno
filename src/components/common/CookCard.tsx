@@ -20,10 +20,12 @@ export interface Cook {
   first_name: string;
   last_name: string;
   cuisines: Cuisine[];
+  main_cuisine: string;
   city: City;
   image_url: string;
   rating: number;
   isBadge: boolean;
+  numberOfDeliveries: number;
 }
 
 interface Props {

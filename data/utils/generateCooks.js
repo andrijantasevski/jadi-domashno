@@ -15,6 +15,16 @@ const cuisines = [
   { label: "пица", value: "pizza" },
 ];
 
+const mainCuisines = [
+  "Вегетаријанска храна",
+  "Веганска храна",
+  "Азијска храна",
+  "Бургери",
+  "Италијанска храна",
+  "Салати",
+  "Пици",
+];
+
 const cities = [
   { label: "битола", value: "bitola" },
   { label: "скопје", value: "skopje" },
@@ -617,10 +627,12 @@ for (let i = 0; i < 40; i++) {
     first_name: faker.name.firstName(randomGender),
     last_name: faker.name.lastName(randomGender),
     cuisines: [...selectRandomElementsFromArray(cuisines, 3)],
+    main_cuisine: selectRandomElementFromArray(mainCuisines),
     city: selectRandomElementFromArray(cities),
     image_url: randomImageURL,
     rating: getRandomIntegerInclusive(3, 5),
     isBadge: faker.datatype.boolean(),
+    numberOfDeliveries: getRandomIntegerInclusive(10, 150),
   };
 
   cooks.push(cook);
@@ -637,7 +649,7 @@ console.log(pc.blue("Generating meals..."));
 const meals = [];
 
 cooks.forEach((cook) => {
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < 6; i++) {
     cook.cuisines.forEach((cuisine) => {
       const recipesForCuisine = mealsData.filter((meal) =>
         meal.cuisine?.includes(cuisine.value)
