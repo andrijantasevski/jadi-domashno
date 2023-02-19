@@ -27,6 +27,7 @@ const buttonStyles = cva(
           "hover:bg-primary-600",
           "hover:text-primary-50",
         ],
+        disabled: ["bg-gray-400", "text-gray-50", "cursor-not-allowed"],
       },
       size: {
         small: ["text-sm", "py-1.5", "px-3"],

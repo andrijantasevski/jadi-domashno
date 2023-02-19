@@ -6,6 +6,7 @@ import IconButton from "@/components/ui/IconButton";
 import useLocalStorageSearchQuery, {
   SearchQuery,
 } from "@/utils/useLocalStorageSearchQuery";
+import Button from "@/components/ui/Button";
 
 interface Props {
   isModalOpen: boolean;
@@ -22,12 +23,15 @@ const SearchModal = ({ isModalOpen, closeModal }: Props) => {
   } = useLocalStorageSearchQuery();
 
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
+    if (!searchQuery) return;
+
     e.preventDefault();
     addSearchQueryToLocalStorage(searchQuery);
     router.push({
       pathname: "/search",
       query: { searchQuery },
     });
+    closeModal();
   };
 
   useEffect(() => {
@@ -75,10 +79,13 @@ const SearchModal = ({ isModalOpen, closeModal }: Props) => {
               leaveTo="opacity-0 scale-95"
             >
               <Dialog.Panel className="relative grid w-full max-w-xl transform grid-cols-1 gap-4 overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
-                <form onSubmit={handleSearch}>
+                <form
+                  onSubmit={handleSearch}
+                  className="flex justify-between gap-2"
+                >
                   <label
                     htmlFor="search-navbar"
-                    className="flex items-center gap-2 rounded-lg border border-gray-400 py-2 px-3"
+                    className="flex w-full items-center gap-2 rounded-lg border border-gray-400 py-2 px-3"
                   >
                     <SearchIcon className="h-4 w-4" />
                     <input
@@ -90,6 +97,13 @@ const SearchModal = ({ isModalOpen, closeModal }: Props) => {
                       placeholder="Пребарајте"
                     />
                   </label>
+                  <Button
+                    ariaLabel="Пребарајте"
+                    title="Пребарајте"
+                    disabled={!searchQuery}
+                  >
+                    <SearchIcon className="h-4 w-4 text-primary-50 lg:h-5 lg:w-5" />
+                  </Button>
                 </form>
 
                 {searchQueries.length > 0 ? (

@@ -40,6 +40,7 @@ export default async function handler(
     limit,
     page,
     byUser,
+    searchQuery,
   } = req.query;
 
   const allergensArray = allergens?.toString().split(",");
@@ -79,6 +80,13 @@ export default async function handler(
 
     const byUserCondition = byUser ? meal.cook_id === byUser.toString() : true;
 
+    const searchQueryCondition = searchQuery
+      ? meal.title.includes(searchQuery.toString()) ||
+        meal.description.includes(searchQuery.toString()) ||
+        meal.cuisine.label.includes(searchQuery.toString().toLowerCase()) ||
+        meal.cuisine.value.includes(searchQuery.toString().toLowerCase())
+      : true;
+
     const areAllConditionsMet =
       cityCondition &&
       ratingCondition &&
@@ -88,7 +96,8 @@ export default async function handler(
       allergensCondition &&
       currentDayCondition &&
       cuisineCondition &&
-      byUserCondition;
+      byUserCondition &&
+      searchQueryCondition;
 
     return areAllConditionsMet;
   });

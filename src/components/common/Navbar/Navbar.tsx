@@ -79,7 +79,7 @@ export default function Navbar() {
                 href="/offers"
               >
                 <OfferIcon className="h-6 w-6 text-inherit hover:text-inherit" />
-                <p>Побарај понуда</p>
+                <p>Побарајте понуда</p>
               </NavbarLinkButton>
 
               <NavbarLinkButton
@@ -156,7 +156,9 @@ export default function Navbar() {
           </div>
         </div>
 
-        <SearchModal isModalOpen={isSearchOpen} closeModal={closeSearch} />
+        {isSearchOpen && (
+          <SearchModal isModalOpen={isSearchOpen} closeModal={closeSearch} />
+        )}
 
         <ShoppingCart
           isShoppingCartOpen={isShoppingCartOpen}
