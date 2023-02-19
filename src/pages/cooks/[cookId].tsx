@@ -683,7 +683,7 @@ const CookPage: NextPage<Props> = ({ cook, mealsSortedByCuisines }) => {
               <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary-600">
                 <SearchIcon className="h-6 w-6 text-white" />
               </div>
-              <p>За жал не најдовме резултати со низата "{searchQuery}"</p>
+              <p>За жал не најдовме резултати со низата {searchQuery}</p>
             </div>
           ) : (
             <>
