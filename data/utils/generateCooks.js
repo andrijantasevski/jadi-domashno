@@ -633,6 +633,10 @@ for (let i = 0; i < 40; i++) {
     rating: getRandomIntegerInclusive(3, 5),
     isBadge: faker.datatype.boolean(),
     numberOfDeliveries: getRandomIntegerInclusive(10, 150),
+    biography: faker.lorem.paragraphs(3),
+    address: faker.address.streetAddress(),
+    phone_number: faker.phone.number(),
+    email: faker.internet.email(),
   };
 
   cooks.push(cook);

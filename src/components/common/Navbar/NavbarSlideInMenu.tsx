@@ -110,6 +110,13 @@ const NavbarSlideInMenu = ({ isSlideInMenuOpen, closeSlideInMenu }: Props) => {
 
                       <NavbarSlideInMenuItem
                         closeSlideInMenu={closeSlideInMenu}
+                        href="/favorite-cooks"
+                      >
+                        Омилени готвачи
+                      </NavbarSlideInMenuItem>
+
+                      <NavbarSlideInMenuItem
+                        closeSlideInMenu={closeSlideInMenu}
                         href="/forum"
                       >
                         Форум

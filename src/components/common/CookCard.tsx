@@ -26,6 +26,10 @@ export interface Cook {
   rating: number;
   isBadge: boolean;
   numberOfDeliveries: number;
+  biography: string;
+  address: string;
+  phone_number: string;
+  email: string;
 }
 
 interface Props {

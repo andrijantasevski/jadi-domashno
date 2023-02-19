@@ -428,6 +428,126 @@ const MealCard = ({ meal, openMealModal }: MealCardProps) => {
   );
 };
 
+interface MoreInformationModalProps {
+  isMoreInformationModalOpen: boolean;
+  closeMoreInformationModal: () => void;
+  cook: Cook;
+}
+
+const MoreInformationModal = ({
+  isMoreInformationModalOpen,
+  closeMoreInformationModal,
+  cook,
+}: MoreInformationModalProps) => {
+  const {
+    first_name,
+    last_name,
+    image_url,
+    biography,
+    address,
+    city,
+    phone_number,
+    email,
+  } = cook;
+  return (
+    <Transition appear show={isMoreInformationModalOpen} as={Fragment}>
+      <Dialog
+        as="div"
+        className="relative z-30"
+        onClose={closeMoreInformationModal}
+      >
+        <Transition.Child
+          as={Fragment}
+          enter="ease-out duration-300"
+          enterFrom="opacity-0"
+          enterTo="opacity-100"
+          leave="ease-in duration-200"
+          leaveFrom="opacity-100"
+          leaveTo="opacity-0"
+        >
+          <div className="fixed inset-0 bg-black bg-opacity-25" />
+        </Transition.Child>
+
+        <div className="fixed inset-0 overflow-y-auto">
+          <div className="flex min-h-full items-center justify-center p-4">
+            <Transition.Child
+              as={Fragment}
+              enter="ease-out duration-300"
+              enterFrom="opacity-0 scale-95"
+              enterTo="opacity-100 scale-100"
+              leave="ease-in duration-200"
+              leaveFrom="opacity-100 scale-100"
+              leaveTo="opacity-0 scale-95"
+            >
+              <Dialog.Panel className="relative grid w-full max-w-xl grid-cols-1 gap-4 rounded-2xl bg-gray-100 p-6 shadow-xl transition-all">
+                <div className="flex items-center justify-between">
+                  <Dialog.Title className="text-lg font-medium">
+                    Повеќе информации
+                  </Dialog.Title>
+
+                  <IconButton
+                    onClick={closeMoreInformationModal}
+                    title="Затворете споделување"
+                    ariaLabel="Затворете споделување"
+                  >
+                    <span className="sr-only">Затворете споделување</span>
+                    <XMarkIcon className="h-4 w-4" />
+                  </IconButton>
+                </div>
+
+                <div className="grid grid-cols-1 gap-4">
+                  <Image
+                    src={image_url}
+                    width={600}
+                    height={150}
+                    className="w-full rounded-lg"
+                    alt={first_name + last_name}
+                  />
+
+                  <div className="grid grid-cols-1 gap-2">
+                    <p className="text-2xl font-medium">
+                      {first_name} {last_name}
+                    </p>
+
+                    <p className="leading-relaxed">{biography}</p>
+                  </div>
+
+                  <div>
+                    <p className="text-xl font-medium">Адреса</p>
+
+                    <p>{address}</p>
+                    <p>
+                      1000, <span className="capitalize">{city.label}</span>
+                    </p>
+                  </div>
+
+                  <div>
+                    <p className="text-xl font-medium">Контакт</p>
+
+                    <div className="flex items-center justify-between">
+                      <p>Телефонски број</p>
+                      <a href={`tel:${phone_number}`} className="font-medium">
+                        {phone_number}
+                      </a>
+                    </div>
+
+                    <div className="flex items-center justify-between">
+                      <p>Е-пошта</p>
+                      <a href={`mailto:${email}`} className="font-medium">
+                        {email}
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </Dialog.Panel>
+            </Transition.Child>
+          </div>
+        </div>
+      </Dialog>
+    </Transition>
+  );
+};
+
 interface MealsByCuisinesValues {
   cuisineLabel: string;
   cuisineValue: string;
@@ -448,6 +568,8 @@ const CookPage: NextPage<Props> = ({ cook, mealsSortedByCuisines }) => {
 
   const [isMessageModalOpen, setIsMessageModalOpen] = useState(false);
   const [isShareModalOpen, setIsShareModalOpen] = useState(false);
+  const [isMoreInformationModalOpen, setIsMoreInformationModalOpen] =
+    useState(false);
 
   const [isMealModalOpen, setIsMealModalOpen] = useState(false);
   const [selectedMeal, setSelectedMeal] = useState<Meal | null>(null);
@@ -471,6 +593,10 @@ const CookPage: NextPage<Props> = ({ cook, mealsSortedByCuisines }) => {
     setSelectedMeal(meal);
     setIsMealModalOpen(true);
   };
+
+  const closeMoreInformationModal = () => setIsMoreInformationModalOpen(false);
+
+  const openMoreInformationModal = () => setIsMoreInformationModalOpen(true);
 
   const { addRemoveFavoriteCook, favoriteCooks } = useFavoriteCooks();
   const favoriteCook = favoriteCooks.find(
@@ -609,7 +735,10 @@ const CookPage: NextPage<Props> = ({ cook, mealsSortedByCuisines }) => {
               <p className="">{numberOfDeliveries}</p>
             </div>
 
-            <button className="group hidden items-center gap-2 lg:flex">
+            <button
+              className="group hidden items-center gap-2 lg:flex"
+              onClick={openMoreInformationModal}
+            >
               <InformationIcon className="h-5 w-5 text-primary-600" />
               <p className="transition-colors group-hover:text-primary-600">
                 Повеќе информации
@@ -640,7 +769,7 @@ const CookPage: NextPage<Props> = ({ cook, mealsSortedByCuisines }) => {
       </section>
 
       <section className="border-b border-gray-300 bg-gray-100 py-4 shadow-sm lg:py-5">
-        <div className="mx-auto flex w-11/12 max-w-screen-2xl items-center justify-between">
+        <div className="mx-auto flex w-11/12 max-w-screen-2xl flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <div className="flex items-center gap-3">
             {cuisines.map((cuisine) => (
               <Link
@@ -683,7 +812,10 @@ const CookPage: NextPage<Props> = ({ cook, mealsSortedByCuisines }) => {
               <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary-600">
                 <SearchIcon className="h-6 w-6 text-white" />
               </div>
-              <p>За жал не најдовме резултати со низата {searchQuery}</p>
+              <p>
+                За жал не најдовме резултати со низата{" "}
+                <span className="font-medium">{searchQuery}</span>
+              </p>
             </div>
           ) : (
             <>
@@ -735,6 +867,12 @@ const CookPage: NextPage<Props> = ({ cook, mealsSortedByCuisines }) => {
           closeMealModal={closeMealModal}
         />
       )}
+
+      <MoreInformationModal
+        isMoreInformationModalOpen={isMoreInformationModalOpen}
+        closeMoreInformationModal={closeMoreInformationModal}
+        cook={cook}
+      />
     </>
   );
 };
