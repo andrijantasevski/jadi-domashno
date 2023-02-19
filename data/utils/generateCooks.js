@@ -627,7 +627,7 @@ for (let i = 0; i < 40; i++) {
     first_name: faker.name.firstName(randomGender),
     last_name: faker.name.lastName(randomGender),
     cuisines: [...selectRandomElementsFromArray(cuisines, 3)],
-    mainCuisine: selectRandomElementFromArray(mainCuisines),
+    main_cuisine: selectRandomElementFromArray(mainCuisines),
     city: selectRandomElementFromArray(cities),
     image_url: randomImageURL,
     rating: getRandomIntegerInclusive(3, 5),
@@ -649,7 +649,7 @@ console.log(pc.blue("Generating meals..."));
 const meals = [];
 
 cooks.forEach((cook) => {
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < 6; i++) {
     cook.cuisines.forEach((cuisine) => {
       const recipesForCuisine = mealsData.filter((meal) =>
         meal.cuisine?.includes(cuisine.value)

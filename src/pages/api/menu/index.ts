@@ -39,6 +39,7 @@ export default async function handler(
     currentDay,
     limit,
     page,
+    byUser,
   } = req.query;
 
   const allergensArray = allergens?.toString().split(",");
@@ -76,6 +77,8 @@ export default async function handler(
       ? meal.delivery_type.value === delivery
       : true;
 
+    const byUserCondition = byUser ? meal.cook_id === byUser.toString() : true;
+
     const areAllConditionsMet =
       cityCondition &&
       ratingCondition &&
@@ -84,7 +87,8 @@ export default async function handler(
       priceCondition &&
       allergensCondition &&
       currentDayCondition &&
-      cuisineCondition;
+      cuisineCondition &&
+      byUserCondition;
 
     return areAllConditionsMet;
   });

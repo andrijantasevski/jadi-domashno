@@ -20,7 +20,7 @@ export interface Cook {
   first_name: string;
   last_name: string;
   cuisines: Cuisine[];
-  mainCuisine: string;
+  main_cuisine: string;
   city: City;
   image_url: string;
   rating: number;

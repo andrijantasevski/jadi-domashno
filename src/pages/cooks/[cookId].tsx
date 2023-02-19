@@ -1,5 +1,6 @@
 import { Cook } from "@/components/common/CookCard";
 import {
+  ChevronRight,
   FacebookIcon,
   HeartIcon,
   InformationIcon,
@@ -20,15 +21,17 @@ import Head from "next/head";
 import Image from "next/image";
 import useFavoriteCooks from "@/utils/useFavoriteCooks";
 import { Dialog, Transition } from "@headlessui/react";
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import Button from "@/components/ui/Button";
 import Link from "next/link";
 import { useRouter } from "next/router";
-
-interface Props {
-  cook: Cook;
-}
+import { Meal } from "@/components/common/MenuCard";
+import { Splide, SplideSlide, SplideTrack } from "@splidejs/react-splide";
+import dayjs from "dayjs";
+import "@splidejs/react-splide/css";
+import "dayjs/locale/mk";
+import MealModal from "@/components/common/MealModal";
 
 interface MessageModalProps {
   isMessageModalOpen: boolean;
@@ -250,10 +253,209 @@ const ShareModal = ({ isShareModalOpen, closeShareModal }: ShareModalProps) => {
   );
 };
 
-const CookPage: NextPage<Props> = ({ cook }) => {
+const now = dayjs();
+const next28Days = Array.from({ length: 28 }, (_, i) => {
+  return {
+    id: i,
+    day: i === 0 ? "денес" : now.add(i, "day").locale("mk").format("ddd"),
+    date: now.add(i, "day").locale("mk").format("DD"),
+    month: now.add(i, "day").locale("mk").format("MMM"),
+  };
+});
+
+interface SingleDay {
+  id: number;
+  day: string;
+  date: string;
+  month: string;
+}
+
+interface SingleDayProps {
+  singleDay: SingleDay;
+  activeDay: number;
+  handleSearchByDay: (
+    id: number,
+    event: React.MouseEvent<HTMLDivElement, MouseEvent>
+  ) => void;
+}
+
+const SingleDay = ({
+  singleDay,
+  activeDay,
+  handleSearchByDay,
+}: SingleDayProps) => {
+  const { date, day, month, id } = singleDay;
+
+  return (
+    <SplideSlide>
+      <div
+        onClick={(event) => handleSearchByDay(id, event)}
+        className={`flex cursor-pointer flex-col items-center justify-center rounded-b-lg border-b-2 border-primary-600 bg-gray-50 py-2 px-10 text-sm uppercase shadow-md transition-colors hover:text-primary-600 md:text-base ${
+          activeDay === id ? "text-primary-600" : ""
+        }`}
+      >
+        <p>{day}</p>
+        <p>{date}</p>
+        <p>{month}</p>
+      </div>
+    </SplideSlide>
+  );
+};
+
+const SliderDays = () => {
   const router = useRouter();
+  const [activeDay, setActiveDay] = useState(0);
+  const splideRef = useRef<Splide>(null);
+
+  useEffect(() => {
+    if (router.query.currentDay) {
+      setActiveDay(Number(router.query.currentDay as string));
+    } else {
+      setActiveDay(0);
+    }
+  }, [router.query]);
+
+  useEffect(() => {
+    if (splideRef.current) {
+      splideRef.current.forceUpdate();
+      splideRef.current.go(Number(activeDay));
+    }
+  }, [activeDay]);
+
+  const handleSearchByDay = (
+    id: number,
+    event: React.MouseEvent<HTMLDivElement, MouseEvent>
+  ) => {
+    event.preventDefault();
+    router.push(
+      {
+        pathname: `/cooks/${router.query.cookId}`,
+        query: { currentDay: id },
+      },
+      undefined,
+      { scroll: false }
+    );
+  };
+
+  return (
+    <Splide
+      ref={splideRef}
+      hasTrack={false}
+      options={{
+        pagination: false,
+        perPage: 4,
+        gap: "2rem",
+        mediaQuery: "min",
+        breakpoints: {
+          1024: {
+            perPage: 7,
+          },
+        },
+      }}
+      aria-label="Избери јадења по денови"
+    >
+      <SplideTrack>
+        {next28Days.map((singleDay) => (
+          <SingleDay
+            key={singleDay.id}
+            singleDay={singleDay}
+            activeDay={activeDay}
+            handleSearchByDay={handleSearchByDay}
+          />
+        ))}
+      </SplideTrack>
+
+      <div className="splide__arrows hidden lg:block">
+        <button className="splide__arrow splide__arrow--prev">
+          <ChevronRight className="h-6 w-6 text-primary-600" />
+        </button>
+        <button className="splide__arrow splide__arrow--next">
+          <ChevronRight className="h-6 w-6 text-primary-600" />
+        </button>
+      </div>
+    </Splide>
+  );
+};
+
+interface MealCardProps {
+  meal: Meal;
+  openMealModal: (meal: Meal) => void;
+}
+
+const MealCard = ({ meal, openMealModal }: MealCardProps) => {
+  const router = useRouter();
+
+  const { title, price, image_url, day_available } = meal;
+
+  const activeDay = router.query.currentDay
+    ? Number(router.query.currentDay as string)
+    : 0;
+
+  const activeDayData = next28Days.find((day) => day.id === activeDay);
+  return (
+    <div className="relative" onClick={() => openMealModal(meal)}>
+      <div
+        className={`flex cursor-pointer flex-col-reverse justify-between gap-2 rounded-lg border-b-2 border-primary-600 bg-gray-100 p-4 lg:flex-row ${
+          activeDay === day_available ? "" : "brightness-50"
+        }`}
+      >
+        <div className="flex flex-col justify-between">
+          <div>
+            <h3 className="text-lg font-medium">{title}</h3>
+            <p className="text-sm text-gray-500">Бекон, сирење</p>
+          </div>
+
+          <div>
+            <p className="text-primary-600">{price} ден.</p>
+          </div>
+        </div>
+        <Image
+          src={image_url}
+          width={200}
+          height={150}
+          alt="Photo"
+          className="w-full rounded-lg lg:w-auto"
+        />
+      </div>
+      {activeDay !== day_available && (
+        <div className="-translatey-y-1/2 absolute top-1/2 left-1/2 -translate-x-1/2">
+          <div className="font-medium text-white">
+            Недостапно на {activeDayData?.date} {activeDayData?.month}.
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+interface MealsByCuisinesValues {
+  cuisineLabel: string;
+  cuisineValue: string;
+  meals: Meal[];
+}
+
+interface MealsByCuisines {
+  [key: string]: MealsByCuisinesValues;
+}
+
+interface Props {
+  cook: Cook;
+  mealsSortedByCuisines: MealsByCuisines;
+}
+
+const CookPage: NextPage<Props> = ({ cook, mealsSortedByCuisines }) => {
+  const router = useRouter();
+
   const [isMessageModalOpen, setIsMessageModalOpen] = useState(false);
   const [isShareModalOpen, setIsShareModalOpen] = useState(false);
+
+  const [isMealModalOpen, setIsMealModalOpen] = useState(false);
+  const [selectedMeal, setSelectedMeal] = useState<Meal | null>(null);
+
+  const [filteredMeals, setFilteredMeals] = useState<MealsByCuisinesValues[]>(
+    Object.values(mealsSortedByCuisines)
+  );
+  const [searchQuery, setSearchQuery] = useState("");
 
   const closeMessageModal = () => setIsMessageModalOpen(false);
 
@@ -262,6 +464,13 @@ const CookPage: NextPage<Props> = ({ cook }) => {
   const closeShareModal = () => setIsShareModalOpen(false);
 
   const openShareModal = () => setIsShareModalOpen(true);
+
+  const closeMealModal = () => setIsMealModalOpen(false);
+
+  const openMealModal = (meal: Meal) => {
+    setSelectedMeal(meal);
+    setIsMealModalOpen(true);
+  };
 
   const { addRemoveFavoriteCook, favoriteCooks } = useFavoriteCooks();
   const favoriteCook = favoriteCooks.find(
@@ -274,7 +483,7 @@ const CookPage: NextPage<Props> = ({ cook }) => {
     last_name,
     image_url,
     rating,
-    mainCuisine,
+    main_cuisine,
     numberOfDeliveries,
     cuisines,
     id,
@@ -284,9 +493,36 @@ const CookPage: NextPage<Props> = ({ cook }) => {
 
   const cookFullName = `${first_name} ${last_name}`;
 
-  const pageTitle = `${cookFullName} | ${mainCuisine} во ${city.value}`;
+  const pageTitle = `${cookFullName} | ${main_cuisine} во ${city.value}`;
 
   const activeCuisine = router.asPath.split("#")[1];
+
+  useEffect(() => {
+    const mealsValues = Object.values(mealsSortedByCuisines);
+
+    const filteredMealsArr = mealsValues.map((cuisine) => {
+      const filteredMeals = cuisine.meals.filter((meal) => {
+        return (
+          meal.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          meal.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          meal.cuisine.value
+            .toLowerCase()
+            .includes(searchQuery.toLowerCase()) ||
+          meal.cuisine.label.toLowerCase().includes(searchQuery.toLowerCase())
+        );
+      });
+      return {
+        ...cuisine,
+        meals: filteredMeals,
+      };
+    });
+
+    setFilteredMeals(filteredMealsArr);
+  }, [searchQuery]);
+
+  const areAllCuisinesEmpty = filteredMeals.every(
+    (cuisine) => cuisine.meals.length === 0
+  );
 
   return (
     <>
@@ -317,7 +553,7 @@ const CookPage: NextPage<Props> = ({ cook }) => {
                 />
                 <div className="flex flex-col gap-1 text-white">
                   <h2 className="text-3xl font-bold lg:text-4xl">{cookName}</h2>
-                  <p className="text-xl">{mainCuisine}</p>
+                  <p className="text-xl">{main_cuisine}</p>
                   <div className="flex items-center gap-2">
                     <LocationIcon className="inline-block h-4 w-4" />
                     <p className="text-lg capitalize">{city.label}</p>
@@ -354,7 +590,7 @@ const CookPage: NextPage<Props> = ({ cook }) => {
         </div>
       </section>
 
-      <section className="border border-gray-300 bg-gray-100 py-4 shadow-md lg:py-5">
+      <section className="border-b border-gray-300 bg-gray-100 py-4 shadow-md lg:py-5">
         <div className="mx-auto flex w-11/12 max-w-screen-2xl items-center justify-between">
           <div className="flex items-center gap-3">
             <div
@@ -403,7 +639,7 @@ const CookPage: NextPage<Props> = ({ cook }) => {
         </div>
       </section>
 
-      <section className="bg-gray-100 py-4 shadow-md lg:py-5">
+      <section className="border-b border-gray-300 bg-gray-100 py-4 shadow-sm lg:py-5">
         <div className="mx-auto flex w-11/12 max-w-screen-2xl items-center justify-between">
           <div className="flex items-center gap-3">
             {cuisines.map((cuisine) => (
@@ -419,25 +655,63 @@ const CookPage: NextPage<Props> = ({ cook }) => {
             ))}
           </div>
 
-          <button className="hidden w-52 items-center gap-2 rounded-lg border border-gray-400 py-1.5 px-3 transition-colors hover:border-primary-600 xl:flex">
+          <label
+            htmlFor="search-menu"
+            className="flex cursor-pointer items-center gap-2 rounded-lg border border-gray-400 py-2 px-3"
+          >
             <SearchIcon className="h-4 w-4" />
-            <span className="text-gray-500">Барајте јадења</span>
-          </button>
+            <input
+              onChange={(e) => setSearchQuery(e.target.value)}
+              value={searchQuery}
+              id="search-menu"
+              className="w-full bg-transparent focus:outline-none"
+              type="search"
+              placeholder="Пребарајте"
+            />
+          </label>
         </div>
+      </section>
+
+      <section className="mx-auto w-11/12 max-w-4xl pt-5 lg:pt-10">
+        <SliderDays />
       </section>
 
       <section className="py-4 lg:py-5">
         <div className="mx-auto grid w-11/12 max-w-screen-2xl grid-cols-1 gap-4">
-          {cuisines.map((cuisine, index) => (
-            <div
-              key={index}
-              className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3"
-            >
-              <h2 className="text-2xl font-medium capitalize">
-                {cuisine.label}
-              </h2>
+          {areAllCuisinesEmpty ? (
+            <div className="flex flex-col items-center justify-center gap-2">
+              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary-600">
+                <SearchIcon className="h-6 w-6 text-white" />
+              </div>
+              <p>За жал не најдовме резултати со низата "{searchQuery}"</p>
             </div>
-          ))}
+          ) : (
+            <>
+              {filteredMeals.map((cuisine, index) => (
+                <div
+                  id={cuisine.cuisineValue}
+                  key={index}
+                  className="grid grid-cols-1 gap-2"
+                >
+                  {cuisine.meals.length > 0 && (
+                    <h2 className="text-2xl font-medium capitalize">
+                      {cuisine.cuisineLabel}
+                    </h2>
+                  )}
+
+                  <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
+                    {cuisine.meals.map((meal) => (
+                      <MealCard
+                        key={meal.id}
+                        meal={meal}
+                        openMealModal={openMealModal}
+                      />
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </>
+          )}
         </div>
       </section>
 
@@ -453,6 +727,14 @@ const CookPage: NextPage<Props> = ({ cook }) => {
         isShareModalOpen={isShareModalOpen}
         closeShareModal={closeShareModal}
       />
+
+      {isMealModalOpen && (
+        <MealModal
+          selectedMeal={selectedMeal}
+          isMealModalOpen={isMealModalOpen}
+          closeMealModal={closeMealModal}
+        />
+      )}
     </>
   );
 };
@@ -462,9 +744,34 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
 
   const cook = await fetchCook(cookId as string);
 
+  const mealsPerCookJSON = await fetch(
+    `${process.env.NEXT_PUBLIC_URL}/api/menu?byUser=${cookId}`
+  );
+  const mealsPerCook = await mealsPerCookJSON.json();
+
+  const mealsSortedByCuisines = mealsPerCook.reduce(
+    (acc: MealsByCuisines, meal: Meal) => {
+      const cuisine = meal.cuisine.value;
+
+      if (!acc[cuisine]) {
+        acc[cuisine] = {
+          cuisineLabel: meal.cuisine.label,
+          cuisineValue: meal.cuisine.value,
+          meals: [],
+        };
+      }
+
+      acc[cuisine].meals.push(meal);
+
+      return acc;
+    },
+    {}
+  );
+
   return {
     props: {
       cook,
+      mealsSortedByCuisines,
     },
   };
 };
