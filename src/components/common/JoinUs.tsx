@@ -21,7 +21,7 @@ const JoinUs = () => {
       </h3> */}
       <SectionTitle>Станете дел од семејството</SectionTitle>
 
-      <div className="grid w-full grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-20">
+      <div className="grid w-full grid-cols-1 items-start gap-10 lg:grid-cols-2 lg:gap-20">
         <div className="flex w-full flex-col items-center justify-center gap-4">
           <div className="flex h-20 w-20 items-center justify-center rounded-full border-2 border-primary-600 p-2">
             <PizzaIcon className="h-12 w-12 text-gray-900" />

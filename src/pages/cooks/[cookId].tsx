@@ -578,6 +578,7 @@ const ReviewsSlider = ({ reviews }: ReviewsSliderProps) => {
             perPage: 4,
           },
         },
+        arrows: false,
       }}
       aria-label="Избери јадења по денови"
     >
@@ -904,7 +905,9 @@ const CookPage: NextPage<Props> = ({
 
       <section className="pb-10">
         <div className="mx-auto grid w-11/12 max-w-screen-2xl grid-cols-1 gap-4">
-          <h2 className="text-2xl font-medium">Препораки за готвачот</h2>
+          <h2 className="text-2xl font-medium">
+            Препораки за готвачот ({reviews.length})
+          </h2>
 
           <ReviewsSlider reviews={reviews} />
         </div>
