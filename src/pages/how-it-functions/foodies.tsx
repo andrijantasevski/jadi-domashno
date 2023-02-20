@@ -10,6 +10,8 @@ import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import path from "path";
+import * as fs from "fs";
 
 const missionAndVision = [
   {
@@ -310,7 +312,11 @@ const HowItFunctionsFoodies: NextPage<Props> = ({ cooks }) => {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const cooks = await fetchCooks();
+  const COOKS_FILE_PATH = path.join(process.cwd(), "data", "cooks.json");
+
+  const cooksJSON = fs.readFileSync(COOKS_FILE_PATH, "utf-8");
+
+  const cooks = JSON.parse(cooksJSON);
 
   return {
     props: { cooks },
