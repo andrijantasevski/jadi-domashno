@@ -2,6 +2,8 @@ import { Roboto, Bad_Script } from "@next/font/google";
 import Navbar from "@components/common/Navbar/Navbar";
 import Footer from "@components/common/Footer";
 import { useRouter } from "next/router";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const badScript = Bad_Script({
   subsets: ["cyrillic"],
@@ -33,6 +35,19 @@ export default function Layout({ children }: Props) {
       {!isSignInSignUpPage && <Navbar />}
       {children}
       {!isSignInSignUpPage && <Footer />}
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        progressStyle={{ background: "#EA580C" }}
+      />
     </div>
   );
 }

@@ -57,7 +57,7 @@ const MenuCard = ({ meal, openMealModal }: Props) => {
 
         <div className="flex w-full flex-col justify-between">
           <div className="flex flex-col gap-0.5">
-            <div className="flex w-full items-center justify-between">
+            <div className="flex w-full items-center justify-between gap-1">
               <p className="lg:truncate">{title}</p>
 
               <p className="shrink-0 text-primary-600">{price} ден.</p>
