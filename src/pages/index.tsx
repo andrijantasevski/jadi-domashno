@@ -8,6 +8,8 @@ import StatisticsHome from "@/components/common/StatisticsHome";
 import fetchCooks from "@/utils/fetchCooks";
 import { GetStaticProps, NextPage } from "next";
 import Head from "next/head";
+import * as fs from "fs";
+import path from "path";
 
 interface Props {
   cooks: Cook[];
@@ -32,7 +34,11 @@ const Home: NextPage<Props> = ({ cooks }) => {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const cooks = await fetchCooks();
+  const COOKS_FILE_PATH = path.join(process.cwd(), "data", "cooks.json");
+
+  const cooksJSON = fs.readFileSync(COOKS_FILE_PATH, "utf-8");
+
+  const cooks = JSON.parse(cooksJSON);
 
   return {
     props: { cooks },
