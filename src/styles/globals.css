@@ -1,3 +1,35 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.max-w-9xl {
+  max-width: 90rem;
+}
+
+/* STYLES FOR SPLIDEJS SLIDERS
+  REMOVES ARROWS AND ADD CUSTOM ARROWS
+  CHANGES THEIR POSITION
+*/
+
+.splide__arrow {
+  background: none !important;
+}
+
+.splide__arrow svg {
+  fill: none !important;
+}
+
+.splide__arrow--prev {
+  left: -3.5rem !important;
+}
+
+.splide__arrow--next {
+  right: -3.5rem !important;
+}
+
+/* STYLES FOR TOASTIFY NOTIFICATIONS */
+
+.Toastify__close-button:hover,
+.Toastify__close-button:focus {
+  color: #ea580c;
+}
