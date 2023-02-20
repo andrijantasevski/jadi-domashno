@@ -82,7 +82,7 @@ const NavbarSlideInMenu = ({ isSlideInMenuOpen, closeSlideInMenu }: Props) => {
                     <ul className="grid grid-cols-1">
                       <NavbarSlideInMenuItem
                         closeSlideInMenu={closeSlideInMenu}
-                        href="/about"
+                        href="/how-it-functions/foodies"
                       >
                         Како функционира Јади домашно?
                       </NavbarSlideInMenuItem>
@@ -98,7 +98,7 @@ const NavbarSlideInMenu = ({ isSlideInMenuOpen, closeSlideInMenu }: Props) => {
                         closeSlideInMenu={closeSlideInMenu}
                         href="/offers"
                       >
-                        Побарај понуда
+                        Побарајте понуда
                       </NavbarSlideInMenuItem>
 
                       <NavbarSlideInMenuItem
@@ -106,6 +106,13 @@ const NavbarSlideInMenu = ({ isSlideInMenuOpen, closeSlideInMenu }: Props) => {
                         href="/menu"
                       >
                         Мени
+                      </NavbarSlideInMenuItem>
+
+                      <NavbarSlideInMenuItem
+                        closeSlideInMenu={closeSlideInMenu}
+                        href="/favorite-cooks"
+                      >
+                        Омилени готвачи
                       </NavbarSlideInMenuItem>
 
                       <NavbarSlideInMenuItem

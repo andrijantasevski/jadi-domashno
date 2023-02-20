@@ -428,6 +428,176 @@ const MealCard = ({ meal, openMealModal }: MealCardProps) => {
   );
 };
 
+interface MoreInformationModalProps {
+  isMoreInformationModalOpen: boolean;
+  closeMoreInformationModal: () => void;
+  cook: Cook;
+}
+
+const MoreInformationModal = ({
+  isMoreInformationModalOpen,
+  closeMoreInformationModal,
+  cook,
+}: MoreInformationModalProps) => {
+  const {
+    first_name,
+    last_name,
+    image_url,
+    biography,
+    address,
+    city,
+    phone_number,
+    email,
+  } = cook;
+  return (
+    <Transition appear show={isMoreInformationModalOpen} as={Fragment}>
+      <Dialog
+        as="div"
+        className="relative z-30"
+        onClose={closeMoreInformationModal}
+      >
+        <Transition.Child
+          as={Fragment}
+          enter="ease-out duration-300"
+          enterFrom="opacity-0"
+          enterTo="opacity-100"
+          leave="ease-in duration-200"
+          leaveFrom="opacity-100"
+          leaveTo="opacity-0"
+        >
+          <div className="fixed inset-0 bg-black bg-opacity-25" />
+        </Transition.Child>
+
+        <div className="fixed inset-0 overflow-y-auto">
+          <div className="flex min-h-full items-center justify-center p-4">
+            <Transition.Child
+              as={Fragment}
+              enter="ease-out duration-300"
+              enterFrom="opacity-0 scale-95"
+              enterTo="opacity-100 scale-100"
+              leave="ease-in duration-200"
+              leaveFrom="opacity-100 scale-100"
+              leaveTo="opacity-0 scale-95"
+            >
+              <Dialog.Panel className="relative grid w-full max-w-xl grid-cols-1 gap-4 rounded-2xl bg-gray-100 p-6 shadow-xl transition-all">
+                <div className="flex items-center justify-between">
+                  <Dialog.Title className="text-lg font-medium">
+                    Повеќе информации
+                  </Dialog.Title>
+
+                  <IconButton
+                    onClick={closeMoreInformationModal}
+                    title="Затворете споделување"
+                    ariaLabel="Затворете споделување"
+                  >
+                    <span className="sr-only">Затворете споделување</span>
+                    <XMarkIcon className="h-4 w-4" />
+                  </IconButton>
+                </div>
+
+                <div className="grid grid-cols-1 gap-4">
+                  <Image
+                    src={image_url}
+                    width={600}
+                    height={150}
+                    className="w-full rounded-lg"
+                    alt={first_name + last_name}
+                  />
+
+                  <div className="grid grid-cols-1 gap-2">
+                    <p className="text-2xl font-medium">
+                      {first_name} {last_name}
+                    </p>
+
+                    <p className="leading-relaxed">{biography}</p>
+                  </div>
+
+                  <div>
+                    <p className="text-xl font-medium">Адреса</p>
+
+                    <p>{address}</p>
+                    <p>
+                      1000, <span className="capitalize">{city.label}</span>
+                    </p>
+                  </div>
+
+                  <div>
+                    <p className="text-xl font-medium">Контакт</p>
+
+                    <div className="flex items-center justify-between">
+                      <p>Телефонски број</p>
+                      <a href={`tel:${phone_number}`} className="font-medium">
+                        {phone_number}
+                      </a>
+                    </div>
+
+                    <div className="flex items-center justify-between">
+                      <p>Е-пошта</p>
+                      <a href={`mailto:${email}`} className="font-medium">
+                        {email}
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </Dialog.Panel>
+            </Transition.Child>
+          </div>
+        </div>
+      </Dialog>
+    </Transition>
+  );
+};
+
+export interface Review {
+  id: string;
+  date_created: string;
+  rating: number;
+  text: string;
+  cook_id: string;
+  cook_avatar: string;
+  city: string;
+  first_name: string;
+  last_name: string;
+}
+
+interface ReviewsSliderProps {
+  reviews: Review[];
+}
+
+const ReviewsSlider = ({ reviews }: ReviewsSliderProps) => {
+  return (
+    <Splide
+      hasTrack={false}
+      options={{
+        pagination: false,
+        perPage: 1,
+        gap: "2rem",
+        mediaQuery: "min",
+        breakpoints: {
+          1024: {
+            perPage: 4,
+          },
+        },
+      }}
+      aria-label="Избери јадења по денови"
+    >
+      <SplideTrack>
+        {reviews.map((review) => (
+          <SplideSlide key={review.id}>
+            <div className="flex h-44 flex-col gap-2 rounded-lg border-b-2 border-primary-600 bg-gray-100 p-4">
+              <p className="text-center text-lg font-medium">
+                {review.first_name} {review.last_name.charAt(0)}.
+              </p>
+
+              <p className="text-ellipsis">{review.text.slice(0, 150)}...</p>
+            </div>
+          </SplideSlide>
+        ))}
+      </SplideTrack>
+    </Splide>
+  );
+};
+
 interface MealsByCuisinesValues {
   cuisineLabel: string;
   cuisineValue: string;
@@ -441,13 +611,20 @@ interface MealsByCuisines {
 interface Props {
   cook: Cook;
   mealsSortedByCuisines: MealsByCuisines;
+  reviews: Review[];
 }
 
-const CookPage: NextPage<Props> = ({ cook, mealsSortedByCuisines }) => {
+const CookPage: NextPage<Props> = ({
+  cook,
+  mealsSortedByCuisines,
+  reviews,
+}) => {
   const router = useRouter();
 
   const [isMessageModalOpen, setIsMessageModalOpen] = useState(false);
   const [isShareModalOpen, setIsShareModalOpen] = useState(false);
+  const [isMoreInformationModalOpen, setIsMoreInformationModalOpen] =
+    useState(false);
 
   const [isMealModalOpen, setIsMealModalOpen] = useState(false);
   const [selectedMeal, setSelectedMeal] = useState<Meal | null>(null);
@@ -471,6 +648,10 @@ const CookPage: NextPage<Props> = ({ cook, mealsSortedByCuisines }) => {
     setSelectedMeal(meal);
     setIsMealModalOpen(true);
   };
+
+  const closeMoreInformationModal = () => setIsMoreInformationModalOpen(false);
+
+  const openMoreInformationModal = () => setIsMoreInformationModalOpen(true);
 
   const { addRemoveFavoriteCook, favoriteCooks } = useFavoriteCooks();
   const favoriteCook = favoriteCooks.find(
@@ -609,7 +790,10 @@ const CookPage: NextPage<Props> = ({ cook, mealsSortedByCuisines }) => {
               <p className="">{numberOfDeliveries}</p>
             </div>
 
-            <button className="group hidden items-center gap-2 lg:flex">
+            <button
+              className="group hidden items-center gap-2 lg:flex"
+              onClick={openMoreInformationModal}
+            >
               <InformationIcon className="h-5 w-5 text-primary-600" />
               <p className="transition-colors group-hover:text-primary-600">
                 Повеќе информации
@@ -640,7 +824,7 @@ const CookPage: NextPage<Props> = ({ cook, mealsSortedByCuisines }) => {
       </section>
 
       <section className="border-b border-gray-300 bg-gray-100 py-4 shadow-sm lg:py-5">
-        <div className="mx-auto flex w-11/12 max-w-screen-2xl items-center justify-between">
+        <div className="mx-auto flex w-11/12 max-w-screen-2xl flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <div className="flex items-center gap-3">
             {cuisines.map((cuisine) => (
               <Link
@@ -683,7 +867,10 @@ const CookPage: NextPage<Props> = ({ cook, mealsSortedByCuisines }) => {
               <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary-600">
                 <SearchIcon className="h-6 w-6 text-white" />
               </div>
-              <p>За жал не најдовме резултати со низата {searchQuery}</p>
+              <p>
+                За жал не најдовме резултати со низата{" "}
+                <span className="font-medium">{searchQuery}</span>
+              </p>
             </div>
           ) : (
             <>
@@ -715,6 +902,14 @@ const CookPage: NextPage<Props> = ({ cook, mealsSortedByCuisines }) => {
         </div>
       </section>
 
+      <section className="pb-10">
+        <div className="mx-auto grid w-11/12 max-w-screen-2xl grid-cols-1 gap-4">
+          <h2 className="text-2xl font-medium">Препораки за готвачот</h2>
+
+          <ReviewsSlider reviews={reviews} />
+        </div>
+      </section>
+
       {isMessageModalOpen && (
         <MessageModal
           isMessageModalOpen={isMessageModalOpen}
@@ -735,6 +930,12 @@ const CookPage: NextPage<Props> = ({ cook, mealsSortedByCuisines }) => {
           closeMealModal={closeMealModal}
         />
       )}
+
+      <MoreInformationModal
+        isMoreInformationModalOpen={isMoreInformationModalOpen}
+        closeMoreInformationModal={closeMoreInformationModal}
+        cook={cook}
+      />
     </>
   );
 };
@@ -744,10 +945,10 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
 
   const cook = await fetchCook(cookId as string);
 
-  const mealsPerCookJSON = await fetch(
+  const mealsPerCookRes = await fetch(
     `${process.env.NEXT_PUBLIC_URL}/api/menu?byUser=${cookId}`
   );
-  const mealsPerCook = await mealsPerCookJSON.json();
+  const mealsPerCook = await mealsPerCookRes.json();
 
   const mealsSortedByCuisines = mealsPerCook.reduce(
     (acc: MealsByCuisines, meal: Meal) => {
@@ -768,10 +969,17 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
     {}
   );
 
+  const reviewsRes = await fetch(
+    `${process.env.NEXT_PUBLIC_URL}/api/reviews?byUser=${cookId}`
+  );
+
+  const reviews = await reviewsRes.json();
+
   return {
     props: {
       cook,
       mealsSortedByCuisines,
+      reviews,
     },
   };
 };

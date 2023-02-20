@@ -1,9 +1,9 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import path from "path";
 import { promises as fs } from "fs";
-import { Cook } from "@/components/common/CookCard";
+import { Review } from "@/pages/cooks/[cookId]";
 
-const COOKS_FILE_PATH = path.join(process.cwd(), "data", "cooks.json");
+const REVIEWS_FILE_PATH = path.join(process.cwd(), "data", "reviews.json");
 
 export default async function handler(
   req: NextApiRequest,
@@ -14,12 +14,12 @@ export default async function handler(
     return;
   }
 
-  let cooks: Cook[] = [];
+  let reviews: Review[] = [];
 
   try {
-    const cooksJSON = await fs.readFile(COOKS_FILE_PATH, "utf-8");
+    const reviewsJSON = await fs.readFile(REVIEWS_FILE_PATH, "utf-8");
 
-    cooks = JSON.parse(cooksJSON);
+    reviews = JSON.parse(reviewsJSON);
   } catch (err) {
     res
       .status(500)
@@ -27,32 +27,21 @@ export default async function handler(
     return;
   }
 
-  const { city, rating, cuisines, sortBy, limit, page } = req.query;
+  const { byUser, sortBy, limit, page } = req.query;
 
-  const cuisinesArray = cuisines?.toString().split(",");
-
-  const cooksFiltered = cooks.filter((cook) => {
-    const cityCondition = city
-      ? cook.city.value.toLowerCase() === city.toString().toLowerCase()
-      : true;
-    const ratingCondition = rating ? cook.rating === Number(rating) : true;
-    const cuisinesCondition = cuisinesArray
-      ? cuisinesArray?.every((cuisine) => {
-          const cuisineValues = cook.cuisines.map((cuisine) => cuisine.value);
-
-          return cuisineValues.includes(cuisine);
-        })
+  const reviewsFiltered = reviews.filter((review) => {
+    const byUserCondition = byUser
+      ? review.cook_id === byUser.toString()
       : true;
 
-    const areAllConditionsMet =
-      cityCondition && ratingCondition && cuisinesCondition;
+    const areAllConditionsMet = byUserCondition;
 
     return areAllConditionsMet;
   });
 
-  const cooksSorted =
+  const reviewsSorted =
     typeof sortBy === "string"
-      ? [...cooksFiltered].sort((a, b) => {
+      ? [...reviewsFiltered].sort((a, b) => {
           if (sortBy === "highestRated") {
             return b.rating - a.rating;
           }
@@ -77,16 +66,16 @@ export default async function handler(
 
           return 0;
         })
-      : cooksFiltered;
+      : reviewsFiltered;
 
-  const cooksLimited =
-    limit && !page ? cooksSorted.slice(0, Number(limit)) : cooksSorted;
+  const reviewsLimited =
+    limit && !page ? reviewsSorted.slice(0, Number(limit)) : reviewsSorted;
 
   const startIndex = (Number(page) - 1) * Number(limit);
   const endIndex = Number(page) * Number(limit);
 
   const paginatedCooks =
-    page && limit ? cooksSorted.slice(startIndex, endIndex) : cooksLimited;
+    page && limit ? reviewsSorted.slice(startIndex, endIndex) : reviewsLimited;
 
   res.status(200).json(paginatedCooks);
 }

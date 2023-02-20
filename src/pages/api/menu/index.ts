@@ -1,4 +1,3 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
 import path from "path";
 import { promises as fs } from "fs";
@@ -40,6 +39,7 @@ export default async function handler(
     limit,
     page,
     byUser,
+    searchQuery,
   } = req.query;
 
   const allergensArray = allergens?.toString().split(",");
@@ -79,6 +79,13 @@ export default async function handler(
 
     const byUserCondition = byUser ? meal.cook_id === byUser.toString() : true;
 
+    const searchQueryCondition = searchQuery
+      ? meal.title.includes(searchQuery.toString()) ||
+        meal.description.includes(searchQuery.toString()) ||
+        meal.cuisine.label.includes(searchQuery.toString().toLowerCase()) ||
+        meal.cuisine.value.includes(searchQuery.toString().toLowerCase())
+      : true;
+
     const areAllConditionsMet =
       cityCondition &&
       ratingCondition &&
@@ -88,14 +95,15 @@ export default async function handler(
       allergensCondition &&
       currentDayCondition &&
       cuisineCondition &&
-      byUserCondition;
+      byUserCondition &&
+      searchQueryCondition;
 
     return areAllConditionsMet;
   });
 
   const mealsSorted =
     typeof sortBy === "string"
-      ? [...meals].sort((a, b) => {
+      ? [...mealsFiltered].sort((a, b) => {
           if (sortBy === "highestRated") {
             return b.rating - a.rating;
           }

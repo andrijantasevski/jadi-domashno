@@ -23,7 +23,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-gray-800 py-8 font-light text-gray-50 lg:py-10">
+    <footer className="mt-auto bg-gray-800 py-8 font-light text-gray-50 lg:py-10">
       <div className="mx-auto grid w-11/12 max-w-screen-2xl grid-cols-1 gap-5 md:grid-cols-4 lg:gap-10">
         <div className="flex flex-col justify-between">
           <div className="flex gap-4">
@@ -60,7 +60,7 @@ const Footer = () => {
 
         <ul className="grid list-inside list-disc grid-cols-1 gap-1">
           <li>
-            <Link intent="light" underlined href="/about">
+            <Link intent="light" underlined href="/how-it-functions/foodies">
               За нас
             </Link>
           </li>
@@ -79,12 +79,12 @@ const Footer = () => {
 
           <li>
             <Link intent="light" underlined href="/sign-in">
-              Најави се
+              Најавете се
             </Link>
           </li>
 
           <li>
-            <Link intent="light" underlined href="/faq">
+            <Link intent="light" underlined href="/">
               ЧПП
             </Link>
           </li>
@@ -93,31 +93,31 @@ const Footer = () => {
         <ul className="grid grid-cols-1 gap-1">
           <p className="font-medium">Правни</p>
           <li>
-            <Link intent="light" href="/about">
+            <Link intent="light" href="/">
               Политика за приватност
             </Link>
           </li>
 
           <li>
-            <Link intent="light" href="/menu">
+            <Link intent="light" href="/">
               Услови за веб страница
             </Link>
           </li>
 
           <li>
-            <Link intent="light" href="/sign-up">
+            <Link intent="light" href="/">
               Прифатлива политика за користење
             </Link>
           </li>
 
           <li>
-            <Link intent="light" href="/sign-in">
+            <Link intent="light" href="/">
               Политика за колачиња
             </Link>
           </li>
 
           <li>
-            <Link intent="light" href="/faq">
+            <Link intent="light" href="/">
               Општи услови
             </Link>
           </li>
@@ -151,13 +151,13 @@ const Footer = () => {
             </div>
 
             <Button className="w-full font-normal" ariaLabel="Претплати се">
-              <span>Претплати се</span>
+              <span>Претплатете се</span>
             </Button>
           </form>
         </div>
 
         <div className="flex w-full items-center justify-center gap-3 lg:hidden">
-          <IconButton href="/hello">
+          <IconButton href="/">
             <TwitterIcon className="h-5 w-5 text-gray-50 hover:text-primary-600" />
           </IconButton>
 

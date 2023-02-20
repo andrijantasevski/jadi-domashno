@@ -17,7 +17,7 @@ const SatisfiedCustomerCard = ({
 
       <p>{comment}</p>
 
-      <p className="text-lg">{customer}</p>
+      <p className="text-center text-lg">{customer}</p>
     </div>
   );
 };

@@ -41,7 +41,7 @@ const OurValues = () => {
         />
       </div>
 
-      <Button href="/about">Дознајте повеќе за нас</Button>
+      <Button href="/how-it-functions/foodies">Дознајте повеќе за нас</Button>
     </section>
   );
 };

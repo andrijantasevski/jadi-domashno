@@ -28,7 +28,7 @@ const BannerTop = () => {
           </Button>
 
           <Button
-            href="/account"
+            href="/sign-in"
             intent="secondary"
             size="small"
             className="xl:hidden"
