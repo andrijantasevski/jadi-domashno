@@ -1,4 +1,3 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
 import path from "path";
 import { promises as fs } from "fs";
@@ -104,7 +103,7 @@ export default async function handler(
 
   const mealsSorted =
     typeof sortBy === "string"
-      ? [...meals].sort((a, b) => {
+      ? [...mealsFiltered].sort((a, b) => {
           if (sortBy === "highestRated") {
             return b.rating - a.rating;
           }

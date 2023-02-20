@@ -705,4 +705,28 @@ cooks.forEach((cook) => {
 
 fs.writeFileSync("data/meals.json", JSON.stringify(meals), "utf-8");
 
+console.log(pc.blue("Generating reviews..."));
+
+const reviews = [];
+
+cooks.forEach((cook) => {
+  for (let i = 0; i < 10; i++) {
+    const review = {
+      id: faker.datatype.uuid(),
+      date_created: faker.date.past(),
+      rating: getRandomIntegerInclusive(3, 5),
+      text: faker.lorem.paragraph(),
+      cook_id: cook.id,
+      cook_avatar: cook.image_url,
+      city: cook.city,
+      first_name: faker.name.firstName(),
+      last_name: faker.name.lastName(),
+    };
+
+    reviews.push(review);
+  }
+});
+
+fs.writeFileSync("data/reviews.json", JSON.stringify(reviews), "utf-8");
+
 console.log(pc.green("Data generated successfully!"));

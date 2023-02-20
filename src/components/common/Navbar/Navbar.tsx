@@ -121,7 +121,7 @@ export default function Navbar() {
 
             <NavbarLinkButton
               intent={pathname === "/account" ? "active" : "primary"}
-              href="/account"
+              href="/sign-in"
               className="hidden xl:flex"
             >
               <UserAccountIcon className="h-6 w-6 text-inherit hover:text-inherit" />

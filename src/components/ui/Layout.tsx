@@ -1,6 +1,7 @@
 import { Roboto, Bad_Script } from "@next/font/google";
 import Navbar from "@components/common/Navbar/Navbar";
 import Footer from "@components/common/Footer";
+import { useRouter } from "next/router";
 
 const badScript = Bad_Script({
   subsets: ["cyrillic"],
@@ -21,13 +22,17 @@ interface Props {
 }
 
 export default function Layout({ children }: Props) {
+  const router = useRouter();
+
+  const isSignInSignUpPage =
+    router.pathname === "/sign-in" || router.pathname === "/sign-up";
   return (
     <div
-      className={`${roboto.variable} ${badScript.variable} min-h-screen bg-primary-50 font-roboto text-gray-900`}
+      className={`${roboto.variable} ${badScript.variable} flex min-h-screen flex-col bg-primary-50 font-roboto text-gray-900`}
     >
-      <Navbar />
+      {!isSignInSignUpPage && <Navbar />}
       {children}
-      <Footer />
+      {!isSignInSignUpPage && <Footer />}
     </div>
   );
 }

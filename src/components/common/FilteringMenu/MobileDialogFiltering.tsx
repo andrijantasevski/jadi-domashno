@@ -26,7 +26,7 @@ const MobileDialogFiltering = ({ queries, minMaxPrices }: Props) => {
   const closeFilteringMenu = () => setIsFilteringMenuOpen(false);
 
   return (
-    <div>
+    <div className="lg:hidden">
       <Button onClick={openFilteringMenu}>
         <FilterIcon className="h-4 w-4 text-inherit" />
         Филтри

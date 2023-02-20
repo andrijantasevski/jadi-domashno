@@ -10,7 +10,7 @@ import { Menu } from "@headlessui/react";
 import Button from "@/components/ui/Button";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { ChevronDownIcon } from "@/components/icons";
+import { ChevronDownIcon, SearchIcon } from "@/components/icons";
 import useSWRInfinite from "swr/infinite";
 import LoadingCardsSkeleton from "@/components/common/LoadingCardsSkeleton";
 
@@ -119,6 +119,8 @@ const Cooks: NextPage<Props> = ({ queriesCooks, cooks }) => {
 
   const cooksNumber = cooksData.length === 0 ? "Нема" : cooksData.length;
 
+  const noResults = cooksData.length === 0 && !isValidating;
+
   const handleLoadMore = () => {
     setSize(size + 1);
   };
@@ -152,28 +154,41 @@ const Cooks: NextPage<Props> = ({ queriesCooks, cooks }) => {
       <section className="relative mx-auto w-11/12 max-w-screen-2xl gap-4 pb-10 lg:flex">
         <CooksSidebarFiltering queriesCooks={queriesCooks} />
 
-        <div className="grid w-full grid-cols-1 gap-4">
-          <div className="flex items-center justify-between">
-            <p className="hidden text-lg lg:block">
-              <span className="font-bold">{cooksNumber}</span>{" "}
-              {cooksNumber === 1 ? "готвач" : "готвачи"}
-            </p>
-            <SortByMenu />
-            <CooksMobileDialogFiltering queriesCooks={queriesCooks} />
-          </div>
-
-          <div className="grid w-full grid-cols-1 gap-4 lg:grid-cols-2 2xl:grid-cols-3">
-            {cooksData?.map((cook) => (
-              <CookCard key={cook.id} cook={cook} />
-            ))}
-          </div>
-          {isValidating && <LoadingCardsSkeleton />}
-          {!isEndOfMenu && (
-            <div className="flex items-center justify-center">
-              <Button onClick={handleLoadMore}>Прикажи повеќе</Button>
+        {noResults && (
+          <div className="flex w-full items-start justify-center">
+            <div className="flex flex-col items-center justify-center gap-4">
+              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary-600">
+                <SearchIcon className="h-6 w-6 text-white" />
+              </div>
+              <p>За жал не најдовме ниеден готвач со овие критериуми.</p>
             </div>
-          )}
-        </div>
+          </div>
+        )}
+
+        {!noResults && (
+          <div className="flex w-full flex-col gap-4">
+            <div className="flex items-center justify-between">
+              <p className="hidden text-lg lg:block">
+                <span className="font-bold">{cooksNumber}</span>{" "}
+                {cooksNumber === 1 ? "готвач" : "готвачи"}
+              </p>
+              <SortByMenu />
+              <CooksMobileDialogFiltering queriesCooks={queriesCooks} />
+            </div>
+
+            <div className="grid w-full grid-cols-1 gap-4 lg:grid-cols-2 2xl:grid-cols-3">
+              {cooksData?.map((cook) => (
+                <CookCard key={cook.id} cook={cook} />
+              ))}
+            </div>
+            {isValidating && <LoadingCardsSkeleton />}
+            {!isEndOfMenu && (
+              <div className="flex items-center justify-center">
+                <Button onClick={handleLoadMore}>Прикажи повеќе</Button>
+              </div>
+            )}
+          </div>
+        )}
       </section>
     </>
   );

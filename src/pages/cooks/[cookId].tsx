@@ -548,6 +548,56 @@ const MoreInformationModal = ({
   );
 };
 
+export interface Review {
+  id: string;
+  date_created: string;
+  rating: number;
+  text: string;
+  cook_id: string;
+  cook_avatar: string;
+  city: string;
+  first_name: string;
+  last_name: string;
+}
+
+interface ReviewsSliderProps {
+  reviews: Review[];
+}
+
+const ReviewsSlider = ({ reviews }: ReviewsSliderProps) => {
+  return (
+    <Splide
+      hasTrack={false}
+      options={{
+        pagination: false,
+        perPage: 1,
+        gap: "2rem",
+        mediaQuery: "min",
+        breakpoints: {
+          1024: {
+            perPage: 4,
+          },
+        },
+      }}
+      aria-label="Избери јадења по денови"
+    >
+      <SplideTrack>
+        {reviews.map((review) => (
+          <SplideSlide key={review.id}>
+            <div className="flex h-44 flex-col gap-2 rounded-lg border-b-2 border-primary-600 bg-gray-100 p-4">
+              <p className="text-center text-lg font-medium">
+                {review.first_name} {review.last_name.charAt(0)}.
+              </p>
+
+              <p className="text-ellipsis">{review.text.slice(0, 150)}...</p>
+            </div>
+          </SplideSlide>
+        ))}
+      </SplideTrack>
+    </Splide>
+  );
+};
+
 interface MealsByCuisinesValues {
   cuisineLabel: string;
   cuisineValue: string;
@@ -561,9 +611,14 @@ interface MealsByCuisines {
 interface Props {
   cook: Cook;
   mealsSortedByCuisines: MealsByCuisines;
+  reviews: Review[];
 }
 
-const CookPage: NextPage<Props> = ({ cook, mealsSortedByCuisines }) => {
+const CookPage: NextPage<Props> = ({
+  cook,
+  mealsSortedByCuisines,
+  reviews,
+}) => {
   const router = useRouter();
 
   const [isMessageModalOpen, setIsMessageModalOpen] = useState(false);
@@ -847,6 +902,14 @@ const CookPage: NextPage<Props> = ({ cook, mealsSortedByCuisines }) => {
         </div>
       </section>
 
+      <section className="pb-10">
+        <div className="mx-auto grid w-11/12 max-w-screen-2xl grid-cols-1 gap-4">
+          <h2 className="text-2xl font-medium">Препораки за готвачот</h2>
+
+          <ReviewsSlider reviews={reviews} />
+        </div>
+      </section>
+
       {isMessageModalOpen && (
         <MessageModal
           isMessageModalOpen={isMessageModalOpen}
@@ -882,10 +945,10 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
 
   const cook = await fetchCook(cookId as string);
 
-  const mealsPerCookJSON = await fetch(
+  const mealsPerCookRes = await fetch(
     `${process.env.NEXT_PUBLIC_URL}/api/menu?byUser=${cookId}`
   );
-  const mealsPerCook = await mealsPerCookJSON.json();
+  const mealsPerCook = await mealsPerCookRes.json();
 
   const mealsSortedByCuisines = mealsPerCook.reduce(
     (acc: MealsByCuisines, meal: Meal) => {
@@ -906,10 +969,17 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
     {}
   );
 
+  const reviewsRes = await fetch(
+    `${process.env.NEXT_PUBLIC_URL}/api/reviews?byUser=${cookId}`
+  );
+
+  const reviews = await reviewsRes.json();
+
   return {
     props: {
       cook,
       mealsSortedByCuisines,
+      reviews,
     },
   };
 };

@@ -1,6 +1,12 @@
 import { Fragment, useEffect, useRef, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import { MinusIcon, PlusIcon, SearchIcon, XMarkIcon } from "@/components/icons";
+import {
+  MinusIcon,
+  PlusIcon,
+  SearchIcon,
+  StarIcon,
+  XMarkIcon,
+} from "@/components/icons";
 import IconButton from "@/components/ui/IconButton";
 import { Meal } from "./MenuCard";
 import Image from "next/image";
@@ -127,19 +133,33 @@ const MealModal = ({
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <Dialog.Panel className="relative flex h-full w-full max-w-lg transform flex-col gap-4 overflow-y-auto rounded-lg bg-gray-100 p-6 shadow-xl transition-all">
-                <div className="grid grid-cols-1 gap-4">
-                  <ImageLoading selectedMeal={selectedMeal} />
+              <Dialog.Panel className="relative flex h-full w-full max-w-lg transform flex-col gap-4 overflow-y-auto rounded-lg bg-gray-100 pb-6 shadow-xl transition-all">
+                <ImageLoading selectedMeal={selectedMeal} />
+
+                <div className="grid grid-cols-1 gap-1 px-6">
+                  <p ref={initialFocusElement} className="text-2xl font-medium">
+                    {selectedMeal?.title}
+                  </p>
                   <div className="grid grid-cols-1 gap-2">
-                    <p
-                      ref={initialFocusElement}
-                      className="text-2xl font-medium"
-                    >
-                      {selectedMeal?.title}
-                    </p>
                     <p className="text-lg font-medium text-primary-600">
                       {selectedMeal?.price} ден.
                     </p>
+                    <div className="flex items-center gap-2">
+                      {selectedMeal &&
+                        [...Array(5)].map((_, index) =>
+                          index < selectedMeal.rating ? (
+                            <StarIcon
+                              key={index}
+                              className="h-4 w-4 fill-primary-600 text-primary-600"
+                            />
+                          ) : (
+                            <StarIcon
+                              key={index}
+                              className="h-4 w-4 text-primary-600"
+                            />
+                          )
+                        )}
+                    </div>
                     <p>{selectedMeal?.description}</p>
                   </div>
 
@@ -151,7 +171,7 @@ const MealModal = ({
                   </div>
                 </div>
 
-                <form className="grid grid-cols-1 gap-4">
+                <form className="grid grid-cols-1 gap-4 px-6">
                   <div className="grid grid-cols-1 gap-2">
                     <label className="font-medium" htmlFor="order-date">
                       Изберете датум за нарачката:
@@ -179,7 +199,7 @@ const MealModal = ({
                   </div>
                 </form>
 
-                <div className="sticky inset-x-0 bottom-0 mt-2 flex gap-4">
+                <div className="sticky inset-x-0 bottom-0 mt-2 flex gap-4 px-6">
                   <div className="flex items-center justify-center gap-1 rounded-lg bg-primary-600">
                     <IconButton
                       disabled={itemInCart ? false : productForm.quantity === 1}
@@ -221,6 +241,18 @@ const MealModal = ({
                     fullWidth
                   >
                     {itemInCart ? "Избришете од кошничка" : "Во кошничка"}
+                  </Button>
+                </div>
+
+                <div className="absolute top-4 right-4">
+                  <Button
+                    size="small"
+                    onClick={closeMealModal}
+                    title="Затворете прозорец"
+                    ariaLabel="Затворете прозорец"
+                  >
+                    <span className="sr-only">Затворете прозорец</span>
+                    <XMarkIcon className="h-3 w-3" />
                   </Button>
                 </div>
               </Dialog.Panel>

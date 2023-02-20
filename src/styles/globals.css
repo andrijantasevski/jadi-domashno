@@ -26,3 +26,11 @@
 .splide__arrow--next {
   right: -3.5rem !important;
 }
+
+.arrows-reviews .splide__arrow--prev {
+  left: 0rem !important;
+}
+
+.arrows-reviews .splide__arrow--next {
+  right: 0rem !important;
+}
