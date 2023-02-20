@@ -15,6 +15,7 @@ import {
   useShoppingCart,
   useShoppingCartActions,
 } from "@/utils/useShoppingCart";
+import { toast } from "react-toastify";
 
 const ImageLoading = ({ selectedMeal }: { selectedMeal: Meal | null }) => {
   const [loading, setLoading] = useState(true);
@@ -99,6 +100,7 @@ const MealModal = ({
       time: productForm.time,
     });
     closeMealModal();
+    toast(`Успешно додадовте ${selectedMeal?.title} во кошничката!`);
   };
 
   return (

@@ -27,10 +27,9 @@
   right: -3.5rem !important;
 }
 
-.arrows-reviews .splide__arrow--prev {
-  left: 0rem !important;
-}
+/* STYLES FOR TOASTIFY NOTIFICATIONS */
 
-.arrows-reviews .splide__arrow--next {
-  right: 0rem !important;
+.Toastify__close-button:hover,
+.Toastify__close-button:focus {
+  color: #ea580c;
 }
